@@ -5,7 +5,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>FlowHer™ — Built for Brains That Work Differently</title>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 /* ── GLOBAL ── */
@@ -1217,31 +1216,35 @@ function scrollToTop(){window.scrollTo({top:0,behavior:'smooth'});}
 function openApp(){
   if(_currentUser){
     launchApp();
-  } else {
-    // Check if Supabase session exists in storage (handles page refresh race condition)
-    var sb = getSB();
-    if(sb){
-      sb.auth.getSession().then(function(res){
-        if(res.data && res.data.session){
-          _currentUser = res.data.session.user;
-          fetchUserPlan(_currentUser.id).then(function(){ launchApp(); });
-        } else {
-          document.getElementById('landing').style.display='none';
-          document.getElementById('authScreen').classList.add('show');
-          authTab('signup');
-        }
-      });
-    } else {
-      document.getElementById('landing').style.display='none';
-      document.getElementById('authScreen').classList.add('show');
-      authTab('signup');
-    }
+    return;
+  }
+  // Show auth screen
+  document.getElementById('landing').style.display='none';
+  document.getElementById('authScreen').classList.add('show');
+  authTab('signup');
+  // Also check for existing Supabase session in background
+  var sb = getSB();
+  if(sb){
+    sb.auth.getSession().then(function(res){
+      if(res && res.data && res.data.session && res.data.session.user){
+        _currentUser = res.data.session.user;
+        fetchUserPlan(_currentUser.id).then(function(){ 
+          document.getElementById('authScreen').classList.remove('show');
+          launchApp(); 
+        });
+      }
+    }).catch(function(e){ console.error('getSession error:',e); });
   }
 }
 
 window.addEventListener('load',()=>{
-  // Init Supabase auth — check for existing session
-  initAuth();
+  // Dynamically load Supabase — so if CDN fails, page still works
+  var sbScript = document.createElement('script');
+  sbScript.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js';
+  sbScript.crossOrigin = 'anonymous';
+  sbScript.onload = function(){ try{ initAuth(); }catch(e){ console.error('initAuth failed:',e); } };
+  sbScript.onerror = function(){ console.error('Supabase CDN failed to load'); };
+  document.head.appendChild(sbScript);
 
   const el=document.getElementById('signupCount');
   if(!el)return;
@@ -1372,7 +1375,7 @@ function clearDump(){document.getElementById('brainDump').value='';document.getE
 function buildPriorities(){const c=document.getElementById('priorities');c.innerHTML='';[1,2,3].forEach(i=>{c.innerHTML+=`<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;"><div style="width:22px;height:22px;border-radius:50%;background:rgba(196,91,170,${0.4-i*0.1});display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--mag);flex-shrink:0;">${i}</div><input class="a-inp" style="font-size:13px;" placeholder="${['The most critical thing','The second priority','Third — only if 1&2 are done'][i-1]}" oninput="document.getElementById('triagedMsg').style.display=this.value?'block':'none'"></div>`;});}
 
 // ── AI CALLS ──────────────────────────────────────────────────────────────────
-async async function callClaude(prompt,maxT=700){
+async function callClaude(prompt,maxT=700){
   try {
     const r=await fetch('/.netlify/functions/ai',{
       method:'POST',
