@@ -1458,7 +1458,27 @@ async function fetchUserPlan(userId){
   try {
     var sb = getSB();
     if(!sb) return 'free';
+    
+    // Owner bypass — always Core
+    var OWNER_EMAIL = _currentUser ? _currentUser.email : '';
+    var OWNER_EMAILS = ['s.strain04@gmail.com'];
+    if(OWNER_EMAILS.indexOf(OWNER_EMAIL) > -1){
+      _currentPlan = 'core';
+      localStorage.setItem('fh_plan', 'core');
+      return 'core';
+    }
+
     var res = await sb.from('profiles').select('plan,full_name').eq('id', userId).single();
+    
+    // Log for debugging
+    console.log('fetchUserPlan response:', JSON.stringify(res));
+    
+    if(res.error){
+      console.error('fetchUserPlan DB error:', res.error.message);
+      // If RLS blocks the read, fall back to localStorage
+      return localStorage.getItem('fh_plan') || 'free';
+    }
+    
     if(res.data){
       _currentPlan = res.data.plan || 'free';
       localStorage.setItem('fh_plan', _currentPlan);
@@ -1469,7 +1489,7 @@ async function fetchUserPlan(userId){
     return _currentPlan;
   } catch(e){
     console.error('fetchUserPlan error:', e);
-    return 'free';
+    return localStorage.getItem('fh_plan') || 'free';
   }
 }
 
