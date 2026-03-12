@@ -1370,7 +1370,7 @@ function clearDump(){document.getElementById('brainDump').value='';document.getE
 function buildPriorities(){const c=document.getElementById('priorities');c.innerHTML='';[1,2,3].forEach(i=>{c.innerHTML+=`<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;"><div style="width:22px;height:22px;border-radius:50%;background:rgba(196,91,170,${0.4-i*0.1});display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--mag);flex-shrink:0;">${i}</div><input class="a-inp" style="font-size:13px;" placeholder="${['The most critical thing','The second priority','Third — only if 1&2 are done'][i-1]}" oninput="document.getElementById('triagedMsg').style.display=this.value?'block':'none'"></div>`;});}
 
 // ── AI CALLS ──────────────────────────────────────────────────────────────────
-async function callClaude(prompt,maxT=700){
+async async function callClaude(prompt,maxT=700){
   try {
     const r=await fetch('/.netlify/functions/ai',{
       method:'POST',
