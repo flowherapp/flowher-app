@@ -18,7 +18,8 @@
 
 /* ── VIEWS ── */
 #landing{display:block;width:100%;min-height:100vh;}
-#appShell{display:none;position:fixed;inset:0;z-index:1000;background:linear-gradient(160deg,#0e0820 0%,#1a0f2e 50%,#0d1520 100%);}
+#appShell{display:none;position:fixed;inset:0;z-index:1000;background:linear-gradient(160deg,#0e0820 0%,#1a0f2e 50%,#0d1520 100%);pointer-events:none;}
+#appShell.active{pointer-events:auto;}
 
 /* ── TRANSITION ── */
 .slide-in{animation:slideIn 0.5s cubic-bezier(0.4,0,0.2,1) both;}
@@ -304,7 +305,7 @@ nav{padding:16px 32px;}
 /* DESKTOP (1025px+) */
 @media(min-width:1025px){
 /* App shell — phone frame centered on desktop */
-#appShell{background:rgba(5,2,15,0.85);backdrop-filter:blur(30px);display:flex;align-items:center;justify-content:center;}
+#appShell{background:rgba(5,2,15,0.85);backdrop-filter:blur(30px);}
 .app-inner{width:390px;height:min(844px,90vh);border-radius:40px;overflow:hidden;background:linear-gradient(160deg,#0e0820 0%,#1a0f2e 50%,#0d1520 100%);position:relative;box-shadow:0 40px 80px rgba(0,0,0,0.6),0 0 0 1px rgba(196,91,170,0.15),inset 0 0 0 1px rgba(255,255,255,0.05);}
 }
 
@@ -1265,8 +1266,9 @@ function launchApp(){
   document.getElementById('authScreen').classList.remove('show');
   document.getElementById('landing').style.display='none';
   const shell=document.getElementById('appShell');
-  shell.style.display='block';
+  shell.style.display='flex';
   shell.classList.add('slide-in');
+  shell.classList.add('active');
   document.getElementById('aDate').textContent=new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
   document.getElementById('affirmText').textContent='"'+AFFIRMATIONS[affirmIdx]+'"';
   buildPriorities();buildADA();buildMeetList();renderWins();updateLatestWin();updTimerUI();
@@ -1301,7 +1303,7 @@ function unlockCoreUI(){
   if(maskNav) maskNav.setAttribute('onclick', "aTab('mask')");
 }
 function exitApp(){
-  document.getElementById('appShell').style.display='none';
+  var sh=document.getElementById('appShell');sh.style.display='none';sh.classList.remove('active');
   document.getElementById('landing').style.display='block';
   document.getElementById('authScreen').classList.remove('show');
   window.scrollTo(0,0);
