@@ -1281,11 +1281,24 @@ function launchApp(){
 function unlockCoreUI(){
   document.querySelectorAll('.locked-card').forEach(function(el){
     el.classList.remove('locked-card');
-    // Re-enable pointer events on children
-    el.querySelectorAll('input,textarea,button,.a-lbl,.a-chip').forEach(function(child){
+    // Remove the card-level showGate onclick so tapping the card doesn't trigger the gate
+    if(el.getAttribute('onclick') && el.getAttribute('onclick').indexOf('showGate') > -1){
+      el.removeAttribute('onclick');
+    }
+    // Re-enable pointer events on ALL children
+    el.querySelectorAll('*').forEach(function(child){
       child.style.pointerEvents = 'auto';
     });
   });
+  // Also fix nav buttons that use gateTab — force them to tab directly
+  var workNav = document.getElementById('nb-work');
+  if(workNav) workNav.setAttribute('onclick', "aTab('work')");
+  var winsNav = document.getElementById('nb-wins');
+  if(winsNav) winsNav.setAttribute('onclick', "aTab('wins')");
+  var unmaskNav = document.getElementById('nb-unmask');
+  if(unmaskNav) unmaskNav.setAttribute('onclick', "aTab('unmask')");
+  var maskNav = document.getElementById('nb-mask');
+  if(maskNav) maskNav.setAttribute('onclick', "aTab('mask')");
 }
 function exitApp(){
   document.getElementById('appShell').style.display='none';
