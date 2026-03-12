@@ -1,81 +1,85 @@
-export default async (request) => {
-// Handle CORS preflight
-if (request.method === ‘OPTIONS’) {
-return new Response(null, {
-status: 200,
-headers: {
+const https = require(‘https’);
+
+exports.handler = async function(event, context) {
+const headers = {
 ‘Access-Control-Allow-Origin’: ‘*’,
 ‘Access-Control-Allow-Headers’: ‘Content-Type’,
-‘Access-Control-Allow-Methods’: ‘POST, OPTIONS’
-}
-});
+‘Access-Control-Allow-Methods’: ‘POST, OPTIONS’,
+‘Content-Type’: ‘application/json’
+};
+
+if (event.httpMethod === ‘OPTIONS’) {
+return { statusCode: 200, headers, body: ‘’ };
 }
 
-if (request.method !== ‘POST’) {
-return new Response(‘Method Not Allowed’, { status: 405 });
+if (event.httpMethod !== ‘POST’) {
+return { statusCode: 405, headers, body: JSON.stringify({ error: ‘Method not allowed’ }) };
 }
 
 try {
-const { prompt, max_tokens = 700 } = await request.json();
+const { prompt, max_tokens = 700 } = JSON.parse(event.body || ‘{}’);
 
 ```
 if (!prompt) {
-  return new Response(JSON.stringify({ error: 'No prompt provided' }), {
-    status: 400,
-    headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
-  });
+  return { statusCode: 400, headers, body: JSON.stringify({ error: 'No prompt provided' }) };
 }
 
 const apiKey = process.env.ANTHROPIC_API_KEY;
 if (!apiKey) {
-  console.error('ANTHROPIC_API_KEY not set');
-  return new Response(JSON.stringify({ error: 'API key not configured' }), {
-    status: 500,
-    headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
-  });
+  return { statusCode: 500, headers, body: JSON.stringify({ error: 'API key not configured' }) };
 }
 
-const anthropicRes = await fetch('https://api.anthropic.com/v1/messages', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    'x-api-key': apiKey,
-    'anthropic-version': '2023-06-01'
-  },
-  body: JSON.stringify({
+const result = await new Promise((resolve, reject) => {
+  const body = JSON.stringify({
     model: 'claude-haiku-4-5-20251001',
     max_tokens: Math.min(max_tokens, 1000),
     messages: [{ role: 'user', content: prompt }]
-  })
+  });
+
+  const req = https.request({
+    hostname: 'api.anthropic.com',
+    path: '/v1/messages',
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Content-Length': Buffer.byteLength(body),
+      'x-api-key': apiKey,
+      'anthropic-version': '2023-06-01'
+    }
+  }, (res) => {
+    let data = '';
+    res.on('data', chunk => data += chunk);
+    res.on('end', () => {
+      try {
+        resolve({ status: res.statusCode, body: JSON.parse(data) });
+      } catch(e) {
+        reject(new Error('Parse error: ' + data));
+      }
+    });
+  });
+
+  req.on('error', reject);
+  req.write(body);
+  req.end();
 });
 
-if (!anthropicRes.ok) {
-  const errText = await anthropicRes.text();
-  console.error('Anthropic API error:', errText);
-  return new Response(JSON.stringify({ error: 'AI request failed', detail: errText }), {
-    status: 500,
-    headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
-  });
+if (result.status !== 200) {
+  console.error('Anthropic error:', JSON.stringify(result.body));
+  return { statusCode: 500, headers, body: JSON.stringify({ error: 'AI request failed', detail: JSON.stringify(result.body) }) };
 }
 
-const data = await anthropicRes.json();
-
-return new Response(JSON.stringify({
-  content: data.content,
-  result: data.content?.[0]?.text || ''
-}), {
-  status: 200,
-  headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' }
-});
+return {
+  statusCode: 200,
+  headers,
+  body: JSON.stringify({
+    content: result.body.content,
+    result: result.body.content?.[0]?.text || ''
+  })
+};
 ```
 
 } catch (error) {
-console.error(‘AI function error:’, error.message);
-return new Response(JSON.stringify({ error: ‘AI request failed’, detail: error.message }), {
-status: 500,
-headers: { ‘Content-Type’: ‘application/json’, ‘Access-Control-Allow-Origin’: ‘*’ }
-});
+console.error(‘Function error:’, error.message);
+return { statusCode: 500, headers, body: JSON.stringify({ error: ‘Function failed’, detail: error.message }) };
 }
 };
-
-export const config = { path: ‘/.netlify/functions/ai’ };
