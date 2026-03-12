@@ -1,7 +1,4 @@
-const Anthropic = require(’@anthropic-ai/sdk’);
-
 exports.handler = async (event) => {
-// Only allow POST
 if (event.httpMethod !== ‘POST’) {
 return { statusCode: 405, body: ‘Method Not Allowed’ };
 }
@@ -17,26 +14,42 @@ if (!prompt) {
   };
 }
 
-const client = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
+const response = await fetch('https://api.anthropic.com/v1/messages', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'x-api-key': process.env.ANTHROPIC_API_KEY,
+    'anthropic-version': '2023-06-01'
+  },
+  body: JSON.stringify({
+    model: 'claude-haiku-4-5-20251001',
+    max_tokens: Math.min(max_tokens, 1000),
+    messages: [{ role: 'user', content: prompt }]
+  })
 });
 
-const message = await client.messages.create({
-  model: 'claude-sonnet-4-20250514',
-  max_tokens: Math.min(max_tokens, 1000), // cap at 1000
-  messages: [{ role: 'user', content: prompt }],
-});
+if (!response.ok) {
+  const errText = await response.text();
+  console.error('Anthropic API error:', errText);
+  return {
+    statusCode: 500,
+    headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+    body: JSON.stringify({ error: 'AI request failed', detail: errText })
+  };
+}
+
+const data = await response.json();
 
 return {
   statusCode: 200,
   headers: {
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Origin': '*'
   },
   body: JSON.stringify({
-    content: message.content,
-    result: message.content?.[0]?.text || '',
-  }),
+    content: data.content,
+    result: data.content?.[0]?.text || ''
+  })
 };
 ```
 
@@ -44,8 +57,8 @@ return {
 console.error(‘AI function error:’, error);
 return {
 statusCode: 500,
-headers: { ‘Content-Type’: ‘application/json’ },
-body: JSON.stringify({ error: ‘AI request failed’, detail: error.message }),
+headers: { ‘Content-Type’: ‘application/json’, ‘Access-Control-Allow-Origin’: ‘*’ },
+body: JSON.stringify({ error: ‘AI request failed’, detail: error.message })
 };
 }
 };
