@@ -500,8 +500,9 @@ h1 strong{font-weight:700;}
 @media(max-width:480px){h1{font-size:38px;}.price-num{font-size:56px;}.reg-cards{grid-template-columns:1fr;}}
 
 /* ── AUTH SCREEN ─────────────────────────────── */
-#authScreen{position:fixed;inset:0;z-index:2000;background:linear-gradient(160deg,#0e0820 0%,#1a0f2e 50%,#0d1520 100%);display:flex;align-items:center;justify-content:center;font-family:‘DM Sans’,sans-serif;}
-#authScreen.hidden{display:none;}
+#authScreen{position:fixed;inset:0;z-index:2000;background:linear-gradient(160deg,#0e0820 0%,#1a0f2e 50%,#0d1520 100%);display:none;align-items:center;justify-content:center;font-family:‘DM Sans’,sans-serif;}
+#authScreen.show{display:flex;}
+
 .auth-wrap{width:100%;max-width:380px;padding:32px 28px;position:relative;z-index:1;}
 .auth-logo{margin-bottom:28px;}
 .auth-title{font-family:‘Cormorant Garamond’,serif;font-size:28px;font-weight:300;color:#f0e6ff;margin-bottom:6px;line-height:1.2;}
@@ -1225,13 +1226,13 @@ function openApp(){
           fetchUserPlan(_currentUser.id).then(function(){ launchApp(); });
         } else {
           document.getElementById('landing').style.display='none';
-          document.getElementById('authScreen').classList.remove('hidden');
+          document.getElementById('authScreen').classList.add('show');
           authTab('signup');
         }
       });
     } else {
       document.getElementById('landing').style.display='none';
-      document.getElementById('authScreen').classList.remove('hidden');
+      document.getElementById('authScreen').classList.add('show');
       authTab('signup');
     }
   }
@@ -1253,7 +1254,7 @@ window.addEventListener('load',()=>{
 
 // ── LAUNCH / EXIT APP ────────────────────────────────────────────────────────
 function launchApp(){
-  document.getElementById('authScreen').classList.add('hidden');
+  document.getElementById('authScreen').classList.remove('show');
   document.getElementById('landing').style.display='none';
   const shell=document.getElementById('appShell');
   shell.style.display='block';
@@ -1269,7 +1270,7 @@ function launchApp(){
 function exitApp(){
   document.getElementById('appShell').style.display='none';
   document.getElementById('landing').style.display='block';
-  document.getElementById('authScreen').classList.add('hidden');
+  document.getElementById('authScreen').classList.remove('show');
   window.scrollTo(0,0);
 }
 
@@ -1589,7 +1590,7 @@ async function doSignOut(){
   localStorage.removeItem('fh_name');
   document.getElementById('appShell').style.display='none';
   document.getElementById('landing').style.display='none';
-  document.getElementById('authScreen').classList.remove('hidden');
+  document.getElementById('authScreen').classList.add('show');
   authTab('signin');
 }
 
@@ -1638,7 +1639,7 @@ async function initAuth(){
   var sb = getSB();
   if(!sb){
     // Supabase not loaded yet — allow guest/demo access
-    document.getElementById('authScreen').classList.add('hidden');
+    document.getElementById('authScreen').classList.remove('show');
     return;
   }
   try {
@@ -1653,17 +1654,17 @@ async function initAuth(){
         showPaymentBanner();
       }
       // Already logged in — go straight to landing (they tap Open App to enter)
-      document.getElementById('authScreen').classList.add('hidden');
+      document.getElementById('authScreen').classList.remove('show');
     }
     // Listen for auth changes (e.g. email confirmation, password reset)
     sb.auth.onAuthStateChange(async function(event, session){
       if(event === 'SIGNED_IN' && session){
         _currentUser = session.user;
         await fetchUserPlan(_currentUser.id);
-        document.getElementById('authScreen').classList.add('hidden');
+        document.getElementById('authScreen').classList.remove('show');
       } else if(event === 'PASSWORD_RECOVERY'){
         // Show password reset UI
-        document.getElementById('authScreen').classList.remove('hidden');
+        document.getElementById('authScreen').classList.add('show');
         authTab('reset');
       } else if(event === 'SIGNED_OUT'){
         _currentUser = null;
@@ -1672,7 +1673,7 @@ async function initAuth(){
     });
   } catch(e){
     console.error('initAuth error:', e);
-    document.getElementById('authScreen').classList.add('hidden');
+    document.getElementById('authScreen').classList.remove('show');
   }
 }
 
