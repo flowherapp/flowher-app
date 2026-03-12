@@ -227,9 +227,9 @@ APP STYLES
 .a-lbl-gold{color:var(–gold);}
 .a-pg-title{font-family:‘Cormorant Garamond’,serif;font-size:26px;font-weight:300;color:#f0e6ff;padding:4px 22px 4px;position:relative;z-index:1;}
 .a-pg-sub{font-size:13px;color:rgba(240,230,255,0.4);padding:0 22px 16px;font-weight:300;line-height:1.6;position:relative;z-index:1;}
-.a-btn{padding:10px 20px;border-radius:22px;border:1px solid rgba(196,91,170,0.5);background:transparent;color:var(–mag);font-size:12px;font-family:‘DM Sans’,sans-serif;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all 0.2s;}
+.a-btn{padding:10px 20px;border-radius:22px;border:1px solid rgba(196,91,170,0.5);background:transparent;color:#C45BAA;font-size:12px;font-family:‘DM Sans’,sans-serif;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all 0.2s;}
 .a-btn:active{transform:scale(0.97);}
-.a-btn-fill{padding:13px 26px;border-radius:22px;border:none;background:linear-gradient(135deg,var(–plum),var(–mag));color:white;font-size:13px;font-family:‘DM Sans’,sans-serif;font-weight:500;cursor:pointer;transition:all 0.2s;}
+.a-btn-fill{padding:13px 26px;border-radius:22px;border:none;background:linear-gradient(135deg,#3D1052,#C45BAA);color:white;font-size:13px;font-family:‘DM Sans’,sans-serif;font-weight:500;cursor:pointer;transition:all 0.2s;}
 .a-btn-teal{border-color:rgba(61,158,140,0.5);color:var(–teal);}
 .a-btn-rose{border-color:rgba(232,132,92,0.5);color:var(–rose);}
 .a-btn-gold{border-color:rgba(212,168,67,0.5);color:var(–gold);}
@@ -1274,6 +1274,18 @@ function launchApp(){
   document.getElementById('brainDump').addEventListener('input',updWC);
   document.getElementById('unmaskText').addEventListener('input',saveUnmask);
   updatePlanBadge();
+  if(isCore()) unlockCoreUI();
+}
+
+// Remove locked-card styling for Core users
+function unlockCoreUI(){
+  document.querySelectorAll('.locked-card').forEach(function(el){
+    el.classList.remove('locked-card');
+    // Re-enable pointer events on children
+    el.querySelectorAll('input,textarea,button,.a-lbl,.a-chip').forEach(function(child){
+      child.style.pointerEvents = 'auto';
+    });
+  });
 }
 function exitApp(){
   document.getElementById('appShell').style.display='none';
@@ -1450,6 +1462,11 @@ function getSB(){
 
 // ── Plan check ───────────────────────────────────────────────────
 function isCore(){
+  // Owner email always gets Core
+  if(_currentUser && _currentUser.email && 
+     _currentUser.email.toLowerCase() === 's.strain04@gmail.com'){
+    return true;
+  }
   return _currentPlan === 'core' || localStorage.getItem('fh_plan') === 'core';
 }
 
