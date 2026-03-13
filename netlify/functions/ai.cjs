@@ -17,20 +17,28 @@ exports.handler = async function(event, context) {
   }
 
   try {
-    const { prompt, max_tokens = 700 } = JSON.parse(event.body || '{}');
+    console.log('Body received:', event.body ? event.body.substring(0, 100) : 'EMPTY');
+
+    const parsed = JSON.parse(event.body || '{}');
+    const prompt = parsed.prompt;
+    const max_tokens = parsed.max_tokens || 700;
 
     if (!prompt) {
+      console.log('ERROR: No prompt in body');
       return { statusCode: 400, headers, body: JSON.stringify({ error: 'No prompt' }) };
     }
 
     const apiKey = process.env.ANTHROPIC_API_KEY;
     if (!apiKey) {
+      console.log('ERROR: No API key');
       return { statusCode: 500, headers, body: JSON.stringify({ error: 'No API key' }) };
     }
 
+    console.log('Calling Anthropic API with prompt length:', prompt.length);
+
     const result = await new Promise((resolve, reject) => {
       const body = JSON.stringify({
-        model: 'claude-haiku-4-5-20251001',
+        model: 'claude-haiku-20240307',
         max_tokens: Math.min(max_tokens, 1000),
         messages: [{ role: 'user', content: prompt }]
       });
@@ -41,35 +49,4 @@ exports.handler = async function(event, context) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Content-Length': Buffer.byteLength(body),
-          'x-api-key': apiKey,
-          'anthropic-version': '2023-06-01'
-        }
-      }, (res) => {
-        let data = '';
-        res.on('data', chunk => data += chunk);
-        res.on('end', () => {
-          try { resolve({ status: res.statusCode, body: JSON.parse(data) }); }
-          catch(e) { reject(new Error('Parse error: ' + data)); }
-        });
-      });
-
-      req.on('error', reject);
-      req.write(body);
-      req.end();
-    });
-
-    if (result.status !== 200) {
-      return { statusCode: 500, headers, body: JSON.stringify({ error: 'AI failed', detail: JSON.stringify(result.body) }) };
-    }
-
-    return {
-      statusCode: 200,
-      headers,
-      body: JSON.stringify({ result: result.body.content[0].text })
-    };
-
-  } catch (error) {
-    return { statusCode: 500, headers, body: JSON.stringify({ error: error.message }) };
-  }
-};
+          'Content-Length': Buffer.by​​​​​​​​​​​​​​​​
