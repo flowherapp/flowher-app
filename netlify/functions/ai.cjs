@@ -38,7 +38,7 @@ exports.handler = async function(event, context) {
 
     const result = await new Promise((resolve, reject) => {
       const body = JSON.stringify({
-        model: 'claude-3-5-haiku-20241022',
+        model: process.env.ANTHROPIC_MODEL,
         max_tokens: Math.min(max_tokens, 1000),
         messages: [{ role: 'user', content: prompt }]
       });
