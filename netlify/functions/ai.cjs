@@ -49,4 +49,44 @@ exports.handler = async function(event, context) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Content-Length': Buffer.by​​​​​​​​​​​​​​​​
+          'Content-Length': Buffer.byteLength(body),
+          'x-api-key': apiKey,
+          'anthropic-version': '2023-06-01'
+        }
+      }, (res) => {
+        let data = '';
+        res.on('data', chunk => data += chunk);
+        res.on('end', () => {
+          console.log('Anthropic status:', res.statusCode);
+          console.log('Anthropic response:', data.substring(0, 200));
+          try { resolve({ status: res.statusCode, body: JSON.parse(data) }); }
+          catch(e) { reject(new Error('Parse error: ' + data)); }
+        });
+      });
+
+      req.on('error', (e) => {
+        console.log('Request error:', e.message);
+        reject(e);
+      });
+      req.write(body);
+      req.end();
+    });
+
+    if (result.status !== 200) {
+      console.log('API error:', JSON.stringify(result.body));
+      return { statusCode: 500, headers, body: JSON.stringify({ error: 'AI failed', detail: JSON.stringify(result.body) }) };
+    }
+
+    const text = result.body.content[0].text;
+    console.log('Success, response length:', text.length);
+    return {
+      statusCode: 200,
+      headers,
+      body: JSON.stringify({ result: text })
+    };
+
+  } catch (error) {
+    console.log('Caught error:', error.message);
+    return { statusCode: 500, headers, body: JSON.stringify({ error: error.message }) };
+  }
+};
