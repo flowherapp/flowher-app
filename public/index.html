@@ -338,6 +338,8 @@ footer>div{flex-direction:column;gap:16px;align-items:flex-start;}
 .a-hdr{padding:20px 16px 8px;}
 .a-nav-btn{padding:4px 6px;}
 .a-nav-lbl{font-size:8px;letter-spacing:1px;}
+.a-nav-btn.on .a-nav-lbl{color:var(–mag) !important;opacity:1 !important;}
+.a-nav-btn .a-nav-lbl{color:rgba(240,230,255,0.35);}
 }
 
 /* SMALL PHONE (max 390px) */
@@ -838,7 +840,7 @@ h1 strong{font-weight:700;}
         <button class="a-btn a-btn-sm" style="color:#E85C5C;border-color:rgba(232,92,92,0.4);font-size:10px;" onclick="openSOS()">SOS</button>
       </div>
     </div>
-    <div class="a-card" onclick="showGate('Priority Triage — Just 3')">
+    <div class="a-card" onclick="gateTab('focus','Priority Triage')">
       <span class="a-lbl">How are you walking in?</span>
       <div class="mood-grid" id="moodGrid">
         <div class="mood-item" onclick="selMood(0)"><span class="mood-emoji">🔥</span><div class="mood-name">Focused</div></div>
@@ -850,12 +852,12 @@ h1 strong{font-weight:700;}
       </div>
       <div class="a-resp" id="moodResp" style="display:none"></div>
     </div>
-    <div class="a-card-glow" onclick="showGate('Smallest Step Engine')">
+    <div class="a-card-glow" onclick="gateTab('focus','Smallest Step Engine')">
       <span class="a-lbl">Today's Truth</span>
       <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;line-height:1.7;color:#f0e6ff;margin-bottom:16px;min-height:76px;transition:opacity 0.25s;" id="affirmText"></div>
       <button class="a-btn a-btn-sm" onclick="nextAffirm()">Next →</button>
     </div>
-    <div class="a-card" onclick="showGate('⚡ Hyperfocus Capture')">
+    <div class="a-card" onclick="gateTab('focus','Hyperfocus Capture')">
       <span class="a-lbl a-lbl-teal">Focus Timer</span>
       <div style="display:flex;align-items:center;gap:18px;">
         <div class="timer-wrap"><svg width="90" height="90" style="transform:rotate(-90deg)"><circle cx="45" cy="45" r="38" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="5"/><circle cx="45" cy="45" r="38" fill="none" stroke="var(--teal)" stroke-width="5" stroke-linecap="round" stroke-dasharray="238.76" id="timerArc" style="transition:stroke-dashoffset 0.8s;"/></svg><div class="timer-label" id="timerDisp" style="color:#f0e6ff;font-size:14px;">25:00</div></div>
@@ -863,7 +865,7 @@ h1 strong{font-weight:700;}
       </div>
     </div>
     <div class="a-card" id="latestWinCard" style="display:none"><span class="a-lbl">Latest Win ⭐</span><div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:rgba(240,230,255,0.85);line-height:1.65;" id="latestWinText"></div><div style="font-size:10px;color:rgba(240,230,255,0.25);margin-top:8px;" id="latestWinDate"></div></div>
-    <div class="a-card a-card-gold" onclick="showGate('⏱ Time Blindness Corrector')">
+    <div class="a-card a-card-gold" onclick="gateTab('focus','Time Blindness Corrector')">
       <span class="a-lbl a-lbl-gold">Dopamine Menu</span>
       <div style="font-size:12px;color:rgba(240,230,255,0.4);margin-bottom:12px;">Need a hit to keep going? Pick one. No guilt.</div>
       <div class="dop-grid">
@@ -1836,7 +1838,7 @@ function setPricingToggle(plan) {
   </div>
 
   <h1>Be one of the<br><em>200 women</em> who<br><strong>build this with us.</strong></h1>
-  <p class="sub">FlowHer was built by a woman with ADHD who got laid off twice in corporate America and decided to build what should have existed ten years ago. You are not buying a finished product. You are co-building a movement — and locking in your rate forever.</p>
+  <p class="sub">FlowHer was built by a woman with ADHD who finally understood why the existing tools never worked for her brain — and decided to build what should have existed ten years ago. You are not buying a finished product. You are co-building a movement — and locking in your rate forever.</p>
 
   <!-- SPOTS -->
 
@@ -1878,7 +1880,7 @@ function setPricingToggle(plan) {
   <li><span class="feat-icon">✦</span><span>Full focus toolkit — Brain Dump, Priority Triage, Smallest Step Engine</span></li>
   <li><span class="feat-icon">⚡</span><span>Hyperfocus Capture + Body Double Mode</span></li>
   <li><span class="feat-icon">⏱</span><span>Time Blindness Corrector — learns YOUR personal time multiplier <span class="feat-new">NEW</span></span></li>
-  <li><span class="feat-icon">🩸</span><span>Masking Debt Tracker — built for Black and brown women in corporate <span class="feat-new">NEW</span></span></li>
+  <li><span class="feat-icon">🩸</span><span>Masking Debt Tracker — for women who mask to survive in professional spaces <span class="feat-new">NEW</span></span></li>
   <li><span class="feat-icon">🛡️</span><span>RSD Toolkit with live AI reality-check</span></li>
   <li><span class="feat-icon">💼</span><span>AI email drafting + self-advocacy scripts for workplace situations</span></li>
   <li><span class="feat-icon">⚖️</span><span>ADA rights library in plain language — no legal jargon</span></li>
@@ -1930,7 +1932,7 @@ function setPricingToggle(plan) {
 
   <div class="story">
     <div class="story-eyebrow">Why I Built This</div>
-    <div class="story-text">"I spent fifteen years in corporate America with an MBA — managing global accounts, leading teams, delivering results. And I got laid off twice. It took me until my ADHD diagnosis to understand what kept happening. The tools that existed weren't built for my brain. So I built what should have existed all along."</div>
+    <div class="story-text">"I spent years achieving things the hard way — until my ADHD diagnosis changed everything. For the first time, I understood why the standard tools never worked for me. So I stopped trying to fit into systems that weren't built for my brain, and built one that was."</div>
     <div class="story-sig">
       <strong>Sil — Founder, FlowHer™</strong>
       Global Account Manager · MBA · ADHD Inattentive · Done apologizing for her brain
