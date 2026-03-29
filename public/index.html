@@ -39,6 +39,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 48px;display:fl
 
 /* HERO */
 .hero{min-height:100vh;display:flex;align-items:center;padding:120px 48px 80px;position:relative;overflow:hidden;}
+.hero-right{display:none;}
+.hero-left{display:flex;flex-direction:column;gap:20px;}
 .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 80% 20%,rgba(196,91,170,0.11) 0%,transparent 60%),radial-gradient(ellipse 40% 40% at 10% 80%,rgba(61,16,82,0.07) 0%,transparent 60%),radial-gradient(ellipse 50% 50% at 50% 50%,rgba(61,158,140,0.05) 0%,transparent 70%);}
 .orb-l{position:absolute;border-radius:50%;pointer-events:none;}
 .orb-l1{width:500px;height:500px;right:-100px;top:-100px;background:radial-gradient(circle,rgba(196,91,170,0.07) 0%,transparent 70%);animation:floatL 9s ease-in-out infinite;}
@@ -306,6 +308,66 @@ nav{padding:16px 32px;}
 /* App shell — phone frame centered on desktop */
 #appShell{background:rgba(5,2,15,0.85);backdrop-filter:blur(30px);}
 .app-inner{width:390px;height:min(844px,90vh);border-radius:40px;overflow:hidden;background:linear-gradient(160deg,#0e0820 0%,#1a0f2e 50%,#0d1520 100%);position:relative;box-shadow:0 40px 80px rgba(0,0,0,0.6),0 0 0 1px rgba(196,91,170,0.15),inset 0 0 0 1px rgba(255,255,255,0.05);}
+
+/* ── LANDING PAGE DESKTOP ── */
+
+/* Hero — two column */
+.hero{padding:120px 80px 100px;align-items:center;}
+.hero-content{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.hero-left{display:flex;flex-direction:column;gap:24px;}
+.hero-right{display:flex;justify-content:center;align-items:center;}
+.hero h1{font-size:clamp(42px,4vw,64px);line-height:1.05;}
+.hero-sub{font-size:17px;max-width:480px;}
+.hero-eyebrow{font-size:11px;}
+.brain-tags{justify-content:flex-start;}
+
+/* Proof bar */
+.proof-bar{max-width:900px;margin:0 auto;padding:0 80px;}
+
+/* Sections */
+.lsection,.features-section,.testimonials,.pricing,.cta-section,.truth-section{padding:100px 80px;}
+.section-label{font-size:10px;}
+
+/* Who grid — 3 columns on desktop */
+.who-grid{grid-template-columns:repeat(3,1fr);gap:24px;max-width:1100px;margin:0 auto;}
+.who-card{padding:32px 28px;transition:transform 0.2s ease,box-shadow 0.2s ease;}
+.who-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(196,91,170,0.15);}
+
+/* Features grid — 3 columns */
+.features-grid{grid-template-columns:repeat(3,1fr);gap:28px;max-width:1100px;margin:0 auto;}
+.feature-card{padding:32px 28px;transition:transform 0.2s ease,box-shadow 0.2s ease;}
+.feature-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(196,91,170,0.12);}
+
+/* Truth section — two column */
+.truth-section{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;max-width:1200px;margin:0 auto;}
+.truth-quote{font-size:clamp(28px,3vw,42px);}
+.truth-points{gap:28px;}
+
+/* Testimonials */
+.testimonials-grid{grid-template-columns:repeat(3,1fr);gap:24px;max-width:1100px;margin:0 auto;}
+.testimonial-card{transition:transform 0.2s ease;}
+.testimonial-card:hover{transform:translateY(-3px);}
+
+/* Pricing */
+.pricing-grid{max-width:800px;margin:0 auto;gap:32px;}
+.pricing-card{transition:transform 0.2s ease,box-shadow 0.2s ease;}
+.pricing-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(196,91,170,0.2);}
+
+/* CTA section */
+.cta-section{text-align:center;max-width:700px;margin:0 auto;}
+
+/* Nav on desktop */
+nav{padding:20px 80px;}
+}
+
+/* Large desktop 1440px+ */
+@media(min-width:1440px){
+.hero{padding:140px 120px 120px;}
+.lsection,.features-section,.testimonials,.pricing,.cta-section{padding:120px 120px;}
+.truth-section{padding:120px 120px;}
+nav{padding:24px 120px;}
+.who-grid{grid-template-columns:repeat(3,1fr);}
+.features-grid{grid-template-columns:repeat(3,1fr);}
 }
 
 /* MOBILE (max 768px) */
@@ -535,6 +597,35 @@ h1 strong{font-weight:700;}
 
 </head>
 <body>
+<style>
+/* Global hover states for desktop */
+@media(min-width:1025px){
+  /* Smooth scroll */
+  html{scroll-behavior:smooth;}
+
+/* Nav hover */
+.nav-cta:hover{opacity:0.85;transform:translateY(-1px);}
+
+/* Button hovers */
+.waitlist-btn:hover,.enter-app-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(196,91,170,0.35);}
+
+/* Hero right — show on desktop */
+.hero-right{display:flex;}
+
+/* Proof bar items */
+.proof-item:hover .proof-number{color:#C45BAA;transition:color 0.2s;}
+
+/* Truth points hover */
+.truth-point:hover{transform:translateX(4px);transition:transform 0.2s ease;}
+
+/* Pricing CTA hover */
+.pricing-cta:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(196,91,170,0.3);transition:all 0.2s;}
+
+/* Section fade-in on scroll */
+.who-card,.feature-card,.testimonial-card{opacity:0;transform:translateY(20px);transition:opacity 0.5s ease,transform 0.5s ease;}
+.who-card.visible,.feature-card.visible,.testimonial-card.visible{opacity:1;transform:translateY(0);}
+}
+</style>
 
 <!-- ════════════════════════════════════════
      PAYMENT SUCCESS BANNER
@@ -624,8 +715,7 @@ h1 strong{font-weight:700;}
   <div class="hero-bg"></div>
   <div class="orb-l orb-l1"></div>
   <div class="orb-l orb-l2"></div>
-  <div class="hero-content">
-    <div class="hero-eyebrow">For Women Whose Brains Work Differently</div>
+  <div class="hero-content"><div class="hero-left"><div class="hero-eyebrow">For Women Whose Brains Work Differently</div>
     <h1>The workplace<br>wasn't built<br>for <em>your brain.</em><br>FlowHer was.</h1>
     <p class="hero-sub">A productivity and confidence app for professional women who are <strong>neurodivergent, burned out, or simply wired differently</strong> — and done apologizing for it.</p>
     <div class="brain-tags">
@@ -656,7 +746,7 @@ h1 strong{font-weight:700;}
     <button class="enter-app-btn" onclick="openApp()" style="margin-top:24px;">
       Try the App Now <span class="arrow">→</span>
     </button>
-  </div>
+  </div></div><div class="hero-right"><div style="width:340px;height:480px;background:linear-gradient(160deg,rgba(196,91,170,0.08),rgba(45,125,110,0.06));border-radius:32px;border:1px solid rgba(196,91,170,0.12);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:32px;"><div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(196,91,170,0.6);margin-bottom:8px;">Built for your brain</div><div style="font-size:15px;color:rgba(240,230,255,0.7);text-align:center;line-height:1.8;font-style:italic;">"Your ideas matter.<br>Write them down<br>before they disappear."</div><div style="width:48px;height:2px;background:linear-gradient(90deg,#C45BAA,#2D7D6E);border-radius:2px;"></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;"><div style="background:rgba(196,91,170,0.08);border:1px solid rgba(196,91,170,0.15);border-radius:10px;padding:14px;text-align:center;"><div style="font-size:18px;margin-bottom:4px;">⚡</div><div style="font-size:10px;color:rgba(240,230,255,0.6);letter-spacing:1px;">FOCUS</div></div><div style="background:rgba(196,91,170,0.08);border:1px solid rgba(196,91,170,0.15);border-radius:10px;padding:14px;text-align:center;"><div style="font-size:18px;margin-bottom:4px;">🧠</div><div style="font-size:10px;color:rgba(240,230,255,0.6);letter-spacing:1px;">CLARITY</div></div><div style="background:rgba(196,91,170,0.08);border:1px solid rgba(196,91,170,0.15);border-radius:10px;padding:14px;text-align:center;"><div style="font-size:18px;margin-bottom:4px;">🛡️</div><div style="font-size:10px;color:rgba(240,230,255,0.6);letter-spacing:1px;">PROTECT</div></div><div style="background:rgba(196,91,170,0.08);border:1px solid rgba(196,91,170,0.15);border-radius:10px;padding:14px;text-align:center;"><div style="font-size:18px;margin-bottom:4px;">💜</div><div style="font-size:10px;color:rgba(240,230,255,0.6);letter-spacing:1px;">THRIVE</div></div></div></div></div></div>
 </section>
 
 <div class="proof-bar">
@@ -1224,6 +1314,19 @@ function openApp(){
 }
 
 window.addEventListener('load',()=>{
+  // Scroll animation observer for desktop
+  if(window.innerWidth >= 1025){
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+        }
+      });
+    },{threshold:0.15});
+    document.querySelectorAll('.who-card,.feature-card,.testimonial-card').forEach(function(el){
+      observer.observe(el);
+    });
+  }
   // Dynamically load Supabase — so if CDN fails, page still works
   var sbScript = document.createElement('script');
   sbScript.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js';
