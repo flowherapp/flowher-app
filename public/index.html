@@ -844,7 +844,7 @@ h1 strong{font-weight:700;}
       <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#C45BAA;margin-bottom:4px;font-family:'DM Sans',sans-serif;">✦ Founding Rate — 200 spots only</div>
       <div class="pricing-price" id="corePrice"><sup>$</sup>24<span style="font-size:26px">.99</span></div>
       <div class="pricing-period" id="corePeriod">per month · locked forever</div>
-      <div style="font-size:11px;color:rgba(240,230,255,0.5);font-family:'DM Sans',sans-serif;margin-top:6px;">After 200 founding spots: $39.99/mo</div>
+      <div style="font-size:11px;color:rgba(240,230,255,0.5);font-family:'DM Sans',sans-serif;margin-top:6px;">After 200 founding spots: $399/yr or $39.99/mo</div>
       <ul class="pricing-features">
         <li>Full focus toolkit</li>
         <li>All workplace survival tools</li>
@@ -1270,8 +1270,8 @@ function setPricingToggle(plan) {
   document.getElementById('ptAnnual').classList.toggle('active', isAnnual);
   var cp = document.getElementById('corePrice');
   var cpd = document.getElementById('corePeriod');
-  if (cp) cp.innerHTML = isAnnual ? '<sup>$</sup>399<span style="font-size:20px">/yr</span>' : '<sup>$</sup>39<span style="font-size:26px">.99</span>';
-  if (cpd) cpd.textContent = isAnnual ? '~$33/month · save $80' : 'per month';
+  if (cp) cp.innerHTML = isAnnual ? '<sup>$</sup>299<span style="font-size:20px">/yr</span>' : '<sup>$</sup>24<span style="font-size:26px">.99</span>';
+  if (cpd) cpd.textContent = isAnnual ? 'per year · locked forever' : 'per month · locked forever';
 }
 
 // ── LANDING ──────────────────────────────────────────────────────────────────
@@ -1910,8 +1910,8 @@ function setPricingToggle(plan) {
   if (b2) b2.classList.toggle('active', isAnnual);
   var cp = document.getElementById('corePrice');
   var cpd = document.getElementById('corePeriod');
-  if (cp) cp.innerHTML = isAnnual ? '<sup>$</sup>399<span style="font-size:20px">/yr</span>' : '<sup>$</sup>39<span style="font-size:26px">.99</span>';
-  if (cpd) cpd.textContent = isAnnual ? '~$33/month · save $80' : 'per month';
+  if (cp) cp.innerHTML = isAnnual ? '<sup>$</sup>299<span style="font-size:20px">/yr</span>' : '<sup>$</sup>24<span style="font-size:26px">.99</span>';
+  if (cpd) cpd.textContent = isAnnual ? 'per year · locked forever' : 'per month · locked forever';
 }
 
 </script>
