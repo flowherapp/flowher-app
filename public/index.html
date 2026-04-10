@@ -5,6 +5,31 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>FlowHer™ — Built for Brains That Work Differently</title>
+<meta name="description" content="FlowHer™ is a productivity and confidence app for professional women who are neurodivergent, burned out, or simply wired differently. Built by a woman with ADHD, for brains that work differently.">
+
+<!-- Open Graph — controls how link looks when shared on Facebook, LinkedIn -->
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://flowherapp.com">
+<meta property="og:title" content="FlowHer™ — Built for Your Brain">
+<meta property="og:description" content="A productivity and confidence app for professional women who are neurodivergent, burned out, or simply wired differently. 200 founding spots open at $24.99/month — locked forever.">
+<meta property="og:image" content="https://flowherapp.com/og-image.jpg">
+<meta property="og:site_name" content="FlowHer™">
+
+<!-- Twitter Card -->
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://flowherapp.com">
+<meta name="twitter:title" content="FlowHer™ — Built for Your Brain">
+<meta name="twitter:description" content="A productivity and confidence app for professional women who are neurodivergent, burned out, or simply wired differently.">
+<meta name="twitter:image" content="https://flowherapp.com/og-image.jpg">
+
+<!-- Additional SEO -->
+
+<meta name="keywords" content="ADHD app for women, neurodivergent productivity, women with ADHD, productivity app, ADHD tools, burnout recovery, workplace tools for ADHD">
+<meta name="author" content="Silvella Strain, FlowHer LLC">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://flowherapp.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 /* ── GLOBAL ── */
@@ -17,8 +42,8 @@
 
 /* ── VIEWS ── */
 #landing{display:block;width:100%;min-height:100vh;}
-#appShell{display:none;position:fixed;inset:0;z-index:1000;background:linear-gradient(160deg,#0e0820 0%,#1a0f2e 50%,#0d1520 100%);pointer-events:none;}
-#appShell.active{pointer-events:auto;}
+#appShell{display:none;position:fixed;inset:0;z-index:1000;background:linear-gradient(160deg,#0e0820 0%,#1a0f2e 50%,#0d1520 100%);pointer-events:none;visibility:hidden;opacity:0;}
+#appShell.active{pointer-events:auto;visibility:visible;opacity:1;}
 
 /* ── TRANSITION ── */
 .slide-in{animation:slideIn 0.5s cubic-bezier(0.4,0,0.2,1) both;}
@@ -170,7 +195,7 @@ h2 em{font-style:italic;color:var(–mag);}
 .pricing-features{list-style:none;text-align:left;margin-bottom:28px;}
 .pricing-features li{font-size:13px;color:var(–gray);padding:7px 0;border-bottom:1px solid rgba(196,91,170,0.06);display:flex;align-items:center;gap:10px;font-weight:300;}
 .pricing-card.featured .pricing-features li{color:rgba(255,255,255,0.55);border-bottom-color:rgba(255,255,255,0.06);}
-.pricing-features li::before{content:‘✦’;color:var(–mag);font-size:9px;flex-shrink:0;}
+.pricing-features li::before{content:‘✦’;color:var(–mag);font-size:11px;flex-shrink:0;}
 .pricing-cta{width:100%;padding:14px;border-radius:12px;font-family:‘DM Sans’,sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:all 0.3s;letter-spacing:0.5px;border:1.5px solid;}
 .pricing-card:not(.featured) .pricing-cta{background:transparent;border-color:var(–plum);color:var(–plum);}
 .pricing-card:not(.featured) .pricing-cta:hover{background:var(–plum);color:white;}
@@ -279,7 +304,7 @@ APP STYLES
 .a-nav{position:absolute;bottom:0;left:0;right:0;background:rgba(10,5,22,0.97);backdrop-filter:blur(20px);border-top:1px solid rgba(196,91,170,0.12);display:flex;justify-content:space-around;padding:10px 0 16px;z-index:200;}
 .a-nav-btn{background:transparent;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;padding:4px 10px;}
 .a-nav-icon{font-size:18px;transition:color 0.2s;}
-.a-nav-lbl{font-size:9px;letter-spacing:2px;text-transform:uppercase;font-family:‘DM Sans’,sans-serif;transition:color 0.2s;}
+.a-nav-lbl{font-size:11px;letter-spacing:2px;text-transform:uppercase;font-family:‘DM Sans’,sans-serif;transition:color 0.2s;}
 .a-nav-btn.on .a-nav-icon,.a-nav-btn.on .a-nav-lbl{color:var(–mag);}
 .a-nav-btn:not(.on) .a-nav-icon,.a-nav-btn:not(.on) .a-nav-lbl{color:rgba(240,230,255,0.22);}
 .sos-overlay{position:absolute;inset:0;z-index:500;background:rgba(10,5,22,0.97);backdrop-filter:blur(20px);display:none;flex-direction:column;align-items:center;justify-content:center;padding:32px;text-align:center;}
@@ -399,7 +424,7 @@ footer>div{flex-direction:column;gap:16px;align-items:flex-start;}
 .a-win-card{margin:0 14px 10px;}
 .a-hdr{padding:20px 16px 8px;}
 .a-nav-btn{padding:4px 6px;}
-.a-nav-lbl{font-size:8px;letter-spacing:1px;}
+.a-nav-lbl{font-size:11px;letter-spacing:1px;}
 .a-nav-btn.on .a-nav-lbl{color:var(–mag) !important;opacity:1 !important;}
 .a-nav-btn .a-nav-lbl{color:rgba(240,230,255,0.35);}
 }
@@ -525,7 +550,7 @@ h1 strong{font-weight:700;}
 .features li{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:14px;color:rgba(255,255,255,0.75);line-height:1.5;}
 .features li:last-child{border-bottom:none;}
 .feat-icon{font-size:16px;flex-shrink:0;margin-top:1px;}
-.feat-new{font-size:9px;letter-spacing:2px;background:rgba(196,91,170,0.2);color:var(–mag);padding:2px 7px;border-radius:10px;margin-left:6px;vertical-align:middle;}
+.feat-new{font-size:11px;letter-spacing:2px;background:rgba(196,91,170,0.2);color:var(–mag);padding:2px 7px;border-radius:10px;margin-left:6px;vertical-align:middle;}
 
 /* CTA */
 .cta-btn{display:block;width:100%;padding:18px;background:linear-gradient(135deg,var(–plum),var(–mag));color:white;border:none;border-radius:16px;font-family:‘DM Sans’,sans-serif;font-size:16px;font-weight:600;cursor:pointer;transition:all 0.3s;text-decoration:none;text-align:center;letter-spacing:0.5px;margin-bottom:14px;}
@@ -587,7 +612,7 @@ h1 strong{font-weight:700;}
 .auth-link span{color:#C45BAA;text-decoration:underline;cursor:pointer;}
 .auth-divider{text-align:center;font-size:11px;color:rgba(240,230,255,0.2);letter-spacing:2px;margin:16px 0;}
 /* Plan badge in app header */
-.plan-badge{font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:3px 8px;border-radius:8px;font-weight:600;}
+.plan-badge{font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:3px 8px;border-radius:8px;font-weight:600;}
 .plan-badge.free{background:rgba(138,127,141,0.2);color:rgba(240,230,255,0.4);}
 .plan-badge.core{background:rgba(196,91,170,0.2);color:#C45BAA;border:1px solid rgba(196,91,170,0.3);}
 /* Payment success banner */
@@ -733,7 +758,7 @@ h1 strong{font-weight:700;}
       <p class="waitlist-note">🔒 200 spots only. Rate locked forever at $24.99/month.</p>
       <a href="https://forms.gle/UEwBs2Pii3VgcK428" target="_blank" style="margin-top:8px;display:inline-block;background:transparent;border:none;color:var(--mist);font-size:12px;font-family:'DM Sans',sans-serif;cursor:pointer;text-decoration:underline;padding:0;">Not ready to pay? Join the free waitlist →</a>
     <div style="margin-top:20px;padding:20px;background:linear-gradient(135deg,rgba(196,91,170,0.1),rgba(123,63,160,0.1));border:1px solid rgba(196,91,170,0.25);border-radius:14px;text-align:center;">
-      <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#C45BAA;margin-bottom:8px;font-family:'DM Sans',sans-serif;">Beta Tester Program</div>
+      <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#C45BAA;margin-bottom:8px;font-family:'DM Sans',sans-serif;">Beta Tester Program</div>
       <div style="font-size:13px;color:#7B3FA0;font-family:'DM Sans',sans-serif;margin-bottom:4px;font-weight:700;">Get 3 months free</div>
       <div style="font-size:11px;color:#4a2070;font-family:'DM Sans',sans-serif;margin-bottom:14px;line-height:1.5;">Apply to test FlowHer™ and shape the future of the app. 50 spots available.</div>
       <a href="https://forms.gle/UEwBs2Pii3VgcK428" target="_blank" style="display:inline-block;background:linear-gradient(135deg,#C45BAA,#7B3FA0);color:white;font-size:12px;font-weight:600;font-family:'DM Sans',sans-serif;padding:10px 24px;border-radius:10px;text-decoration:none;letter-spacing:0.5px;">Apply to Beta Test →</a>
@@ -799,7 +824,7 @@ h1 strong{font-weight:700;}
 </section>
 
 <section class="testimonials reveal">
-  <div class="section-label">Early Voices</div>
+  <div class="section-label">What Women Are Saying</div>
   <h2>Women who needed<br>this <em>yesterday.</em></h2>
   <div class="testimonials-grid">
     <div class="testimonial-card"><span class="quote-mark">"</span><div class="testimonial-tag">ADHD</div><p class="testimonial-text">I've tried every productivity app. None of them talked to me like a whole person with an actual brain condition. FlowHer is the first one that gets it.</p><div class="testimonial-author">Renée T.</div><div class="testimonial-role">Senior Account Manager, Atlanta</div></div>
@@ -859,6 +884,107 @@ h1 strong{font-weight:700;}
   </div>
 </section>
 
+<!-- FAQ SECTION -->
+
+<section class="lsection reveal" style="background:#f7f3ff;">
+  <div style="max-width:700px;margin:0 auto;">
+    <div class="section-label">Common Questions</div>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,42px);font-weight:300;color:#1a0a2e;margin-bottom:48px;line-height:1.2;">Everything you need<br>to know about <em style="color:#C45BAA;">FlowHer</em></h2>
+
+```
+<div class="faq-list">
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">
+      <span>Is FlowHer only for people with a formal ADHD diagnosis?</span>
+      <span class="faq-arrow">→</span>
+    </div>
+    <div class="faq-a">Not at all. FlowHer is for any woman who has ever felt like she was working twice as hard just to keep up — whether you have a diagnosis, are in the process of getting one, or simply know that the standard tools have never worked for your brain. You belong here.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">
+      <span>What makes FlowHer different from other productivity apps?</span>
+      <span class="faq-arrow">→</span>
+    </div>
+    <div class="faq-a">Most productivity apps were built for neurotypical brains. They assume you can just start a task, follow a schedule, and stay focused. FlowHer was built for brains that do not work that way. Every feature — from the AI-powered Smallest Step Engine to the RSD Toolkit — was designed around how neurodivergent brains actually function, not how productivity influencers say they should.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">
+      <span>What is the founding member rate and how does it work?</span>
+      <span class="faq-arrow">→</span>
+    </div>
+    <div class="faq-a">The first 200 women to join FlowHer Core pay $24.99/month — and that rate is locked forever, for as long as you stay subscribed. After 200 spots are filled, regular pricing moves to $39.99/month. Founding members also get first access to every new feature as we build.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">
+      <span>Can I cancel anytime?</span>
+      <span class="faq-arrow">→</span>
+    </div>
+    <div class="faq-a">Yes — no contracts, no questions asked. You can cancel your subscription at any time. If you cancel and want to come back, you will rejoin at the regular rate, not your founding rate, so most members choose to stay.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">
+      <span>What does the free plan include?</span>
+      <span class="faq-arrow">→</span>
+    </div>
+    <div class="faq-a">The free plan includes daily mood check-in, 3 affirmations per day, a basic focus timer, and 5 brain dumps per month. It is a real plan — not a trial. You can use it as long as you like. Core unlocks the AI-powered tools, unlimited features, and the full workplace survival toolkit.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">
+      <span>Is my data private and secure?</span>
+      <span class="faq-arrow">→</span>
+    </div>
+    <div class="faq-a">Yes. Your data is stored securely through Supabase and is never sold to third parties. The Unmask Space and Win Journal are private to you. We take your privacy seriously — especially because we know how personal this information is.</div>
+  </div>
+
+</div>
+```
+
+  </div>
+</section>
+
+<style>
+.faq-list { display: flex; flex-direction: column; gap: 0; }
+.faq-item { border-bottom: 1px solid rgba(196,91,170,0.15); }
+.faq-q {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 500;
+  color: #1a0a2e;
+  font-family: 'DM Sans', sans-serif;
+  gap: 16px;
+}
+.faq-q:hover { color: #C45BAA; }
+.faq-arrow { color: #C45BAA; font-size: 18px; transition: transform 0.3s; flex-shrink: 0; }
+.faq-q.open .faq-arrow { transform: rotate(90deg); }
+.faq-a {
+  display: none;
+  padding: 0 0 20px;
+  font-size: 14px;
+  color: #4a3060;
+  line-height: 1.8;
+  font-family: 'DM Sans', sans-serif;
+}
+.faq-a.open { display: block; }
+</style>
+
+<script>
+function toggleFaq(el) {
+  el.classList.toggle('open');
+  var answer = el.nextElementSibling;
+  answer.classList.toggle('open');
+}
+</script>
+
 <section class="cta-section reveal">
   <h2>You showed up today.<br><em>That already counts.</em></h2>
   <p class="cta-sub">Join over 200 women already on the waitlist.</p>
@@ -914,44 +1040,128 @@ h1 strong{font-weight:700;}
         <button class="a-btn a-btn-sm" style="color:#E85C5C;border-color:rgba(232,92,92,0.4);font-size:10px;" onclick="openSOS()">SOS</button>
       </div>
     </div>
-    <div class="a-card" onclick="gateTab('focus','Priority Triage')">
-      <span class="a-lbl">How are you walking in?</span>
-      <div class="mood-grid" id="moodGrid">
-        <div class="mood-item" onclick="selMood(0)"><span class="mood-emoji">🔥</span><div class="mood-name">Focused</div></div>
-        <div class="mood-item" onclick="selMood(1)"><span class="mood-emoji">😶</span><div class="mood-name">Foggy</div></div>
-        <div class="mood-item" onclick="selMood(2)"><span class="mood-emoji">😤</span><div class="mood-name">Frustrated</div></div>
-        <div class="mood-item" onclick="selMood(3)"><span class="mood-emoji">😰</span><div class="mood-name">Overwhelmed</div></div>
-        <div class="mood-item" onclick="selMood(4)"><span class="mood-emoji">💪</span><div class="mood-name">Confident</div></div>
-        <div class="mood-item" onclick="selMood(5)"><span class="mood-emoji">😴</span><div class="mood-name">Drained</div></div>
-      </div>
-      <div class="a-resp" id="moodResp" style="display:none"></div>
-    </div>
-    <div class="a-card-glow" onclick="gateTab('focus','Smallest Step Engine')">
-      <span class="a-lbl">Today's Truth</span>
-      <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;line-height:1.7;color:#f0e6ff;margin-bottom:16px;min-height:76px;transition:opacity 0.25s;" id="affirmText"></div>
-      <button class="a-btn a-btn-sm" onclick="nextAffirm()">Next →</button>
-    </div>
-    <div class="a-card" onclick="gateTab('focus','Hyperfocus Capture')">
-      <span class="a-lbl a-lbl-teal">Focus Timer</span>
-      <div style="display:flex;align-items:center;gap:18px;">
-        <div class="timer-wrap"><svg width="90" height="90" style="transform:rotate(-90deg)"><circle cx="45" cy="45" r="38" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="5"/><circle cx="45" cy="45" r="38" fill="none" stroke="var(--teal)" stroke-width="5" stroke-linecap="round" stroke-dasharray="238.76" id="timerArc" style="transition:stroke-dashoffset 0.8s;"/></svg><div class="timer-label" id="timerDisp" style="color:#f0e6ff;font-size:14px;">25:00</div></div>
-        <div style="flex:1;"><div style="font-size:13px;color:rgba(240,230,255,0.45);margin-bottom:12px;line-height:1.5;" id="timerMsg">One focused block. You've got this.</div><div style="display:flex;gap:8px;"><button class="a-btn a-btn-sm a-btn-teal" onclick="toggleTimer()" id="timerBtn">▶ Start</button><button class="a-btn a-btn-sm" onclick="resetTimer()" style="color:rgba(240,230,255,0.3);border-color:rgba(255,255,255,0.08);font-size:10px;">Reset</button></div></div>
+
+```
+<!-- STREAK TRACKER -->
+<div class="a-card" id="streakCard" style="background:linear-gradient(135deg,rgba(196,91,170,0.12),rgba(45,125,110,0.08));border:1px solid rgba(196,91,170,0.2);display:flex;align-items:center;justify-content:space-between;padding:16px 20px;">
+  <div style="display:flex;align-items:center;gap:12px;">
+    <div id="streakFlame" style="font-size:28px;line-height:1;">🔥</div>
+    <div>
+      <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,91,170,0.8);font-family:'DM Sans',sans-serif;margin-bottom:2px;">Check-in Streak</div>
+      <div style="display:flex;align-items:baseline;gap:4px;">
+        <span id="streakCount" style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;color:#FAF7FF;line-height:1;">0</span>
+        <span style="font-size:12px;color:rgba(240,230,255,0.5);font-family:'DM Sans',sans-serif;">days</span>
       </div>
     </div>
-    <div class="a-card" id="latestWinCard" style="display:none"><span class="a-lbl">Latest Win ⭐</span><div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:rgba(240,230,255,0.85);line-height:1.65;" id="latestWinText"></div><div style="font-size:10px;color:rgba(240,230,255,0.25);margin-top:8px;" id="latestWinDate"></div></div>
-    <div class="a-card a-card-gold" onclick="gateTab('focus','Time Blindness Corrector')">
-      <span class="a-lbl a-lbl-gold">Dopamine Menu</span>
-      <div style="font-size:12px;color:rgba(240,230,255,0.4);margin-bottom:12px;">Need a hit to keep going? Pick one. No guilt.</div>
-      <div class="dop-grid">
-        <div class="dop-item" onclick="dopHit('✅','Task crossed off')"><span class="dop-emoji">✅</span><div class="dop-lbl">Cross something off</div></div>
-        <div class="dop-item" onclick="dopHit('💧','Hydration win')"><span class="dop-emoji">💧</span><div class="dop-lbl">Drink water</div></div>
-        <div class="dop-item" onclick="dopHit('🚶','Movement break')"><span class="dop-emoji">🚶</span><div class="dop-lbl">2-min walk</div></div>
-        <div class="dop-item" onclick="dopHit('🎵','Music mode')"><span class="dop-emoji">🎵</span><div class="dop-lbl">One good song</div></div>
-        <div class="dop-item" onclick="dopHit('☀️','Fresh air')"><span class="dop-emoji">☀️</span><div class="dop-lbl">Look outside</div></div>
-        <div class="dop-item" onclick="dopHit('📝','Win logged')"><span class="dop-emoji">📝</span><div class="dop-lbl">Log a tiny win</div></div>
-      </div>
-      <div id="dopMsg" style="display:none;margin-top:10px;" class="a-resp"></div>
+  </div>
+  <div style="text-align:right;">
+    <div id="streakMsg" style="font-size:12px;color:rgba(240,230,255,0.55);font-family:'DM Sans',sans-serif;line-height:1.5;max-width:120px;"></div>
+  </div>
+</div>
+
+
+<!-- I SURVIVED BADGE -->
+<div id="survivedBadge" style="display:none;margin-bottom:12px;">
+  <div style="background:linear-gradient(135deg,rgba(196,91,170,0.08),rgba(123,63,160,0.08));border:1px solid rgba(196,91,170,0.25);border-radius:16px;padding:18px;display:flex;align-items:center;gap:14px;">
+    <div style="font-size:32px;flex-shrink:0;">🏅</div>
+    <div>
+      <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#C45BAA;font-family:'DM Sans',sans-serif;margin-bottom:4px;">I Survived</div>
+      <div style="font-size:13px;color:#FAF7FF;font-family:'DM Sans',sans-serif;margin-bottom:4px;" id="survivedMsg">You made it through today.</div>
+      <div style="font-size:11px;color:rgba(240,230,255,0.4);font-family:'DM Sans',sans-serif;" id="survivedCount"></div>
     </div>
+  </div>
+</div>
+
+<!-- END OF DAY WIND DOWN (shown after 5pm) -->
+<div id="windDownCard" style="display:none;margin-bottom:12px;">
+  <div style="background:linear-gradient(135deg,rgba(26,10,46,0.8),rgba(13,25,50,0.8));border:1px solid rgba(196,91,170,0.2);border-radius:16px;padding:20px;">
+    <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,91,170,0.7);font-family:'DM Sans',sans-serif;margin-bottom:6px;">Wind Down</div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;color:#FAF7FF;margin-bottom:16px;">Let's close the day.</div>
+
+    <div id="windStep1">
+      <div style="font-size:12px;color:rgba(240,230,255,0.5);margin-bottom:8px;">What did you actually do today? (Even tiny things count)</div>
+      <textarea class="a-inp a-ta a-ta-sm" id="windDid" placeholder="I sent that email. I showed up. I made it through the meeting..." style="margin-bottom:12px;min-height:70px;"></textarea>
+      <div style="font-size:12px;color:rgba(240,230,255,0.5);margin-bottom:8px;">What can you let go of tonight?</div>
+      <input class="a-inp" id="windLetGo" placeholder="The thing I didn't finish. The comment that stung..." style="margin-bottom:12px;">
+      <div style="font-size:12px;color:rgba(240,230,255,0.5);margin-bottom:8px;">What does tomorrow-you need to know?</div>
+      <input class="a-inp" id="windTomorrow" placeholder="Start with the small task. Email Sarah first..." style="margin-bottom:16px;">
+      <button class="a-btn-fill" onclick="saveWindDown()" style="width:100%;">Close the Day 🌙</button>
+    </div>
+
+    <div id="windDone" style="display:none;text-align:center;">
+      <div style="font-size:28px;margin-bottom:10px;">🌙</div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;color:#FAF7FF;margin-bottom:8px;">Day closed.</div>
+      <div style="font-size:13px;color:rgba(220,200,255,0.6);line-height:1.7;">You did what you could.<br>That was enough.</div>
+    </div>
+  </div>
+</div>
+
+<!-- NOT TODAY BUTTON -->
+<div id="notTodayCard" style="margin-bottom:12px;">
+  <button onclick="activateNotToday()" style="width:100%;padding:16px 20px;background:rgba(45,125,110,0.06);border:1px dashed rgba(45,125,110,0.3);border-radius:16px;cursor:pointer;display:flex;align-items:center;gap:12px;text-align:left;font-family:'DM Sans',sans-serif;-webkit-tap-highlight-color:transparent;">
+    <span style="font-size:22px;">🌿</span>
+    <div>
+      <div style="font-size:13px;font-weight:500;color:rgba(240,230,255,0.75);margin-bottom:2px;">Not today.</div>
+      <div style="font-size:11px;color:rgba(240,230,255,0.35);line-height:1.4;">Some days the goal is just to get through. Tap this.</div>
+    </div>
+  </button>
+</div>
+
+<!-- NOT TODAY ACTIVATED STATE -->
+<div id="notTodayActive" style="display:none;margin-bottom:12px;">
+  <div style="background:linear-gradient(135deg,rgba(45,125,110,0.1),rgba(45,125,110,0.05));border:1px solid rgba(45,125,110,0.25);border-radius:16px;padding:20px;text-align:center;">
+    <div style="font-size:32px;margin-bottom:12px;">🌿</div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:#FAF7FF;margin-bottom:8px;">Okay. Not today.</div>
+    <div style="font-size:13px;color:rgba(220,200,255,0.65);line-height:1.8;margin-bottom:16px;">You are not behind.<br>You are not failing.<br>Rest is not the opposite of progress.<br>It is part of it.</div>
+    <div style="font-size:11px;color:rgba(45,125,110,0.8);letter-spacing:1px;">Streak protected. See you tomorrow. 💚</div>
+  </div>
+</div>
+<div class="a-card" onclick="gateTab('focus','Priority Triage')">
+  <span class="a-lbl">How are you walking in?</span>
+  <div class="mood-grid" id="moodGrid">
+    <div class="mood-item" onclick="selMood(0)"><span class="mood-emoji">🔥</span><div class="mood-name">Focused</div></div>
+    <div class="mood-item" onclick="selMood(1)"><span class="mood-emoji">😶</span><div class="mood-name">Foggy</div></div>
+    <div class="mood-item" onclick="selMood(2)"><span class="mood-emoji">😤</span><div class="mood-name">Frustrated</div></div>
+    <div class="mood-item" onclick="selMood(3)"><span class="mood-emoji">😰</span><div class="mood-name">Overwhelmed</div></div>
+    <div class="mood-item" onclick="selMood(4)"><span class="mood-emoji">💪</span><div class="mood-name">Confident</div></div>
+    <div class="mood-item" onclick="selMood(5)"><span class="mood-emoji">😴</span><div class="mood-name">Drained</div></div>
+  </div>
+  <div class="a-resp" id="moodResp" style="display:none"></div>
+</div>
+<div class="a-card-glow" onclick="gateTab('focus','Smallest Step Engine')">
+  <span class="a-lbl">Today's Truth</span>
+  <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;line-height:1.7;color:#f0e6ff;margin-bottom:16px;min-height:76px;transition:opacity 0.25s;" id="affirmText"></div>
+  <button class="a-btn a-btn-sm" onclick="nextAffirm()">Next →</button>
+</div>
+<div class="a-card" onclick="gateTab('focus','Hyperfocus Capture')">
+  <span class="a-lbl a-lbl-teal">Focus Timer</span>
+  <div style="display:flex;align-items:center;gap:18px;">
+    <div class="timer-wrap"><svg width="90" height="90" style="transform:rotate(-90deg)"><circle cx="45" cy="45" r="38" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="5"/><circle cx="45" cy="45" r="38" fill="none" stroke="var(--teal)" stroke-width="5" stroke-linecap="round" stroke-dasharray="238.76" id="timerArc" style="transition:stroke-dashoffset 0.8s;"/></svg><div class="timer-label" id="timerDisp" style="color:#f0e6ff;font-size:14px;">25:00</div></div>
+    <div style="flex:1;"><div style="font-size:13px;color:rgba(240,230,255,0.45);margin-bottom:12px;line-height:1.5;" id="timerMsg">One focused block. You've got this.</div><div style="display:flex;gap:8px;"><button class="a-btn a-btn-sm a-btn-teal" onclick="toggleTimer()" id="timerBtn">▶ Start</button><button class="a-btn a-btn-sm" onclick="resetTimer()" style="color:rgba(240,230,255,0.3);border-color:rgba(255,255,255,0.08);font-size:10px;">Reset</button></div></div>
+  </div>
+</div>
+<div class="a-card" id="latestWinCard" style="display:none"><span class="a-lbl">Latest Win ⭐</span><div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:rgba(240,230,255,0.85);line-height:1.65;" id="latestWinText"></div><div style="font-size:10px;color:rgba(240,230,255,0.25);margin-top:8px;" id="latestWinDate"></div></div>
+<div class="a-card a-card-gold" onclick="gateTab('focus','Time Blindness Corrector')">
+  <span class="a-lbl a-lbl-gold">Dopamine Menu</span>
+  <div style="font-size:12px;color:rgba(240,230,255,0.4);margin-bottom:12px;">Need a hit to keep going? Pick one. No guilt.</div>
+  <div class="dop-grid">
+    <div class="dop-item" onclick="dopHit('💧','Hydration hit','Water is literally brain fuel. You just did something kind for your nervous system.')"><span class="dop-emoji">💧</span><div class="dop-lbl">Drink water</div></div>
+    <div class="dop-item" onclick="dopHit('🚶','Movement break','2 minutes of walking resets your brain more than you think. Go.')"><span class="dop-emoji">🚶</span><div class="dop-lbl">2-min walk</div></div>
+    <div class="dop-item" onclick="dopHit('🎵','Music mode','Put on one song that makes you feel like yourself. Let it do its thing.')"><span class="dop-emoji">🎵</span><div class="dop-lbl">One good song</div></div>
+    <div class="dop-item" onclick="dopHit('🌬️','Breath reset','4 counts in. Hold 4. Out 6. Your nervous system just got the memo.')"><span class="dop-emoji">🌬️</span><div class="dop-lbl">4-4-6 breath</div></div>
+    <div class="dop-item" onclick="dopHit('☀️','Sensory break','Look away from the screen. Find something outside. Your eyes need this.')"><span class="dop-emoji">☀️</span><div class="dop-lbl">Look outside</div></div>
+    <div class="dop-item" onclick="dopHit('🧊','Cold wrist splash','Cold water on your wrists or face activates your vagus nerve. Science-backed reset.')"><span class="dop-emoji">🧊</span><div class="dop-lbl">Cold wrist splash</div></div>
+    <div class="dop-item" onclick="dopHit('📝','Tiny win logged','Log one thing you did today. Anything. Your brain needs receipts.')"><span class="dop-emoji">📝</span><div class="dop-lbl">Log a tiny win</div></div>
+    <div class="dop-item" onclick="dopHit('✅','Done list','Write 3 things you already finished today. Not a to-do list. A done list.')"><span class="dop-emoji">✅</span><div class="dop-lbl">Write a done list</div></div>
+    <div class="dop-item" onclick="dopHit('🤸','Body shake','Stand up. Shake your hands and arms for 30 seconds. Sounds weird. Works every time.')"><span class="dop-emoji">🤸</span><div class="dop-lbl">Body shake</div></div>
+    <div class="dop-item" onclick="dopHit('👀','5-4-3-2-1 grounding','Name 5 things you see. 4 you can touch. 3 you hear. 2 you smell. 1 you taste.')"><span class="dop-emoji">👀</span><div class="dop-lbl">5-4-3-2-1</div></div>
+    <div class="dop-item" onclick="dopHit('😂','Laugh break','Find something that makes you laugh. 60 seconds. Your brain needs this.')"><span class="dop-emoji">😂</span><div class="dop-lbl">Laugh break</div></div>
+    <div class="dop-item" onclick="dopHit('💜','Self-compassion pause','You are doing the best you can with the brain you have today. That is enough.')"><span class="dop-emoji">💜</span><div class="dop-lbl">Self-compassion</div></div>
+  </div>
+  <div id="dopMsg" style="display:none;margin-top:10px;" class="a-resp"></div>
+</div>
+```
+
   </div>
 
   <!-- FOCUS -->
@@ -1014,7 +1224,48 @@ h1 strong{font-weight:700;}
     <div id="wp-meet" style="display:none">
       <div class="a-card locked-card" onclick="showGate('Todaytheirs Masking Debt')"><span class="a-lbl" style="color:var(--blue);">Meeting Prep Checklist</span><div id="meetList"></div></div>
       <div class="a-card a-card-teal" style="margin-top:0;"><span class="a-lbl a-lbl-teal">Imposter Shield</span><div style="font-size:13px;color:rgba(240,230,255,0.55);margin-bottom:12px;line-height:1.65;">Before you walk in that room — read this. These are facts about you.</div><div id="imposterWins" style="font-size:13px;color:rgba(240,230,255,0.7);line-height:1.8;font-style:italic;font-family:'Cormorant Garamond',serif;"></div><div style="margin-top:12px;padding:12px 14px;background:rgba(61,158,140,0.08);border-radius:10px;font-size:13px;color:rgba(240,230,255,0.65);line-height:1.65;">You have done hard things. You are doing one right now. You belong in every room you walk into.</div></div>
+      <div id="work-tool-meeting" class="work-tool-content" style="display:none;">
+        <div style="font-size:13px;color:rgba(240,230,255,0.45);margin-bottom:20px;line-height:1.6;">Tell FlowHer about your meeting. Walk in ready.</div>
+
+```
+    <!-- Step 1: Meeting details -->
+    <div id="meetStep1">
+      <div style="margin-bottom:14px;">
+        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,91,170,0.7);font-family:'DM Sans',sans-serif;margin-bottom:8px;">What is this meeting about?</div>
+        <textarea class="a-inp a-ta a-ta-sm" id="meetTopic" placeholder="Weekly check-in, performance review, difficult conversation..." style="margin-bottom:0;"></textarea>
+      </div>
+      <div style="margin-bottom:14px;">
+        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,91,170,0.7);font-family:'DM Sans',sans-serif;margin-bottom:8px;">Who will be in the room?</div>
+        <input class="a-inp" id="meetPeople" placeholder="My manager, 3 teammates, a client..." style="margin-bottom:0;">
+      </div>
+      <div style="margin-bottom:20px;">
+        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,91,170,0.7);font-family:'DM Sans',sans-serif;margin-bottom:8px;">What do you need to walk away with?</div>
+        <input class="a-inp" id="meetGoal" placeholder="A decision, approval, clarity on my role..." style="margin-bottom:0;">
+      </div>
+
+      <!-- Anxiety level -->
+      <div style="margin-bottom:20px;">
+        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,91,170,0.7);font-family:'DM Sans',sans-serif;margin-bottom:10px;">How anxious are you about this?</div>
+        <div style="display:flex;gap:8px;" id="meetAnxiety">
+          <button class="meet-anx-btn" data-val="1" onclick="setMeetAnxiety(this)">😌 Calm</button>
+          <button class="meet-anx-btn" data-val="2" onclick="setMeetAnxiety(this)">😬 Nervous</button>
+          <button class="meet-anx-btn" data-val="3" onclick="setMeetAnxiety(this)">😰 Dreading it</button>
+        </div>
+      </div>
+
+      <button class="a-btn-fill" onclick="if(!isCore()){showGate('Meeting Mode');return;}genMeetingPrep()" id="meetBtn" style="width:100%;">Prep Me →</button>
     </div>
+
+    <!-- Step 2: AI Response -->
+    <div id="meetResult" style="display:none;">
+      <div id="meetRes" class="a-result" style="margin-bottom:20px;"></div>
+      <button onclick="resetMeeting()" style="width:100%;padding:12px;background:transparent;border:1px solid rgba(196,91,170,0.25);border-radius:12px;color:rgba(196,91,170,0.8);font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;">← Prep another meeting</button>
+    </div>
+  </div>
+
+</div>
+```
+
   </div>
 
   <!-- WINS -->
@@ -1026,6 +1277,17 @@ h1 strong{font-weight:700;}
     <div class="a-stats-row"><div class="a-stat-box"><div class="a-stat-num" style="color:var(--mag);" id="totalWins">0</div><div class="a-stat-lbl">Total Wins</div></div><div class="a-stat-box"><div class="a-stat-num" style="color:var(--teal);" id="monthWins">0</div><div class="a-stat-lbl">This Month</div></div></div>
     <div class="a-card-glow locked-card" onclick="showGate('Your 7-Day Pattern')"><span class="a-lbl">Log a Win</span><div class="a-chips" id="wCatChips"><div class="a-chip on" onclick="setWC(this,'Professional')">Professional</div><div class="a-chip" onclick="setWC(this,'Brave Moment')">Brave Moment</div><div class="a-chip" onclick="setWC(this,'Showed Up')">Showed Up</div><div class="a-chip" onclick="setWC(this,'Problem Solved')">Problem Solved</div><div class="a-chip" onclick="setWC(this,'Personal')">Personal</div></div><textarea class="a-inp a-ta a-ta-sm" id="winText" placeholder="What did you do? Even if it felt small. Especially if it felt small." style="margin-bottom:12px;"></textarea><button class="a-btn-fill" onclick="if(!isCore()){showGate('Log a Win');return;}addWin()" style="width:100%;">Log This Win ★</button></div>
     <div id="winsList"></div>
+
+```
+<!-- EXPORT BUTTON -->
+<div style="padding:16px 0 8px;">
+  <button onclick="if(!isCore()){showGate('Win Export');return;}exportWins()" style="width:100%;padding:14px;background:transparent;border:1px solid rgba(196,91,170,0.3);border-radius:14px;color:rgba(196,91,170,0.9);font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;">
+    <span>⬇</span> Download My Win Journal
+  </button>
+  <div style="font-size:11px;color:rgba(240,230,255,0.3);text-align:center;margin-top:8px;line-height:1.5;">Save as text file — use in performance reviews, therapy, or just for you.</div>
+</div>
+```
+
   </div>
 
   <!-- UNMASK -->
@@ -1033,7 +1295,259 @@ h1 strong{font-weight:700;}
   <div class="a-screen" id="as-unmask" style="display:none">
     <div class="a-hdr"><div class="a-logo"><svg width="138" height="32" viewBox="0 0 138 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;pointer-events:none;"><defs><linearGradient id="lg_a5" x1="0" y1="16" x2="25" y2="16" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#C45BAA"/><stop offset="100%" stop-color="#2D7D6E"/></linearGradient></defs><path d="M2 16 Q5.5 7 9 16 Q12.5 25 16 16 Q19.5 7 23 16" stroke="url(#lg_a5)" stroke-width="2.2" fill="none" stroke-linecap="round"/><circle cx="2" cy="16" r="2.2" fill="#C45BAA"/><circle cx="23" cy="16" r="2.2" fill="#2D7D6E"/><text x="31" y="22" font-family="Cormorant Garamond,serif" font-size="21" font-weight="600" fill="#f0e6ff">Flow</text><text x="75" y="22" font-family="Cormorant Garamond,serif" font-size="21" font-weight="300" fill="#C45BAA" font-style="italic">Her</text><text x="110" y="11" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(240,230,255,0.35)">&#8482;</text></svg></div></div>
     <div style="text-align:center;padding:4px 22px 16px;position:relative;z-index:1;"><div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:#f0e6ff;margin-bottom:6px;">The Unmask Space</div><div style="font-size:13px;color:rgba(240,230,255,0.35);line-height:1.65;">Private. Unfiltered. Just you.</div></div>
-    <div style="padding:0 22px;position:relative;z-index:1;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><div style="font-size:10px;color:rgba(240,230,255,0.2);letter-spacing:3px;text-transform:uppercase;">Only visible to you</div><button class="a-btn a-btn-sm" onclick="clearUnmask()" style="color:rgba(240,230,255,0.25);border-color:rgba(255,255,255,0.08);font-size:10px;">Clear</button></div><textarea class="a-inp a-ta" id="unmaskText" placeholder="Say what you actually think. Feel what you actually feel. This stays here." style="min-height:220px;border-color:rgba(196,91,170,0.12);font-size:15px;line-height:1.8;"></textarea><div style="margin-top:10px;font-size:12px;color:rgba(240,230,255,0.18);text-align:center;line-height:1.6;">Stored only on this device. Never sent anywhere.</div></div>
+    <div style="padding:0 22px;position:relative;z-index:1;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><div style="font-size:10px;color:rgba(240,230,255,0.2);letter-spacing:3px;text-transform:uppercase;">Only visible to you</div><button class="a-btn a-btn-sm" onclick="clearUnmask()" style="color:rgba(240,230,255,0.25);border-color:rgba(255,255,255,0.08);font-size:10px;">Clear</button></div><div id="unmaskEditor" style="position:relative;min-height:220px;background:rgba(196,91,170,0.04);border:1px solid rgba(196,91,170,0.12);border-radius:14px;padding:16px;cursor:text;" onclick="document.getElementById('unmaskText').focus()">
+  <div id="unmaskFadeWords" style="position:absolute;inset:0;padding:16px;pointer-events:none;overflow:hidden;"></div>
+  <textarea class="a-inp a-ta" id="unmaskText" placeholder="Say what you actually think. Feel what you actually feel. This stays here." style="min-height:188px;border:none;background:transparent;font-size:15px;line-height:1.8;padding:0;resize:none;position:relative;z-index:2;color:rgba(240,230,255,0.9);" oninput="unmaskTypeEffect(this)"></textarea>
+</div>
+<div style="font-size:11px;color:rgba(240,230,255,0.2);text-align:center;margin-top:8px;font-family:'DM Sans',sans-serif;">Words fade as you write. This is just for you.</div><div style="margin-top:10px;font-size:12px;color:rgba(240,230,255,0.18);text-align:center;line-height:1.6;">Stored only on this device. Never sent anywhere.</div></div>
+    <div class="a-card a-card-teal" style="margin-top:16px;"><span class="a-lbl a-lbl-teal">Nervous System Reset</span><div style="font-size:12px;color:rgba(240,230,255,0.35);margin-bottom:14px;">Under 3 minutes. Specifically for workplace dysregulation.</div><div id="nsrArea"><button class="a-btn a-btn-sm a-btn-teal" onclick="startNSR()" style="display:block;width:100%;padding:12px;">Start Reset →</button></div></div>
+
+```
+<!-- FOCUS TOOL PICKER (shown when no tool selected) -->
+<div id="focus-picker">
+  <div style="padding:4px 0 20px;">
+    <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,91,170,0.6);font-family:'DM Sans',sans-serif;margin-bottom:6px;">What do you need right now?</div>
+    <div style="font-size:12px;color:rgba(240,230,255,0.35);font-family:'DM Sans',sans-serif;">Pick one. Just one.</div>
+  </div>
+
+  <div class="tool-pick-grid">
+    <button class="tool-pick-btn" onclick="openFocusTool('brain-dump')">
+      <span class="tool-pick-emoji">🧠</span>
+      <span class="tool-pick-name">Brain Dump</span>
+      <span class="tool-pick-desc">Clear the mental clutter</span>
+    </button>
+    <button class="tool-pick-btn" onclick="openFocusTool('priority-triage')">
+      <span class="tool-pick-emoji">🎯</span>
+      <span class="tool-pick-name">Priority Triage</span>
+      <span class="tool-pick-desc">Pick just 3 things</span>
+    </button>
+    <button class="tool-pick-btn" onclick="openFocusTool('smallest-step')">
+      <span class="tool-pick-emoji">⚡</span>
+      <span class="tool-pick-name">Smallest Step</span>
+      <span class="tool-pick-desc">Break the paralysis</span>
+    </button>
+    <button class="tool-pick-btn" onclick="openFocusTool('hyperfocus')">
+      <span class="tool-pick-emoji">🔥</span>
+      <span class="tool-pick-name">Hyperfocus Mode</span>
+      <span class="tool-pick-desc">Ride the wave</span>
+    </button>
+    <button class="tool-pick-btn" onclick="openFocusTool('time-blindness')">
+      <span class="tool-pick-emoji">⏱</span>
+      <span class="tool-pick-name">Time Blindness</span>
+      <span class="tool-pick-desc">Fix your time math</span>
+    </button>
+    <button class="tool-pick-btn" onclick="openFocusTool('body-double')">
+      <span class="tool-pick-emoji">🤝</span>
+      <span class="tool-pick-name">Body Double</span>
+      <span class="tool-pick-desc">Work with company</span>
+    </button>
+  </div>
+</div>
+
+<!-- INDIVIDUAL TOOL SCREENS -->
+<div id="focus-tool-screen" style="display:none;">
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;">
+    <button onclick="closeFocusTool()" style="background:rgba(196,91,170,0.1);border:1px solid rgba(196,91,170,0.2);border-radius:10px;padding:8px 14px;color:rgba(196,91,170,0.9);font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;">← Back</button>
+    <div id="focus-tool-title" style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:#FAF7FF;"></div>
+  </div>
+
+  <div id="focus-tool-brain-dump" class="focus-tool-content" style="display:none;">
+    <div style="font-size:13px;color:rgba(240,230,255,0.45);margin-bottom:14px;line-height:1.6;">Everything in your head. No order. No judgment.</div>
+    <div style="font-size:12px;color:rgba(240,230,255,0.35);margin-bottom:10px;">Everything in your head. No order. No judgment.</div><textarea class="a-inp a-ta" id="brainDump" placeholder="Start typing..."></textarea><div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;"><div style="font-size:11px;color:rgba(240,230,255,0.3);" id="wordCount">0 words out of your head</div><button class="a-btn a-btn-sm a-btn-rose" onclick="clearDump()">Clear</button></div></div>
+  </div>
+
+  <div id="focus-tool-priority-triage" class="focus-tool-content" style="display:none;">
+    <div style="font-size:13px;color:rgba(240,230,255,0.45);margin-bottom:14px;line-height:1.6;">What HAS to happen today? Just 3.</div>
+    <div style="font-size:12px;color:rgba(240,230,255,0.35);margin-bottom:14px;">What HAS to happen today?</div><div id="priorities"></div><div id="triagedMsg" style="display:none;" class="a-resp">That's your day. Everything else is noise until these are done.</div></div>
+  </div>
+
+  <div id="focus-tool-smallest-step" class="focus-tool-content" style="display:none;">
+    <div style="font-size:13px;color:rgba(240,230,255,0.45);margin-bottom:14px;line-height:1.6;">Paralyzed by a task? Tell me what it is.</div>
+    <div style="font-size:12px;color:rgba(240,230,255,0.35);margin-bottom:12px;">Paralyzed by a task? Tell me what it is.</div><textarea class="a-inp a-ta a-ta-sm" id="bigTask" placeholder="What's the task that's paralyzing you right now?"></textarea><button class="a-btn-fill" onclick="if(!isCore()){showGate('Smallest Step Engine');return;}smallestStep()" id="stepBtn" style="margin-top:12px;width:100%;">Break It Down →</button><div id="stepResult" style="display:none;margin-top:12px;" class="a-result"></div></div>
+  </div>
+
+  <div id="focus-tool-hyperfocus" class="focus-tool-content" style="display:none;">
+    <div style="font-size:13px;color:rgba(240,230,255,0.45);margin-bottom:14px;line-height:1.6;">The hyperfocus hit? Lock in and ride the wave.</div>
+    <!-- >Hyperfocus Capture< not found -->
+  </div>
+
+  <div id="focus-tool-time-blindness" class="focus-tool-content" style="display:none;">
+    <div style="font-size:13px;color:rgba(240,230,255,0.45);margin-bottom:14px;line-height:1.6;">Your brain lies about time. Let's fix that.</div>
+    <!-- >Time Blindness Corrector< not found -->
+  </div>
+
+  <div id="focus-tool-body-double" class="focus-tool-content" style="display:none;">
+    <div style="font-size:13px;color:rgba(240,230,255,0.45);margin-bottom:14px;line-height:1.6;">You're not alone in this. I'll sit with you.</div>
+    <div style="font-size:12px;color:rgba(240,230,255,0.35);margin-bottom:12px;">You're not alone in this. Set your task. I'll sit with you.</div><div id="bdInput"><input class="a-inp" id="bdTask" placeholder="What are you working on?" style="margin-bottom:10px;"><button class="a-btn a-btn-sm a-btn-teal" onclick="if(!isCore()){showGate('Body Double Mode');return;}startBD()" style="display:block;width:100%;padding:12px;">Work Together →</button></div><div id="bdActive" style="display:none;text-align:center;padding:10px 0;"><div style="font-size:11px;color:var(--teal);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px;">Working on</div><div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:rgba(240,230,255,0.8);margin-bottom:14px;" id="bdShow"></div><div style="font-size:40px;font-weight:300;color:var(--teal);letter-spacing:4px;font-family:'DM Sans',sans-serif;margin-bottom:8px;" id="bdClock">25:00</div><div style="font-size:12px;color:rgba(240,230,255,0.35);margin-bottom:16px;font-style:italic;">I'm here. Keep going.</div><div style="display:flex;gap:10px;justify-content:center;"><button class="a-btn a-btn-sm a-btn-teal" onclick="toggleBD()" id="bdToggle">⏸ Pause</button><button class="a-btn a-btn-sm a-btn-rose" onclick="stopBD()">Done ✓</button></div></div></div>
+```
+
+  </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WORK -->
+
+  <div class="a-screen" id="as-work" style="display:none">
+    <div class="a-hdr"><div class="a-logo"><svg width="138" height="32" viewBox="0 0 138 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;pointer-events:none;"><defs><linearGradient id="lg_a3" x1="0" y1="16" x2="25" y2="16" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#C45BAA"/><stop offset="100%" stop-color="#2D7D6E"/></linearGradient></defs><path d="M2 16 Q5.5 7 9 16 Q12.5 25 16 16 Q19.5 7 23 16" stroke="url(#lg_a3)" stroke-width="2.2" fill="none" stroke-linecap="round"/><circle cx="2" cy="16" r="2.2" fill="#C45BAA"/><circle cx="23" cy="16" r="2.2" fill="#2D7D6E"/><text x="31" y="22" font-family="Cormorant Garamond,serif" font-size="21" font-weight="600" fill="#f0e6ff">Flow</text><text x="75" y="22" font-family="Cormorant Garamond,serif" font-size="21" font-weight="300" fill="#C45BAA" font-style="italic">Her</text><text x="110" y="11" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(240,230,255,0.35)">&#8482;</text></svg></div><button class="a-btn a-btn-sm" style="color:#E85C5C;border-color:rgba(232,92,92,0.4);font-size:10px;" onclick="openSOS()">SOS</button></div>
+
+```
+<!-- WORK TOOL PICKER -->
+<div id="work-picker">
+  <div style="padding:4px 0 20px;">
+    <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,91,170,0.6);font-family:'DM Sans',sans-serif;margin-bottom:6px;">What do you need at work?</div>
+    <div style="font-size:12px;color:rgba(240,230,255,0.35);font-family:'DM Sans',sans-serif;">Pick one. Take a breath first.</div>
+  </div>
+
+  <div class="tool-pick-grid">
+    <button class="tool-pick-btn" onclick="if(!isCore()){showGate('Email Drafting');return;}openWorkTool('email')">
+      <span class="tool-pick-emoji">✉️</span>
+      <span class="tool-pick-name">Email Drafting</span>
+      <span class="tool-pick-desc">Write it without the spiral</span>
+    </button>
+    <button class="tool-pick-btn" onclick="if(!isCore()){showGate('Script Generator');return;}openWorkTool('script')">
+      <span class="tool-pick-emoji">💬</span>
+      <span class="tool-pick-name">Conversation Script</span>
+      <span class="tool-pick-desc">Words for hard moments</span>
+    </button>
+    <button class="tool-pick-btn" onclick="if(!isCore()){showGate('RSD Toolkit');return;}openWorkTool('rsd')">
+      <span class="tool-pick-emoji">🛡️</span>
+      <span class="tool-pick-name">RSD Toolkit</span>
+      <span class="tool-pick-desc">Reality check the spiral</span>
+    </button>
+    <button class="tool-pick-btn" onclick="if(!isCore()){showGate('ADA Rights');return;}openWorkTool('ada')">
+      <span class="tool-pick-emoji">⚖️</span>
+      <span class="tool-pick-name">Your Legal Rights</span>
+      <span class="tool-pick-desc">Know what you're owed</span>
+    </button>
+    <button class="tool-pick-btn" onclick="if(!isCore()){showGate('Imposter Shield');return;}openWorkTool('imposter')">
+      <span class="tool-pick-emoji">✨</span>
+      <span class="tool-pick-name">Imposter Shield</span>
+      <span class="tool-pick-desc">Your wins, your proof</span>
+    </button>
+    <button class="tool-pick-btn" onclick="if(!isCore()){showGate('Meeting Mode');return;}openWorkTool('meeting')" style="grid-column:1/-1;border-color:rgba(45,125,110,0.3);background:rgba(45,125,110,0.06);">
+      <span class="tool-pick-emoji">🗓️</span>
+      <span class="tool-pick-name">Meeting Mode</span>
+      <span class="tool-pick-desc">Walk in prepared. Walk out clear.</span>
+    </button>
+  </div>
+</div>
+
+<!-- INDIVIDUAL WORK TOOL SCREENS -->
+<div id="work-tool-screen" style="display:none;">
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;">
+    <button onclick="closeWorkTool()" style="background:rgba(196,91,170,0.1);border:1px solid rgba(196,91,170,0.2);border-radius:10px;padding:8px 14px;color:rgba(196,91,170,0.9);font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;">← Back</button>
+    <div id="work-tool-title" style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:#FAF7FF;"></div>
+  </div>
+
+  <div id="work-tool-email" class="work-tool-content" style="display:none;">
+    <div style="font-size:13px;color:rgba(240,230,255,0.45);margin-bottom:14px;line-height:1.6;">Describe the situation. FlowHer writes the email.</div>
+    <div class="a-chips" id="eChips"><div class="a-chip" onclick="setET(this,'Following up on a request or meeting that hasn\'t been responded to')">Following Up</div><div class="a-chip" onclick="setET(this,'Setting a professional boundary around my workload or timeline without over-apologizing')">Set Boundary</div><div class="a-chip" onclick="setET(this,'Requesting a reasonable workplace accommodation without disclosing specifics')">Accommodation</div><div class="a-chip" onclick="setET(this,'Professionally pushing back on a decision I disagree with while staying respectful')">Push Back</div><div class="a-chip" onclick="setET(this,'Declining additional work due to capacity without guilt')">Decline Work</div><div class="a-chip" onclick="setET(this,'Requesting that my contributions be acknowledged or credited')">Request Credit</div></div><textarea class="a-inp a-ta a-ta-sm" id="emailCtx" placeholder="Describe your situation." style="margin-bottom:12px;"></textarea><button class="a-btn-fill" onclick="if(!isCore()){showGate('Email Drafting Assistant');return;}genEmail()" id="emailBtn" style="width:100%;">Draft My Email →</button><div id="emailRes" style="display:none;margin-top:14px;" class="a-result"></div></div>
+</div>
+  </div>
+
+  <div id="work-tool-script" class="work-tool-content" style="display:none;">
+    <div style="font-size:13px;color:rgba(240,230,255,0.45);margin-bottom:14px;line-height:1.6;">Who are you talking to? What needs to be said?</div>
+    <div class="a-chips" id="sChips"><div class="a-chip a-chip-teal" onclick="setST(this,'Ask for a workplace accommodation')">Ask for accommodation</div><div class="a-chip a-chip-teal" onclick="setST(this,'Push back on extra work being assigned')">Push back on workload</div><div class="a-chip a-chip-teal" onclick="setST(this,'Address a conflict with a difficult colleague')">Address conflict</div><div class="a-chip a-chip-teal" onclick="setST(this,'Request that my work gets properly credited')">Request credit</div><div class="a-chip a-chip-teal" onclick="setST(this,'Set a boundary about my time or capacity')">Set a boundary</div><div class="a-chip a-chip-teal" onclick="setST(this,'Talk to my manager about feeling burned out')">Discuss burnout</div></div><textarea class="a-inp a-ta a-ta-sm" id="scriptCtx" placeholder="Who are you talking to? What happened?" style="margin-bottom:12px;"></textarea><button class="a-btn-fill" onclick="if(!isCore()){showGate('Conversation Script Generator');return;}genScript()" id="scriptBtn" style="width:100%;background:linear-gradient(135deg,#1a4a44,var(--teal));">Write My Script →</button><div id="scriptRes" style="display:none;margin-top:14px;" class="a-result"></div></div>
+</div>
+  </div>
+
+  <div id="work-tool-rsd" class="work-tool-content" style="display:none;">
+    <div style="font-size:13px;color:rgba(240,230,255,0.45);margin-bottom:14px;line-height:1.6;">Write what happened. Facts only. FlowHer will help you separate the story from the spiral.</div>
+    <div style="font-size:13px;color:rgba(240,230,255,0.6);margin-bottom:16px;line-height:1.7;">Rejection Sensitive Dysphoria is real. The pain of perceived rejection hits neurodivergent women disproportionately hard. Here's how to move through it.</div><div style="background:rgba(232,132,92,0.08);border-radius:12px;padding:14px;margin-bottom:12px;"><div style="font-size:12px;color:var(--rose);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;">Reality Check Tool</div><textarea class="a-inp a-ta a-ta-sm" id="rsdInput" placeholder="What happened? Write the facts only — no interpretations." style="margin-bottom:10px;"></textarea><button class="a-btn-fill" onclick="if(!isCore()){showGate('RSD Toolkit');return;}rsdCheck()" style="width:100%;background:linear-gradient(135deg,#5a1a0e,var(--rose));">Get a Reality Check →</button><div id="rsdRes" style="display:none;margin-top:12px;" class="a-result"></div></div><div style="background:rgba(232,132,92,0.08);border-radius:12px;padding:14px;"><div style="font-size:12px;color:var(--rose);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;">Grounding Reminders</div><div style="font-size:13px;color:rgba(240,230,255,0.65);line-height:1.9;">✦ Your worth is not decided in this moment<br>✦ One person's reaction is not your performance review<br>✦ RSD amplifies the signal — the situation is likely smaller than it feels<br>✦ Wait 20 minutes before responding to anything</div></div></div>
+</div>
+  </div>
+
+  <div id="work-tool-ada" class="work-tool-content" style="display:none;">
+    <div style="font-size:13px;color:rgba(240,230,255,0.45);margin-bottom:14px;line-height:1.6;">Your rights at work, in plain language.</div>
+    <div style="font-size:13px;color:rgba(240,230,255,0.55);margin-bottom:14px;line-height:1.65;">Plain language. What you actually need to know.</div><div id="adaList"></div></div>
+</div>
+  </div>
+
+  <div id="work-tool-imposter" class="work-tool-content" style="display:none;">
+    <div style="font-size:13px;color:rgba(240,230,255,0.45);margin-bottom:14px;line-height:1.6;">Your logged wins. Your real proof.</div>
+    <div style="font-size:13px;color:rgba(240,230,255,0.55);margin-bottom:12px;line-height:1.65;">Before you walk in that room — read this. These are facts about you.</div><div id="imposterWins" style="font-size:13px;color:rgba(240,230,255,0.7);line-height:1.8;font-style:italic;font-family:'Cormorant Garamond',serif;"></div><div style="margin-top:12px;padding:12px 14px;background:rgba(61,158,140,0.08);border-radius:10px;font-size:13px;color:rgba(240,230,255,0.65);line-height:1.65;">You have done hard things. You are doing one right now. You belong in every room you walk into.</div></div>
+</div>
+```
+
+  </div>
+      </div>
+      <div id="work-tool-meeting" class="work-tool-content" style="display:none;">
+        <div style="font-size:13px;color:rgba(240,230,255,0.45);margin-bottom:20px;line-height:1.6;">Tell FlowHer about your meeting. Walk in ready.</div>
+
+```
+    <!-- Step 1: Meeting details -->
+    <div id="meetStep1">
+      <div style="margin-bottom:14px;">
+        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,91,170,0.7);font-family:'DM Sans',sans-serif;margin-bottom:8px;">What is this meeting about?</div>
+        <textarea class="a-inp a-ta a-ta-sm" id="meetTopic" placeholder="Weekly check-in, performance review, difficult conversation..." style="margin-bottom:0;"></textarea>
+      </div>
+      <div style="margin-bottom:14px;">
+        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,91,170,0.7);font-family:'DM Sans',sans-serif;margin-bottom:8px;">Who will be in the room?</div>
+        <input class="a-inp" id="meetPeople" placeholder="My manager, 3 teammates, a client..." style="margin-bottom:0;">
+      </div>
+      <div style="margin-bottom:20px;">
+        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,91,170,0.7);font-family:'DM Sans',sans-serif;margin-bottom:8px;">What do you need to walk away with?</div>
+        <input class="a-inp" id="meetGoal" placeholder="A decision, approval, clarity on my role..." style="margin-bottom:0;">
+      </div>
+
+      <!-- Anxiety level -->
+      <div style="margin-bottom:20px;">
+        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,91,170,0.7);font-family:'DM Sans',sans-serif;margin-bottom:10px;">How anxious are you about this?</div>
+        <div style="display:flex;gap:8px;" id="meetAnxiety">
+          <button class="meet-anx-btn" data-val="1" onclick="setMeetAnxiety(this)">😌 Calm</button>
+          <button class="meet-anx-btn" data-val="2" onclick="setMeetAnxiety(this)">😬 Nervous</button>
+          <button class="meet-anx-btn" data-val="3" onclick="setMeetAnxiety(this)">😰 Dreading it</button>
+        </div>
+      </div>
+
+      <button class="a-btn-fill" onclick="if(!isCore()){showGate('Meeting Mode');return;}genMeetingPrep()" id="meetBtn" style="width:100%;">Prep Me →</button>
+    </div>
+
+    <!-- Step 2: AI Response -->
+    <div id="meetResult" style="display:none;">
+      <div id="meetRes" class="a-result" style="margin-bottom:20px;"></div>
+      <button onclick="resetMeeting()" style="width:100%;padding:12px;background:transparent;border:1px solid rgba(196,91,170,0.25);border-radius:12px;color:rgba(196,91,170,0.8);font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;">← Prep another meeting</button>
+    </div>
+  </div>
+
+</div>
+```
+
+  </div>
+
+  <!-- WINS -->
+
+  <div class="a-screen" id="as-wins" style="display:none">
+    <div class="a-hdr"><div class="a-logo"><svg width="138" height="32" viewBox="0 0 138 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;pointer-events:none;"><defs><linearGradient id="lg_a4" x1="0" y1="16" x2="25" y2="16" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#C45BAA"/><stop offset="100%" stop-color="#2D7D6E"/></linearGradient></defs><path d="M2 16 Q5.5 7 9 16 Q12.5 25 16 16 Q19.5 7 23 16" stroke="url(#lg_a4)" stroke-width="2.2" fill="none" stroke-linecap="round"/><circle cx="2" cy="16" r="2.2" fill="#C45BAA"/><circle cx="23" cy="16" r="2.2" fill="#2D7D6E"/><text x="31" y="22" font-family="Cormorant Garamond,serif" font-size="21" font-weight="600" fill="#f0e6ff">Flow</text><text x="75" y="22" font-family="Cormorant Garamond,serif" font-size="21" font-weight="300" fill="#C45BAA" font-style="italic">Her</text><text x="110" y="11" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(240,230,255,0.35)">&#8482;</text></svg></div></div>
+    <div class="a-pg-title">Win Journal</div>
+    <div class="a-pg-sub">Your brain forgets wins faster than failures. Every entry is evidence of who you are.</div>
+    <div class="a-stats-row"><div class="a-stat-box"><div class="a-stat-num" style="color:var(--mag);" id="totalWins">0</div><div class="a-stat-lbl">Total Wins</div></div><div class="a-stat-box"><div class="a-stat-num" style="color:var(--teal);" id="monthWins">0</div><div class="a-stat-lbl">This Month</div></div></div>
+    <div class="a-card-glow locked-card" onclick="showGate('Your 7-Day Pattern')"><span class="a-lbl">Log a Win</span><div class="a-chips" id="wCatChips"><div class="a-chip on" onclick="setWC(this,'Professional')">Professional</div><div class="a-chip" onclick="setWC(this,'Brave Moment')">Brave Moment</div><div class="a-chip" onclick="setWC(this,'Showed Up')">Showed Up</div><div class="a-chip" onclick="setWC(this,'Problem Solved')">Problem Solved</div><div class="a-chip" onclick="setWC(this,'Personal')">Personal</div></div><textarea class="a-inp a-ta a-ta-sm" id="winText" placeholder="What did you do? Even if it felt small. Especially if it felt small." style="margin-bottom:12px;"></textarea><button class="a-btn-fill" onclick="if(!isCore()){showGate('Log a Win');return;}addWin()" style="width:100%;">Log This Win ★</button></div>
+    <div id="winsList"></div>
+
+```
+<!-- EXPORT BUTTON -->
+<div style="padding:16px 0 8px;">
+  <button onclick="if(!isCore()){showGate('Win Export');return;}exportWins()" style="width:100%;padding:14px;background:transparent;border:1px solid rgba(196,91,170,0.3);border-radius:14px;color:rgba(196,91,170,0.9);font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;">
+    <span>⬇</span> Download My Win Journal
+  </button>
+  <div style="font-size:11px;color:rgba(240,230,255,0.3);text-align:center;margin-top:8px;line-height:1.5;">Save as text file — use in performance reviews, therapy, or just for you.</div>
+</div>
+```
+
+  </div>
+
+  <!-- UNMASK -->
+
+  <div class="a-screen" id="as-unmask" style="display:none">
+    <div class="a-hdr"><div class="a-logo"><svg width="138" height="32" viewBox="0 0 138 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;pointer-events:none;"><defs><linearGradient id="lg_a5" x1="0" y1="16" x2="25" y2="16" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#C45BAA"/><stop offset="100%" stop-color="#2D7D6E"/></linearGradient></defs><path d="M2 16 Q5.5 7 9 16 Q12.5 25 16 16 Q19.5 7 23 16" stroke="url(#lg_a5)" stroke-width="2.2" fill="none" stroke-linecap="round"/><circle cx="2" cy="16" r="2.2" fill="#C45BAA"/><circle cx="23" cy="16" r="2.2" fill="#2D7D6E"/><text x="31" y="22" font-family="Cormorant Garamond,serif" font-size="21" font-weight="600" fill="#f0e6ff">Flow</text><text x="75" y="22" font-family="Cormorant Garamond,serif" font-size="21" font-weight="300" fill="#C45BAA" font-style="italic">Her</text><text x="110" y="11" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(240,230,255,0.35)">&#8482;</text></svg></div></div>
+    <div style="text-align:center;padding:4px 22px 16px;position:relative;z-index:1;"><div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:#f0e6ff;margin-bottom:6px;">The Unmask Space</div><div style="font-size:13px;color:rgba(240,230,255,0.35);line-height:1.65;">Private. Unfiltered. Just you.</div></div>
+    <div style="padding:0 22px;position:relative;z-index:1;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><div style="font-size:10px;color:rgba(240,230,255,0.2);letter-spacing:3px;text-transform:uppercase;">Only visible to you</div><button class="a-btn a-btn-sm" onclick="clearUnmask()" style="color:rgba(240,230,255,0.25);border-color:rgba(255,255,255,0.08);font-size:10px;">Clear</button></div><div id="unmaskEditor" style="position:relative;min-height:220px;background:rgba(196,91,170,0.04);border:1px solid rgba(196,91,170,0.12);border-radius:14px;padding:16px;cursor:text;" onclick="document.getElementById('unmaskText').focus()">
+  <div id="unmaskFadeWords" style="position:absolute;inset:0;padding:16px;pointer-events:none;overflow:hidden;"></div>
+  <textarea class="a-inp a-ta" id="unmaskText" placeholder="Say what you actually think. Feel what you actually feel. This stays here." style="min-height:188px;border:none;background:transparent;font-size:15px;line-height:1.8;padding:0;resize:none;position:relative;z-index:2;color:rgba(240,230,255,0.9);" oninput="unmaskTypeEffect(this)"></textarea>
+</div>
+<div style="font-size:11px;color:rgba(240,230,255,0.2);text-align:center;margin-top:8px;font-family:'DM Sans',sans-serif;">Words fade as you write. This is just for you.</div><div style="margin-top:10px;font-size:12px;color:rgba(240,230,255,0.18);text-align:center;line-height:1.6;">Stored only on this device. Never sent anywhere.</div></div>
     <div class="a-card a-card-teal" style="margin-top:16px;"><span class="a-lbl a-lbl-teal">Nervous System Reset</span><div style="font-size:12px;color:rgba(240,230,255,0.35);margin-bottom:14px;">Under 3 minutes. Specifically for workplace dysregulation.</div><div id="nsrArea"><button class="a-btn a-btn-sm a-btn-teal" onclick="startNSR()" style="display:block;width:100%;padding:12px;">Start Reset →</button></div></div>
     <div class="a-card" style="margin-top:0;"><span class="a-lbl">After You Write</span><div style="font-size:13px;color:rgba(240,230,255,0.55);line-height:1.75;">✦ You don't have to fix it today<br>✦ Feeling it is not the same as being it<br>✦ The mask comes off here. The strength stays with you.</div></div>
   </div>
@@ -1078,12 +1592,12 @@ h1 strong{font-weight:700;}
   </div>
   <!-- APP NAV -->
   <div class="a-nav">
-    <button class="a-nav-btn on" id="nb-home" onclick="aTab('home')"><span class="a-nav-icon">✦</span><span class="a-nav-lbl">Home</span></button>
-    <button class="a-nav-btn" id="nb-focus" onclick="aTab('focus')"><span class="a-nav-icon">◎</span><span class="a-nav-lbl">Focus</span></button>
-    <button class="a-nav-btn" id="nb-work" onclick="gateTab('work','Workplace Survival Tools')"><span class="a-nav-icon">◈</span><span class="a-nav-lbl">Work</span></button>
-    <button class="a-nav-btn" id="nb-wins" onclick="gateTab('wins','Win Journal & Imposter Shield')"><span class="a-nav-icon">★</span><span class="a-nav-lbl">Wins</span></button>
+    <button class="a-nav-btn on" id="nb-home" onclick="aTab('home')"><span class="a-nav-icon">🏠</span><span class="a-nav-lbl">Home</span></button>
+    <button class="a-nav-btn" id="nb-focus" onclick="aTab('focus')"><span class="a-nav-icon">⚡</span><span class="a-nav-lbl">Focus</span></button>
+    <button class="a-nav-btn" id="nb-work" onclick="gateTab('work','Workplace Survival Tools')"><span class="a-nav-icon">💼</span><span class="a-nav-lbl">Work</span></button>
+    <button class="a-nav-btn" id="nb-wins" onclick="gateTab('wins','Win Journal & Imposter Shield')"><span class="a-nav-icon">⭐</span><span class="a-nav-lbl">Wins</span></button>
     <button class="a-nav-btn" id="nb-unmask" onclick="gateTab('unmask','Unmask Space & Nervous System Reset')"><span class="a-nav-icon">🌙</span><span class="a-nav-lbl">Unmask</span></button>
-    <button class="a-nav-btn" id="nb-mask" onclick="gateTab('mask','Masking Debt Tracker')"><span class="a-nav-icon">🩸</span><span class="a-nav-lbl">Mask Debt</span></button>
+    <button class="a-nav-btn" id="nb-mask" onclick="gateTab('mask','Masking Debt Tracker')"><span class="a-nav-icon">🎭</span><span class="a-nav-lbl">Mask Debt</span></button>
   </div>
 
   <!-- UPGRADE GATE MODAL -->
@@ -1253,7 +1767,7 @@ function renderMaskDebt(){
       +last7.map(function(d){
         return '<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">'
           +'<div style="width:100%;border-radius:4px 4px 0 0;background:'+(d.debt>0?'var(--rose)':'rgba(255,255,255,0.06)')+';height:'+Math.max(4,(d.debt/maxD)*48)+'px;"></div>'
-          +'<div style="font-family:DM Mono,monospace;font-size:9px;color:rgba(240,230,255,0.3);">'+d.label+'</div></div>';
+          +'<div style="font-family:DM Mono,monospace;font-size:11px;color:rgba(240,230,255,0.3);">'+d.label+'</div></div>';
       }).join('')+'</div>'
       +'<div style="font-size:12px;color:rgba(240,230,255,0.35);line-height:1.7;">Bring this pattern to your therapist. High-debt days reveal which environments cost you most.</div>';
   }
@@ -1355,6 +1869,15 @@ window.addEventListener('load',()=>{
 
 // ── LAUNCH / EXIT APP ────────────────────────────────────────────────────────
 function launchApp(){
+  // Show onboarding for brand new users only
+  var alreadyOnboarded = localStorage.getItem('fh_onboarded');
+  if(_isNewUser && !alreadyOnboarded){
+    // Let app load first, then show onboarding after short delay
+    setTimeout(function(){
+      var uname = _currentUser && _currentUser.user_metadata && _currentUser.user_metadata.full_name;
+      showOnboarding(uname ? uname.split(' ')[0] : '');
+    }, 800);
+  }
   document.getElementById('authScreen').classList.remove('show');
   document.getElementById('landing').style.display='none';
   const shell=document.getElementById('appShell');
@@ -1362,6 +1885,8 @@ function launchApp(){
   shell.classList.add('slide-in');
   shell.classList.add('active');
   document.getElementById('aDate').textContent=new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
+  updateStreak();
+  setTimeout(initHomeFeatures, 500);
   document.getElementById('affirmText').textContent='"'+AFFIRMATIONS[affirmIdx]+'"';
   buildPriorities();buildADA();buildMeetList();renderWins();updateLatestWin();updTimerUI();
   document.getElementById('unmaskText').value=localStorage.getItem('fh_unmask')||'';
@@ -1424,13 +1949,26 @@ function aTab(t){
   });
   if(t==='wins'){renderWins();updateImposterShield();}
   if(t==='work')updateImposterShield();
+  // Reset tool pickers when switching tabs
+  if(t==='focus'){
+    var fp=document.getElementById('focus-picker');
+    var fs=document.getElementById('focus-tool-screen');
+    if(fp)fp.style.display='block';
+    if(fs)fs.style.display='none';
+  }
+  if(t==='work'){
+    var wp=document.getElementById('work-picker');
+    var ws=document.getElementById('work-tool-screen');
+    if(wp)wp.style.display='block';
+    if(ws)ws.style.display='none';
+  }
 }
 
 // ── AFFIRMATIONS ──────────────────────────────────────────────────────────────
 function nextAffirm(){const el=document.getElementById('affirmText');el.style.opacity=0;setTimeout(()=>{affirmIdx=(affirmIdx+1)%AFFIRMATIONS.length;el.textContent='"'+AFFIRMATIONS[affirmIdx]+'"';el.style.opacity=1;},250);}
 
 // ── MOOD ──────────────────────────────────────────────────────────────────────
-function selMood(i){document.querySelectorAll('.mood-item').forEach((el,idx)=>el.classList.toggle('on',idx===i));const r=document.getElementById('moodResp');r.textContent=MOODS[i].r;r.style.display='block';}
+function selMood(i){document.querySelectorAll('.mood-item').forEach((el,idx)=>el.classList.toggle('on',idx===i));const r=document.getElementById('moodResp');r.textContent=MOODS[i].r;r.style.display='block';localStorage.setItem('fh_last_mood',String(i));}
 
 // ── TIMER ─────────────────────────────────────────────────────────────────────
 function toggleTimer(){timerOn=!timerOn;if(timerOn)timerI=setInterval(tickT,1000);else clearInterval(timerI);document.getElementById('timerBtn').textContent=timerOn?'⏸ Pause':'▶ Start';document.getElementById('timerMsg').textContent=timerOn?'You\'re in it. Stay with it.':'One focused block. You\'ve got this.';}
@@ -1471,7 +2009,7 @@ async function callClaude(prompt,maxT=700){
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({prompt,max_tokens:maxT})
     });
-    if(!r.ok){const e=await r.text();console.error('AI error:',e);return 'Something went wrong. Please try again.';}
+    if(!r.ok){const e=await r.text();console.error('AI error:',e);return 'Something went sideways — try again in a moment.';}
     const d=await r.json();
     return d.content?.[0]?.text||d.result||'Try again.';
   } catch(e){
@@ -1501,7 +2039,7 @@ function wTab(t){['email','script','rsd','ada','meet'].forEach(s=>{document.getE
 
 // ── WINS ──────────────────────────────────────────────────────────────────────
 function setWC(el,cat){document.querySelectorAll('#wCatChips .a-chip').forEach(c=>c.classList.remove('on'));el.classList.add('on');winCat=cat;}
-function addWin(){const t=document.getElementById('winText').value.trim();if(!t)return;pushWin({text:t,category:winCat,date:new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})});document.getElementById('winText').value='';}
+function addWin(){const t=document.getElementById('winText').value.trim();if(!t)return;pushWin({text:t,category:winCat,date:new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})});document.getElementById('winText').value='';celebrate();}
 function pushWin(w){wins.unshift(w);localStorage.setItem('fh_wins',JSON.stringify(wins));renderWins();updateLatestWin();updateImposterShield();}
 function deleteWin(i){wins.splice(i,1);localStorage.setItem('fh_wins',JSON.stringify(wins));renderWins();updateLatestWin();updateImposterShield();}
 function renderWins(){const c=document.getElementById('winsList');if(!c)return;c.innerHTML='';const tw=document.getElementById('totalWins');const mw=document.getElementById('monthWins');if(tw)tw.textContent=wins.length;const mon=new Date().toLocaleDateString('en-US',{month:'short'});if(mw)mw.textContent=wins.filter(w=>w.date&&w.date.includes(mon)).length;if(!wins.length){c.innerHTML='<div style="text-align:center;padding:40px 22px;color:rgba(240,230,255,0.25);font-style:italic;font-size:14px;">No wins logged yet — but you showed up today. That counts. Log it.</div>';return;}wins.forEach((w,i)=>{c.innerHTML+=`<div class="a-win-card"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><span style="font-size:10px;letter-spacing:2px;color:var(--mag);text-transform:uppercase;">★ ${w.category}</span><div style="display:flex;align-items:center;gap:8px;"><span style="font-size:10px;color:rgba(240,230,255,0.2);">${w.date}</span><button onclick="deleteWin(${i})" style="background:transparent;border:none;color:rgba(240,230,255,0.18);cursor:pointer;font-size:16px;">×</button></div></div><div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:rgba(240,230,255,0.85);line-height:1.65;">${w.text}</div></div>`;});}
@@ -1530,18 +2068,28 @@ const dopMsgs={
 };
 let dopStreak=parseInt(localStorage.getItem('fh_dop_streak')||'0');
 let dopLastDate=localStorage.getItem('fh_dop_last')||'';
-function dopHit(emoji,label){
+function dopHit(emoji,label,msg){
   // Update streak
   var today=new Date().toDateString();
   if(dopLastDate!==today){dopStreak++;dopLastDate=today;localStorage.setItem('fh_dop_streak',dopStreak);localStorage.setItem('fh_dop_last',today);}
-  // Show message
+  // Show message — use passed msg or fall back to dopMsgs lookup
+  var displayMsg = msg || (dopMsgs[emoji] || label);
   var m=document.getElementById('dopMsg');
   m.style.display='block';
-  m.innerHTML='<span style="font-size:22px;">'+emoji+'</span> <strong>'+dopMsgs[emoji]+'</strong>'+(dopStreak>1?'<div style="font-size:11px;color:var(--teal);margin-top:6px;letter-spacing:2px;">'+dopStreak+'-DAY STREAK 🔥</div>':'');
-  // Auto-hide after 4s
+  m.style.background='rgba(196,91,170,0.08)';
+  m.style.border='1px solid rgba(196,91,170,0.2)';
+  m.style.borderRadius='12px';
+  m.style.padding='14px 16px';
+  m.innerHTML='<div style="display:flex;align-items:flex-start;gap:10px;">'
+    +'<span style="font-size:24px;flex-shrink:0;">'+emoji+'</span>'
+    +'<div><div style="font-size:13px;font-weight:600;color:#FAF7FF;margin-bottom:4px;">'+label+'</div>'
+    +'<div style="font-size:12px;color:rgba(220,200,255,0.75);line-height:1.6;">'+displayMsg+'</div>'
+    +(dopStreak>1?'<div style="font-size:10px;color:#2D7D6E;margin-top:8px;letter-spacing:2px;font-weight:600;">'+dopStreak+'-DAY STREAK 🔥</div>':'')
+    +'</div></div>';
+  // Auto-hide after 5s
   clearTimeout(window._dopT);
-  window._dopT=setTimeout(function(){m.style.display='none';},4500);
-  // If "Log a tiny win" — open wins tab
+  window._dopT=setTimeout(function(){m.style.display='none';},5000);
+  // If log a tiny win — open wins tab
   if(emoji==='📝'){setTimeout(function(){if(isCore())aTab('wins');else showGate('Win Journal');},800);}
 }
 
@@ -1655,7 +2203,7 @@ async function doSignIn(){
   var btn   = document.getElementById('si-btn');
   var errEl = document.getElementById('authErr');
   errEl.textContent = '';
-  if(!email || !pass){ errEl.textContent = 'Please enter your email and password.'; return; }
+  if(!email || !pass){ errEl.textContent = 'We need your email and password to sign in.'; return; }
   btn.textContent = 'Signing in...'; btn.disabled = true;
   try {
     var sb = getSB();
@@ -1665,7 +2213,7 @@ async function doSignIn(){
     await fetchUserPlan(_currentUser.id);
     onAuthSuccess();
   } catch(e){
-    errEl.textContent = 'Something went wrong. Please try again.';
+    errEl.textContent = 'Something went sideways — try again in a moment.';
     btn.textContent = 'Sign In →'; btn.disabled=false;
   }
 }
@@ -1685,7 +2233,7 @@ async function doSignUp(){
   btn.disabled = true;
   btn.textContent = 'Creating account...';
   var sb = getSB();
-  if(!sb){ errEl.textContent = 'Connection error. Please try again.'; btn.disabled=false; btn.textContent='Create My Account →'; return; }
+  if(!sb){ errEl.textContent = 'Connection issue — check your signal and try again.'; btn.disabled=false; btn.textContent='Create My Account →'; return; }
   sb.auth.signUp({ email, password: pass, options: { data: { full_name: name } } })
     .then(function(res){
       if(res.error){ errEl.textContent = res.error.message; btn.disabled=false; btn.textContent='Create My Account →'; return; }
@@ -1699,10 +2247,10 @@ async function doSignUp(){
             errEl.style.color = '#3D9E8C';
             errEl.textContent = '✓ Beta access activated!';
           }
-          setTimeout(function(){ onAuthSuccess(_currentUser); }, valid ? 1200 : 0);
+          setTimeout(function(){ _isNewUser=true; onAuthSuccess(_currentUser); }, valid ? 1200 : 0);
         });
       } else {
-        onAuthSuccess(_currentUser);
+        _isNewUser=true; onAuthSuccess(_currentUser);
       }
     })
     .catch(function(e){ errEl.textContent = e.message; btn.disabled=false; btn.textContent='Create My Account →'; });
@@ -1744,7 +2292,7 @@ async function doReset(){
     else { okEl.textContent = 'Reset link sent! Check your email inbox.'; }
     btn.textContent = 'Send Reset Link →'; btn.disabled=false;
   } catch(e){
-    errEl.textContent = 'Something went wrong. Please try again.';
+    errEl.textContent = 'Something went sideways — try again in a moment.';
     btn.textContent = 'Send Reset Link →'; btn.disabled=false;
   }
 }
@@ -1900,158 +2448,540 @@ function setToggle(plan) {
 }
 
 // ── PRICING TOGGLE ────────────────────────────────────────────
-function setPricingToggle(plan) {
-  var isAnnual = plan === 'annual';
-  var fCta = document.querySelector('.founding-cta');
-  if (fCta) fCta.href = isAnnual ? STRIPE_ANNUAL : STRIPE_MONTHLY;
-  var b1 = document.getElementById('ptMonthly');
-  var b2 = document.getElementById('ptAnnual');
-  if (b1) b1.classList.toggle('active', !isAnnual);
-  if (b2) b2.classList.toggle('active', isAnnual);
-  var cp = document.getElementById('corePrice');
-  var cpd = document.getElementById('corePeriod');
-  if (cp) cp.innerHTML = isAnnual ? '<sup>$</sup>299<span style="font-size:20px">/yr</span>' : '<sup>$</sup>24<span style="font-size:26px">.99</span>';
-  if (cpd) cpd.textContent = isAnnual ? 'per year · locked forever' : 'per month · locked forever';
+
+function showOnboarding(name) {
+  document.getElementById('ob-name').textContent = name || 'friend';
+  var modal = document.getElementById('onboardingModal');
+  modal.style.display = 'flex';
 }
 
+function obNext(step) {
+  // Hide all steps
+  document.querySelectorAll('.ob-step').forEach(function(s){ s.style.display='none'; });
+  document.querySelectorAll('.ob-dot').forEach(function(d,i){ d.classList.toggle('active', i===step); });
+  document.getElementById('ob-step-'+step).style.display = 'block';
+}
+
+function obSelect(el, group) {
+  document.querySelectorAll('[data-val]').forEach(function(b){
+    if(b.closest('#ob-step-1')) b.classList.remove('selected');
+  });
+  el.classList.add('selected');
+  _obBrain = el.dataset.val;
+}
+
+function obToggle(el) {
+  el.classList.toggle('selected');
+  var val = el.dataset.val;
+  var idx = _obGoals.indexOf(val);
+  if(idx > -1) _obGoals.splice(idx,1);
+  else _obGoals.push(val);
+}
+
+function obFinish() {
+  // Save preferences to localStorage
+  localStorage.setItem('fh_ob_brain', _obBrain);
+  localStorage.setItem('fh_ob_goals', JSON.stringify(_obGoals));
+  localStorage.setItem('fh_onboarded', 'true');
+
+  // Close modal
+  document.getElementById('onboardingModal').style.display = 'none';
+
+  // Navigate to most relevant tab based on goals
+  var firstGoal = _obGoals[0] || 'focus';
+  var tabMap = {
+    focus: 'nb-focus',
+    work: 'nb-work',
+    emotions: 'nb-focus',
+    confidence: 'nb-wins',
+    unmask: 'nb-unmask'
+  };
+  var targetTab = tabMap[firstGoal] || 'nb-home';
+  var tabEl = document.getElementById(targetTab);
+  if(tabEl) tabEl.click();
+}
+
+// ── WIN EXPORT ────────────────────────────────────────────────────────────────
+function exportWins(){
+  if(!wins || !wins.length){
+    alert('No wins logged yet. Add some wins first!');
+    return;
+  }
+
+  var lines = [];
+  lines.push('MY FLOWHER WIN JOURNAL');
+  lines.push('Exported: ' + new Date().toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'}));
+  lines.push('Total Wins: ' + wins.length);
+  lines.push('');
+  lines.push('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+  lines.push('');
+  lines.push('"Your brain will try to forget these. This file will not."');
+  lines.push('— FlowHer');
+  lines.push('');
+  lines.push('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+  lines.push('');
+
+  // Group by month
+  var byMonth = {};
+  wins.forEach(function(w){
+    var month = w.date ? w.date.split(' ').slice(0,2).join(' ') : 'Undated';
+    if(!byMonth[month]) byMonth[month] = [];
+    byMonth[month].push(w);
+  });
+
+  Object.keys(byMonth).forEach(function(month){
+    lines.push('[ ' + month.toUpperCase() + ' ]');
+    lines.push('');
+    byMonth[month].forEach(function(w, i){
+      var cat = w.category ? ' [' + w.category + ']' : '';
+      lines.push('  ★ ' + w.text + cat);
+      lines.push('    ' + (w.date || ''));
+      lines.push('');
+    });
+    lines.push('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+    lines.push('');
+  });
+
+  lines.push('');
+  lines.push('Generated by FlowHer™ — Built for Your Brain');
+  lines.push('flowherapp.com');
+
+  var text = lines.join('\n');
+  var blob = new Blob([text], {type:'text/plain;charset=utf-8'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = 'FlowHer-Win-Journal-' + new Date().toISOString().slice(0,10) + '.txt';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
 </script>
 
-<!-- ════ FOUNDING MEMBER VIEW ════ -->
+<!-- ── CELEBRATION ANIMATION ──────────────────────────────────────── -->
 
-<div id="foundingPage" class="fp-page" style="display:none;position:fixed;inset:0;overflow-y:auto;background:#0E0820;z-index:900;">
-<div class="fp-orb fp-orb1"></div>
-<div class="fp-orb fp-orb2"></div>
-
-<div class="fp-wrap">
-
-  <!-- LOGO -->
-
-  <div style="margin-bottom:40px;">
-    <svg width="148" height="36" viewBox="0 0 148 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;">
-      <defs><linearGradient id="lg" x1="0" y1="18" x2="28" y2="18" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#C45BAA"/><stop offset="100%" stop-color="#2D7D6E"/></linearGradient></defs>
-      <path d="M2 18 Q6 8 10 18 Q14 28 18 18 Q22 8 26 18" stroke="url(#lg)" stroke-width="2.2" fill="none" stroke-linecap="round"/>
-      <circle cx="2" cy="18" r="2.2" fill="#C45BAA"/>
-      <circle cx="26" cy="18" r="2.2" fill="#2D7D6E"/>
-      <text x="34" y="25" font-family="Cormorant Garamond,serif" font-size="24" font-weight="600" fill="white">Flow</text>
-      <text x="82" y="25" font-family="Cormorant Garamond,serif" font-size="24" font-weight="300" fill="#C45BAA" font-style="italic">Her</text>
-      <text x="118" y="13" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(255,255,255,0.4)">&#8482;</text>
-    </svg>
+<div id="celebrationOverlay" style="display:none;position:fixed;inset:0;z-index:99999;pointer-events:none;overflow:hidden;">
+  <canvas id="confettiCanvas" style="position:absolute;inset:0;width:100%;height:100%;"></canvas>
+  <div id="celebrationMsg" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(0.5);background:linear-gradient(135deg,#1a0a2e,#2d1052);border:1px solid rgba(196,91,170,0.4);border-radius:24px;padding:32px 40px;text-align:center;opacity:0;transition:all 0.4s cubic-bezier(0.34,1.56,0.64,1);pointer-events:none;max-width:320px;width:90%;">
+    <div id="celebEmoji" style="font-size:48px;margin-bottom:12px;">🌟</div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:#FAF7FF;margin-bottom:8px;" id="celebTitle">Win logged.</div>
+    <div style="font-size:13px;color:rgba(196,91,170,0.9);font-family:'DM Sans',sans-serif;" id="celebSub">That counts. Every single one.</div>
   </div>
-
-  <div class="founding-badge">
-    <div class="badge-dot"></div>
-    <span class="badge-text">Founding Member — 200 Spots Only</span>
-  </div>
-
-  <h1>Be one of the<br><em>200 women</em> who<br><strong>build this with us.</strong></h1>
-  <p class="sub">FlowHer was built by a woman with ADHD who finally understood why the existing tools never worked for her brain — and decided to build what should have existed ten years ago. You are not buying a finished product. You are co-building a movement — and locking in your rate forever.</p>
-
-  <!-- SPOTS -->
-
-  <div class="spots-bar">
-    <div class="spots-top">
-      <span class="spots-label">Founding Spots</span>
-      <span class="spots-count" id="spotsCount">200 remaining</span>
-    </div>
-    <div class="spots-track">
-      <div class="spots-fill" id="spotsFill" style="width:2%"></div>
-    </div>
-    <div class="spots-remaining" id="spotsRemaining">Be among the first 200. This price disappears when they're gone.</div>
-  </div>
-
-  <!-- TOGGLE -->
-
-  <div class="toggle-wrap">
-    <button class="toggle-btn active" id="btnMonthly" onclick="setToggle('monthly')">Monthly</button>
-    <button class="toggle-btn" id="btnAnnual" onclick="setToggle('annual')">Annual <span class="save-pill">SAVE $100</span></button>
-  </div>
-
-  <!-- PRICE CARD -->
-
-  <div class="price-card">
-    <div class="price-eyebrow">Founding Member Rate — Locked Forever</div>
-    <div class="price-amount">
-      <span class="price-dollar">$</span>
-      <span class="price-num" id="priceNum">24</span>
-      <span class="price-cents" id="priceCents">.99</span>
-      <span class="price-period" id="pricePeriod">/month</span>
-    </div>
-    <div class="price-annual-note" id="annualNote">Billed as $299/year — you save $100</div>
-    <div class="price-regular" id="regularNote">After 200 spots: <span>$39.99/mo</span> · Founding rate never increases</div>
-    <div class="price-lock">🔒 This rate is locked forever as long as you stay subscribed</div>
-    <div class="price-divider"></div>
-
-```
-<ul class="features">
-  <li><span class="feat-icon">✦</span><span>Full focus toolkit — Brain Dump, Priority Triage, Smallest Step Engine</span></li>
-  <li><span class="feat-icon">⚡</span><span>Hyperfocus Capture + Body Double Mode</span></li>
-  <li><span class="feat-icon">⏱</span><span>Time Blindness Corrector — learns YOUR personal time multiplier <span class="feat-new">NEW</span></span></li>
-  <li><span class="feat-icon">🩸</span><span>Masking Debt Tracker — for women who mask to survive in professional spaces <span class="feat-new">NEW</span></span></li>
-  <li><span class="feat-icon">🛡️</span><span>RSD Toolkit with live AI reality-check</span></li>
-  <li><span class="feat-icon">💼</span><span>AI email drafting + self-advocacy scripts for workplace situations</span></li>
-  <li><span class="feat-icon">⚖️</span><span>ADA rights library in plain language — no legal jargon</span></li>
-  <li><span class="feat-icon">★</span><span>Win Journal + Imposter Shield powered by your own evidence</span></li>
-  <li><span class="feat-icon">🌙</span><span>Private Unmask Space — never stored, never shared</span></li>
-  <li><span class="feat-icon">🌿</span><span>Nervous System Reset + SOS Crisis Mode</span></li>
-  <li><span class="feat-icon">🔮</span><span>Every new feature as it's built — founding members get it all</span></li>
-</ul>
-
-<a href="https://buy.stripe.com/14AaEX5DEaaa22ff5u8Ra01" id="ctaBtn" class="cta-btn">Claim My Founding Member Spot →</a>
-<div class="cta-sub" id="ctaSub">Secure payment via Stripe · Cancel anytime · Rate locked forever<br>After 200 spots: $39.99/month or $399/year</div>
-```
-
-  </div>
-
-  <!-- REGULAR PRICING -->
-
-  <div class="reg-pricing">
-    <div class="reg-title">After the founding spots are gone</div>
-    <div class="reg-sub">Regular pricing kicks in for everyone who joins after the 200 founding members. Founding members keep their rate as long as they stay subscribed — no exceptions, no increases.</div>
-    <div class="reg-cards">
-      <div class="reg-card">
-        <div class="reg-plan">Monthly</div>
-        <div class="reg-price"><sup>$</sup>39<span style="font-size:20px;">.99</span></div>
-        <div class="reg-period">per month</div>
-        <div class="reg-note">Full access · Cancel anytime</div>
-      </div>
-      <div class="reg-card best">
-        <div class="reg-badge">BEST VALUE</div>
-        <div class="reg-plan">Annual</div>
-        <div class="reg-price"><sup>$</sup>399</div>
-        <div class="reg-period">per year · ~$33/month</div>
-        <div class="reg-note" style="color:var(--teal);">Save $80/year vs monthly</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- GUARANTEE -->
-
-  <div class="guarantee">
-    <div class="guar-icon">🤝</div>
-    <div>
-      <div class="guar-title">The Founder Promise</div>
-      <div class="guar-text">If FlowHer doesn't feel like it was built for you within 30 days, email me directly and I will refund every penny. No questions, no forms, no runaround. My name is on this.</div>
-    </div>
-  </div>
-
-  <!-- STORY -->
-
-  <div class="story">
-    <div class="story-eyebrow">Why I Built This</div>
-    <div class="story-text">"I spent years achieving things the hard way — until my ADHD diagnosis changed everything. For the first time, I understood why the standard tools never worked for me. So I stopped trying to fit into systems that weren't built for my brain, and built one that was."</div>
-    <div class="story-sig">
-      <strong>Sil — Founder, FlowHer™</strong>
-      MBA · ADHD Inattentive · Done apologizing for her brain
-    </div>
-  </div>
-
-  <div class="fp-footer">
-    FlowHer™ © 2026 · <a href="/">flowherapp.com</a><br>
-    Built for brains that work differently.
-  </div>
-
 </div>
-  <div style="text-align:center;padding:20px 0 40px;"><button onclick="showView('landing')" style="background:none;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.4);padding:10px 22px;border-radius:20px;font-family:DM Sans,sans-serif;font-size:13px;cursor:pointer;">← Back to FlowHer</button></div>
-</div>
+<script>
+var _celebMessages=[{emoji:'🌟',title:'Win logged.',sub:'That counts. Every single one.'},{emoji:'💜',title:'You showed up.',sub:'And your brain noticed.'},{emoji:'⚡',title:"That's a win.",sub:'No matter how small it felt.'},{emoji:'✨',title:'Imposter Shield +1.',sub:'Keep building your evidence.'},{emoji:'🔥',title:'Look at you go.',sub:'This is what progress looks like.'},{emoji:'🌸',title:'Logged and remembered.',sub:"Your brain will try to forget this. FlowHer won't."},{emoji:'👑',title:'That was real.',sub:'You did a thing. It mattered.'}];
+var _confettiColors=['#C45BAA','#7B3FA0','#2D7D6E','#FAF7FF','#f7c5e8','#a78bfa'];
+function celebrate(){var overlay=document.getElementById('celebrationOverlay');var msg=document.getElementById('celebrationMsg');var canvas=document.getElementById('confettiCanvas');var m=_celebMessages[Math.floor(Math.random()*_celebMessages.length)];document.getElementById('celebEmoji').textContent=m.emoji;document.getElementById('celebTitle').textContent=m.title;document.getElementById('celebSub').textContent=m.sub;overlay.style.display='block';setTimeout(function(){msg.style.opacity='1';msg.style.transform='translate(-50%,-50%) scale(1)';},50);launchConfetti(canvas);setTimeout(function(){msg.style.opacity='0';msg.style.transform='translate(-50%,-50%) scale(0.8)';setTimeout(function(){overlay.style.display='none';msg.style.transform='translate(-50%,-50%) scale(0.5)';},400);},2400);}
+function launchConfetti(canvas){var ctx=canvas.getContext('2d');canvas.width=window.innerWidth;canvas.height=window.innerHeight;ctx.clearRect(0,0,canvas.width,canvas.height);var pieces=[];for(var i=0;i<80;i++){pieces.push({x:Math.random()*canvas.width,y:-10-Math.random()*40,w:6+Math.random()*8,h:3+Math.random()*5,color:_confettiColors[Math.floor(Math.random()*_confettiColors.length)],speed:2.5+Math.random()*4,angle:Math.random()*360,spin:(Math.random()-0.5)*8,opacity:1});}var start=null;var duration=2200;function draw(ts){if(!start)start=ts;var elapsed=ts-start;ctx.clearRect(0,0,canvas.width,canvas.height);pieces.forEach(function(p){p.y+=p.speed;p.x+=Math.sin(p.angle*0.02)*1.2;p.angle+=p.spin;p.opacity=Math.max(0,1-(elapsed/duration));ctx.save();ctx.globalAlpha=p.opacity;ctx.translate(p.x,p.y);ctx.rotate(p.angle*Math.PI/180);ctx.fillStyle=p.color;ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);ctx.restore();});if(elapsed<duration){requestAnimationFrame(draw);}else{ctx.clearRect(0,0,canvas.width,canvas.height);}}requestAnimationFrame(draw);}
+
+// ── STREAK TRACKER ────────────────────────────────────────────────────────────
+var _streakData = JSON.parse(localStorage.getItem(‘fh_streak’) || ‘{“count”:0,“lastDate”:””,“bestStreak”:0}’);
+
+function updateStreak() {
+var today = new Date().toDateString();
+var yesterday = new Date(Date.now() - 86400000).toDateString();
+
+if (_streakData.lastDate === today) {
+// Already checked in today — just display
+} else if (_streakData.lastDate === yesterday) {
+// Consecutive day — increment
+_streakData.count++;
+_streakData.lastDate = today;
+if (_streakData.count > (_streakData.bestStreak || 0)) {
+_streakData.bestStreak = _streakData.count;
+}
+localStorage.setItem(‘fh_streak’, JSON.stringify(_streakData));
+} else if (_streakData.lastDate === ‘’) {
+// First ever check-in
+_streakData.count = 1;
+_streakData.lastDate = today;
+_streakData.bestStreak = 1;
+localStorage.setItem(‘fh_streak’, JSON.stringify(_streakData));
+} else {
+// Streak broken — reset
+_streakData.count = 1;
+_streakData.lastDate = today;
+localStorage.setItem(‘fh_streak’, JSON.stringify(_streakData));
+}
+renderStreak();
+}
+
+function renderStreak() {
+var countEl = document.getElementById(‘streakCount’);
+var msgEl = document.getElementById(‘streakMsg’);
+var flameEl = document.getElementById(‘streakFlame’);
+if (!countEl) return;
+
+var count = _streakData.count || 0;
+countEl.textContent = count;
+
+// Flame intensity based on streak length
+if (count === 0) {
+flameEl.textContent = ‘🌱’;
+} else if (count < 3) {
+flameEl.textContent = ‘🔥’;
+} else if (count < 7) {
+flameEl.textContent = ‘🔥’;
+flameEl.style.filter = ‘saturate(1.5)’;
+} else if (count < 14) {
+flameEl.textContent = ‘🔥🔥’;
+} else {
+flameEl.textContent = ‘🔥🔥🔥’;
+}
+
+// Streak messages
+var messages = [
+“Start your streak today.”,
+“Day one. That’s everything.”,
+“Two days strong.”,
+“Three days. Your brain is noticing.”,
+“Four days. This is a habit forming.”,
+“Five days. Halfway to a week.”,
+“Six days. One more to a week.”,
+“A full week. You showed up.”,
+“Keep going.”,
+];
+var best = _streakData.bestStreak || 0;
+var msg = count <= 8 ? messages[count] : messages[8];
+if (count > 0 && best > count) {
+msg += ’ (Best: ’ + best + ‘)’;
+}
+msgEl.textContent = msg;
+}
+</script>
+
+<style>
+.tool-pick-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.tool-pick-btn {
+  background: rgba(196,91,170,0.06);
+  border: 1px solid rgba(196,91,170,0.18);
+  border-radius: 16px;
+  padding: 18px 14px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  text-align: left;
+  transition: all 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.tool-pick-btn:hover, .tool-pick-btn:active {
+  background: rgba(196,91,170,0.15);
+  border-color: rgba(196,91,170,0.45);
+  transform: translateY(-1px);
+}
+.tool-pick-emoji {
+  font-size: 24px;
+  margin-bottom: 6px;
+  display: block;
+}
+.tool-pick-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #FAF7FF;
+  font-family: 'DM Sans', sans-serif;
+  display: block;
+  line-height: 1.3;
+}
+.tool-pick-desc {
+  font-size: 11px;
+  color: rgba(240,230,255,0.4);
+  font-family: 'DM Sans', sans-serif;
+  display: block;
+  line-height: 1.4;
+}
+.focus-tool-content, .work-tool-content {
+  animation: toolFadeIn 0.3s ease;
+}
+@keyframes toolFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+</style>
+
+<script>
+// Focus tool navigation
+var _focusToolNames = {
+  'brain-dump': '🧠 Brain Dump',
+  'priority-triage': '🎯 Priority Triage',
+  'smallest-step': '⚡ Smallest Step Engine',
+  'hyperfocus': '🔥 Hyperfocus Mode',
+  'time-blindness': '⏱ Time Blindness Corrector',
+  'body-double': '🤝 Body Double Mode'
+};
+
+function openFocusTool(tool) {
+  document.getElementById('focus-picker').style.display = 'none';
+  document.getElementById('focus-tool-screen').style.display = 'block';
+  document.getElementById('focus-tool-title').textContent = _focusToolNames[tool] || tool;
+  document.querySelectorAll('.focus-tool-content').forEach(function(el){ el.style.display = 'none'; });
+  var el = document.getElementById('focus-tool-' + tool);
+  if (el) el.style.display = 'block';
+}
+
+function closeFocusTool() {
+  document.getElementById('focus-tool-screen').style.display = 'none';
+  document.getElementById('focus-picker').style.display = 'block';
+}
+
+// Work tool navigation
+var _workToolNames = {
+  'email': '✉️ Email Drafting',
+  'script': '💬 Conversation Script',
+  'rsd': '🛡️ RSD Toolkit',
+  'ada': '⚖️ Your Legal Rights',
+  'imposter': '✨ Imposter Shield',
+  'meeting': '🗓️ Meeting Mode'
+};
+
+function openWorkTool(tool) {
+  document.getElementById('work-picker').style.display = 'none';
+  document.getElementById('work-tool-screen').style.display = 'block';
+  document.getElementById('work-tool-title').textContent = _workToolNames[tool] || tool;
+  document.querySelectorAll('.work-tool-content').forEach(function(el){ el.style.display = 'none'; });
+  var el = document.getElementById('work-tool-' + tool);
+  if (el) el.style.display = 'block';
+}
+
+function closeWorkTool() {
+  document.getElementById('work-tool-screen').style.display = 'none';
+  document.getElementById('work-picker').style.display = 'block';
+}
+</script>
+
+<style>
+.meet-anx-btn {
+  flex:1;
+  padding:10px 6px;
+  background:rgba(196,91,170,0.06);
+  border:1px solid rgba(196,91,170,0.18);
+  border-radius:10px;
+  color:rgba(240,230,255,0.75);
+  font-size:11px;
+  cursor:pointer;
+  font-family:'DM Sans',sans-serif;
+  transition:all 0.2s;
+  text-align:center;
+}
+.meet-anx-btn.selected {
+  background:rgba(196,91,170,0.2);
+  border-color:#C45BAA;
+  color:#FAF7FF;
+}
+</style>
+
+<script>
+var _meetAnxLevel = 1;
+
+function setMeetAnxiety(el) {
+  document.querySelectorAll('.meet-anx-btn').forEach(function(b){ b.classList.remove('selected'); });
+  el.classList.add('selected');
+  _meetAnxLevel = parseInt(el.dataset.val);
+}
+
+async function genMeetingPrep() {
+  var topic = document.getElementById('meetTopic').value.trim();
+  var people = document.getElementById('meetPeople').value.trim();
+  var goal = document.getElementById('meetGoal').value.trim();
+  if (!topic) { alert('Tell me what the meeting is about.'); return; }
+
+  var btn = document.getElementById('meetBtn');
+  btn.textContent = 'Preparing you...';
+  btn.disabled = true;
+
+  var anxContext = ['', 'You feel calm about this.', 'You feel nervous about this meeting.', 'You are dreading this meeting and may experience anxiety or RSD during it.'][_meetAnxLevel];
+
+  var prompt = `You are FlowHer, a compassionate AI assistant for neurodivergent professional women with ADHD.
+
+A woman needs help preparing for a meeting. ` + anxContext + `
+
+Meeting topic: ` + topic + `
+People in the room: ` + (people || 'Not specified') + `
+What she needs to walk away with: ` + (goal || 'Not specified') + `
+
+Generate a meeting prep card with exactly these sections — keep each section tight and actionable:
+
+**WALK IN KNOWING:**
+3 bullet points max. Key facts or context she should have top of mind.
+
+**YOUR ONE GOAL:**
+One sentence. The single most important outcome for her.
+
+**IF YOU FREEZE:**
+A 1-2 sentence script she can say out loud if her brain goes blank. Make it natural, not robotic.
+
+**IF YOU GET INTERRUPTED:**
+One sentence she can say to reclaim her space without confrontation.
+
+**AFTER THE MEETING:**
+One action she should take within 24 hours to follow through.
+
+Keep the tone warm, direct, and respectful of how her brain works. No corporate speak.`;
+
+  try {
+    var res = await callClaude(prompt, 600);
+    document.getElementById('meetStep1').style.display = 'none';
+    document.getElementById('meetResult').style.display = 'block';
+    // Format the response with styled sections
+    var formatted = res
+      .replace(/\*\*([^*]+)\*\*/g, function(m, p1) { return '<div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#C45BAA;font-weight:600;margin-top:16px;margin-bottom:6px;">' + p1 + '</div>'; })
+      .replace(/- /g, '<br>• ')
+      .replace(/\n/g, '<br>');
+    document.getElementById('meetRes').innerHTML = '<div style="font-size:13px;color:rgba(240,230,255,0.85);line-height:1.8;">' + formatted + '</div>';
+    } catch(e) {
+    document.getElementById('meetBtn').textContent = 'Prep Me →';
+    document.getElementById('meetBtn').disabled = false;
+  }
+}
+
+function resetMeeting() {
+  document.getElementById('meetTopic').value = '';
+  document.getElementById('meetPeople').value = '';
+  document.getElementById('meetGoal').value = '';
+  document.getElementById('meetStep1').style.display = 'block';
+  document.getElementById('meetResult').style.display = 'none';
+  document.getElementById('meetBtn').textContent = 'Prep Me →';
+  document.getElementById('meetBtn').disabled = false;
+  _meetAnxLevel = 1;
+  document.querySelectorAll('.meet-anx-btn').forEach(function(b){ b.classList.remove('selected'); });
+}
+</script>
+
+<script>
+// ── NOT TODAY ──────────────────────────────────────────────────────
+function activateNotToday() {
+  document.getElementById('notTodayCard').style.display = 'none';
+  document.getElementById('notTodayActive').style.display = 'block';
+  // Protect streak - mark today as a rest day so streak doesn't break
+  var today = new Date().toDateString();
+  _streakData.lastDate = today;
+  localStorage.setItem('fh_streak', JSON.stringify(_streakData));
+  // Track survived days
+  trackSurvived('rest');
+}
+
+// ── WIND DOWN ─────────────────────────────────────────────────────
+function checkWindDown() {
+  var hour = new Date().getHours();
+  var windCard = document.getElementById('windDownCard');
+  if (!windCard) return;
+  var today = new Date().toDateString();
+  var lastWindDown = localStorage.getItem('fh_winddown_date');
+  // Show after 5pm and only once per day
+  if (hour >= 17 && lastWindDown !== today) {
+    windCard.style.display = 'block';
+  } else {
+    windCard.style.display = 'none';
+  }
+}
+
+function saveWindDown() {
+  var did = document.getElementById('windDid').value.trim();
+  var letGo = document.getElementById('windLetGo').value.trim();
+  var tomorrow = document.getElementById('windTomorrow').value.trim();
+  var today = new Date().toDateString();
+
+  // Save to localStorage
+  var log = JSON.parse(localStorage.getItem('fh_winddown_log') || '[]');
+  log.unshift({ date: today, did: did, letGo: letGo, tomorrow: tomorrow });
+  if (log.length > 30) log = log.slice(0, 30);
+  localStorage.setItem('fh_winddown_log', JSON.stringify(log));
+  localStorage.setItem('fh_winddown_date', today);
+
+  // If they listed things they did — auto-log as wins
+  if (did) {
+    var winItems = did.split(". ").map(function(s){ return s.trim(); }).filter(function(s){ return s.length > 3; });
+    winItems.slice(0, 3).forEach(function(w){
+      if (w) pushWin({ text: w, category: 'Daily Win', date: new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) });
+    });
+  }
+
+  document.getElementById('windStep1').style.display = 'none';
+  document.getElementById('windDone').style.display = 'block';
+}
+
+// ── UNMASK WORD FADE ──────────────────────────────────────────────
+var _unmaskFadeTimer = null;
+var _unmaskWords = [];
+
+function unmaskTypeEffect(el) {
+  // Save to storage as normal
+  localStorage.setItem('fh_unmask_draft', el.value);
+
+  // Fade effect - get words and animate them fading
+  clearTimeout(_unmaskFadeTimer);
+  _unmaskFadeTimer = setTimeout(function() {
+    var words = el.value.split(/\s+/).filter(function(w){ return w.length > 0; });
+    var fadeContainer = document.getElementById('unmaskFadeWords');
+    if (!fadeContainer) return;
+    // Show last 8 words as fading ghost text
+    var recent = words.slice(-8);
+    fadeContainer.innerHTML = recent.map(function(w, i) {
+      var opacity = 0.05 + (i / recent.length) * 0.12;
+      return '<span style="color:rgba(196,91,170,' + opacity + ');font-size:15px;margin-right:4px;">' + w + '</span>';
+    }).join('');
+  }, 300);
+}
+
+// ── I SURVIVED BADGE ──────────────────────────────────────────────
+var _survivedData = JSON.parse(localStorage.getItem('fh_survived') || '{"count":0,"days":[]}');
+
+function trackSurvived(type) {
+  var today = new Date().toDateString();
+  if (!_survivedData.days.includes(today)) {
+    _survivedData.count++;
+    _survivedData.days.push(today);
+    if (_survivedData.days.length > 365) _survivedData.days.shift();
+    localStorage.setItem('fh_survived', JSON.stringify(_survivedData));
+  }
+  showSurvivedBadge(type);
+}
+
+function showSurvivedBadge(type) {
+  var badge = document.getElementById('survivedBadge');
+  var msg = document.getElementById('survivedMsg');
+  var count = document.getElementById('survivedCount');
+  if (!badge) return;
+
+  var messages = {
+    'rest': "You chose rest today. That takes wisdom.",
+    'hard': "You made it through a hard one. That is not nothing.",
+    'default': "You made it through today. That counts."
+  };
+
+  msg.textContent = messages[type] || messages.default;
+  count.textContent = _survivedData.count > 1 ? _survivedData.count + ' days survived and counted.' : 'First one logged.';
+  badge.style.display = 'block';
+
+  // Scroll to it
+  setTimeout(function(){ badge.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 200);
+}
+
+function checkSurvivedBadge() {
+  // Show survived badge if mood was very low (stressed/overwhelmed) or mask debt was high
+  var lastMood = localStorage.getItem('fh_last_mood');
+  var today = new Date().toDateString();
+  var lastSurvived = localStorage.getItem('fh_survived_shown');
+  if (lastSurvived === today) return; // Only once per day
+  if (lastMood && ['4','5','6'].includes(lastMood)) {
+    localStorage.setItem('fh_survived_shown', today);
+    setTimeout(function(){ trackSurvived('hard'); }, 2000);
+  }
+}
+
+// ── INIT HOME TAB FEATURES ────────────────────────────────────────
+function initHomeFeatures() {
+  checkWindDown();
+  checkSurvivedBadge();
+}
+</script>
+
 </body>
 </html>
