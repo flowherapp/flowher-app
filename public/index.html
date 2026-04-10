@@ -40,8 +40,8 @@
 
 /* ── VIEWS ── */
 #landing{display:block;width:100%;min-height:100vh;}
-#appShell{display:none !important;position:fixed;inset:0;z-index:1000;background:linear-gradient(160deg,#0e0820 0%,#1a0f2e 50%,#0d1520 100%);pointer-events:none;visibility:hidden;opacity:0;overflow:hidden;clip:rect(0,0,0,0);}#appShell *{visibility:hidden;}#appShell.active{display:flex !important;visibility:visible !important;clip:auto;}#appShell.active *{visibility:visible !important;}
-#appShell.active{pointer-events:auto;opacity:1;}
+#appShell{display:none !important;position:fixed;inset:0;z-index:1000;background:linear-gradient(160deg,#0e0820 0%,#1a0f2e 50%,#0d1520 100%);pointer-events:none;visibility:hidden;opacity:0;overflow:hidden;}#appShell.active{display:flex !important;}
+#appShell.active{display:flex !important;pointer-events:auto;opacity:1;visibility:visible;}
 
 /* ── TRANSITION ── */
 .slide-in{animation:slideIn 0.5s cubic-bezier(0.4,0,0.2,1) both;}
@@ -396,6 +396,7 @@ nav{padding:24px 120px;}
 /* MOBILE (max 768px) */
 @media(max-width:768px){
 nav{padding:14px 18px;}
+.hero{min-height:auto;padding-bottom:40px;}
 .nav-cta{display:none;}
 .hero{padding:90px 18px 50px;}
 h1{font-size:clamp(36px,9vw,52px);}
@@ -1146,7 +1147,7 @@ function toggleFaq(el) {
     <div class="fp-footer">FlowHer™ © 2026 · Built for brains that work differently.<br>
       <a href="/privacy.html" style="color:rgba(255,255,255,0.2);text-decoration:none;">Privacy</a> ·
       <a href="/terms.html" style="color:rgba(255,255,255,0.2);text-decoration:none;">Terms</a> ·
-      <a href="mailto:hello@flowherapp.com" style="color:rgba(255,255,255,0.2);text-decoration:none;">Contact</a>
+      <a href="/cdn-cgi/l/email-protection#dfb7bab3b3b09fb9b3b0a8b7baadbeafaff1bcb0b2" style="color:rgba(255,255,255,0.2);text-decoration:none;">Contact</a>
     </div>
   </div>
   </div>
@@ -1755,947 +1756,949 @@ function toggleFaq(el) {
 
 </div></div><!-- /appShell -->
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+
 // ── TIME BLINDNESS CORRECTOR ─────────────────────────────────────────────────
-var tbcData=JSON.parse(localStorage.getItem('fh_tbc')||'[]');
-var tbcTimerI,tbcElapsed=0,tbcEstimate=0,tbcTaskName='';
+var tbcData=JSON.parse(localStorage.getItem(‘fh_tbc’)||’[]’);
+var tbcTimerI,tbcElapsed=0,tbcEstimate=0,tbcTaskName=’’;
 function tbcStart(){
-  var task=document.getElementById('tbc-task').value.trim();
-  var est=parseInt(document.getElementById('tbc-estimate').value);
-  if(!task||!est||est<1)return;
-  tbcTaskName=task;tbcEstimate=est;tbcElapsed=0;
-  document.getElementById('tbc-log').style.display='none';
-  document.getElementById('tbc-timing').style.display='block';
-  document.getElementById('tbc-task-show').textContent=task;
-  document.getElementById('tbc-est-show').textContent=est;
-  tbcTimerI=setInterval(function(){
-    tbcElapsed++;
-    var m=Math.floor(tbcElapsed/60),s=tbcElapsed%60;
-    document.getElementById('tbc-clock').textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
-  },1000);
+var task=document.getElementById(‘tbc-task’).value.trim();
+var est=parseInt(document.getElementById(‘tbc-estimate’).value);
+if(!task||!est||est<1)return;
+tbcTaskName=task;tbcEstimate=est;tbcElapsed=0;
+document.getElementById(‘tbc-log’).style.display=‘none’;
+document.getElementById(‘tbc-timing’).style.display=‘block’;
+document.getElementById(‘tbc-task-show’).textContent=task;
+document.getElementById(‘tbc-est-show’).textContent=est;
+tbcTimerI=setInterval(function(){
+tbcElapsed++;
+var m=Math.floor(tbcElapsed/60),s=tbcElapsed%60;
+document.getElementById(‘tbc-clock’).textContent=String(m).padStart(2,‘0’)+’:’+String(s).padStart(2,‘0’);
+},1000);
 }
 function tbcStop(){
-  clearInterval(tbcTimerI);
-  var actualMin=Math.max(1,Math.round(tbcElapsed/60));
-  var entry={task:tbcTaskName,estimated:tbcEstimate,actual:actualMin,date:new Date().toLocaleDateString('en-US',{month:'short',day:'numeric'})};
-  tbcData.push(entry);
-  localStorage.setItem('fh_tbc',JSON.stringify(tbcData));
-  document.getElementById('tbc-timing').style.display='none';
-  document.getElementById('tbc-log').style.display='block';
-  document.getElementById('tbc-task').value='';
-  document.getElementById('tbc-estimate').value='';
-  tbcRender();
+clearInterval(tbcTimerI);
+var actualMin=Math.max(1,Math.round(tbcElapsed/60));
+var entry={task:tbcTaskName,estimated:tbcEstimate,actual:actualMin,date:new Date().toLocaleDateString(‘en-US’,{month:‘short’,day:‘numeric’})};
+tbcData.push(entry);
+localStorage.setItem(‘fh_tbc’,JSON.stringify(tbcData));
+document.getElementById(‘tbc-timing’).style.display=‘none’;
+document.getElementById(‘tbc-log’).style.display=‘block’;
+document.getElementById(‘tbc-task’).value=’’;
+document.getElementById(‘tbc-estimate’).value=’’;
+tbcRender();
 }
 function tbcRender(){
-  var el=document.getElementById('tbc-results');
-  if(!el)return;
-  if(!tbcData.length){el.innerHTML='';return;}
-  var ratios=tbcData.map(function(e){return e.actual/e.estimated;});
-  var avg=ratios.reduce(function(a,b){return a+b;},0)/ratios.length;
-  var last5=tbcData.slice(-5).reverse();
-  var html='<div style="border-top:1px solid rgba(196,151,58,0.2);padding-top:14px;margin-top:4px;">'
-    +'<div style="font-size:10px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:10px;">Your Time Tax Multiplier</div>'
-    +'<div style="font-size:44px;font-weight:300;color:var(--gold);font-family:DM Mono,monospace;text-align:center;margin-bottom:6px;">'+avg.toFixed(1)+'x</div>'
-    +'<div style="font-size:12px;color:rgba(240,230,255,0.4);text-align:center;margin-bottom:14px;">Based on '+tbcData.length+' logged task'+(tbcData.length>1?'s':'')+'</div>'
-    +'<div style="font-size:12px;color:rgba(240,230,255,0.55);padding:12px;background:rgba(196,151,58,0.06);border-radius:10px;line-height:1.7;margin-bottom:14px;">'
-    +'When you think something will take <strong style="color:var(--gold)">30 min</strong>, plan for <strong style="color:var(--gold)">'+Math.round(30*avg)+' min</strong>.</div>';
-  last5.forEach(function(e){
-    var r=(e.actual/e.estimated).toFixed(1);
-    var col=parseFloat(r)<=1.2?'var(--teal)':parseFloat(r)<=1.8?'var(--gold)':'var(--rose)';
-    html+='<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:12px;">'
-      +'<span style="color:rgba(240,230,255,0.6);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-right:8px;">'+e.task+'</span>'
-      +'<span style="color:rgba(240,230,255,0.35);font-family:DM Mono,monospace;margin-right:8px;">'+e.estimated+'→'+e.actual+'min</span>'
-      +'<span style="color:'+col+';font-family:DM Mono,monospace;font-weight:500;">'+r+'x</span></div>';
-  });
-  html+='</div>';
-  el.innerHTML=html;
+var el=document.getElementById(‘tbc-results’);
+if(!el)return;
+if(!tbcData.length){el.innerHTML=’’;return;}
+var ratios=tbcData.map(function(e){return e.actual/e.estimated;});
+var avg=ratios.reduce(function(a,b){return a+b;},0)/ratios.length;
+var last5=tbcData.slice(-5).reverse();
+var html=’<div style="border-top:1px solid rgba(196,151,58,0.2);padding-top:14px;margin-top:4px;">’
++’<div style="font-size:10px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:10px;">Your Time Tax Multiplier</div>’
++’<div style="font-size:44px;font-weight:300;color:var(--gold);font-family:DM Mono,monospace;text-align:center;margin-bottom:6px;">’+avg.toFixed(1)+‘x</div>’
++’<div style="font-size:12px;color:rgba(240,230,255,0.4);text-align:center;margin-bottom:14px;">Based on ‘+tbcData.length+’ logged task’+(tbcData.length>1?‘s’:’’)+’</div>’
++’<div style="font-size:12px;color:rgba(240,230,255,0.55);padding:12px;background:rgba(196,151,58,0.06);border-radius:10px;line-height:1.7;margin-bottom:14px;">’
++‘When you think something will take <strong style="color:var(--gold)">30 min</strong>, plan for <strong style="color:var(--gold)">’+Math.round(30*avg)+’ min</strong>.</div>’;
+last5.forEach(function(e){
+var r=(e.actual/e.estimated).toFixed(1);
+var col=parseFloat(r)<=1.2?‘var(–teal)’:parseFloat(r)<=1.8?‘var(–gold)’:‘var(–rose)’;
+html+=’<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:12px;">’
++’<span style="color:rgba(240,230,255,0.6);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-right:8px;">’+e.task+’</span>’
++’<span style="color:rgba(240,230,255,0.35);font-family:DM Mono,monospace;margin-right:8px;">’+e.estimated+‘→’+e.actual+‘min</span>’
++’<span style="color:'+col+';font-family:DM Mono,monospace;font-weight:500;">’+r+‘x</span></div>’;
+});
+html+=’</div>’;
+el.innerHTML=html;
 }
 
 // ── MASKING DEBT TRACKER ─────────────────────────────────────────────────────
-var maskData=JSON.parse(localStorage.getItem('fh_mask')||'[]');
+var maskData=JSON.parse(localStorage.getItem(‘fh_mask’)||’[]’);
 var maskSelectedTypes=[],maskIntensityVal=5;
-var MASK_WEIGHTS={'Code-switching':8,'Suppressed a reaction':7,'Absorbed a microaggression':10,'Performed neurotypicality':6,'Pretended to be fine':7,'Over-explained myself':5,'Minimized my needs':6,'Masked exec dysfunction':7};
+var MASK_WEIGHTS={‘Code-switching’:8,‘Suppressed a reaction’:7,‘Absorbed a microaggression’:10,‘Performed neurotypicality’:6,‘Pretended to be fine’:7,‘Over-explained myself’:5,‘Minimized my needs’:6,‘Masked exec dysfunction’:7};
 function buildMaskIntensity(){
-  var wrap=document.getElementById('maskIntensity');
-  if(!wrap||wrap.children.length>0)return;
-  for(var i=1;i<=10;i++){
-    (function(val){
-      var btn=document.createElement('div');
-      btn.className='a-chip'+(val===5?' on':'');
-      btn.textContent=val;
-      btn.style.cssText='min-width:32px;text-align:center;padding:6px;border-color:rgba(232,92,92,0.3);';
-      btn.onclick=function(){
-        document.querySelectorAll('#maskIntensity .a-chip').forEach(function(b){b.classList.remove('on');});
-        btn.classList.add('on');maskIntensityVal=val;
-      };
-      wrap.appendChild(btn);
-    })(i);
-  }
+var wrap=document.getElementById(‘maskIntensity’);
+if(!wrap||wrap.children.length>0)return;
+for(var i=1;i<=10;i++){
+(function(val){
+var btn=document.createElement(‘div’);
+btn.className=‘a-chip’+(val===5?’ on’:’’);
+btn.textContent=val;
+btn.style.cssText=‘min-width:32px;text-align:center;padding:6px;border-color:rgba(232,92,92,0.3);’;
+btn.onclick=function(){
+document.querySelectorAll(’#maskIntensity .a-chip’).forEach(function(b){b.classList.remove(‘on’);});
+btn.classList.add(‘on’);maskIntensityVal=val;
+};
+wrap.appendChild(btn);
+})(i);
+}
 }
 function toggleMaskType(el,type){
-  el.classList.toggle('on');
-  if(el.classList.contains('on')){if(maskSelectedTypes.indexOf(type)<0)maskSelectedTypes.push(type);}
-  else{maskSelectedTypes=maskSelectedTypes.filter(function(t){return t!==type;});}
+el.classList.toggle(‘on’);
+if(el.classList.contains(‘on’)){if(maskSelectedTypes.indexOf(type)<0)maskSelectedTypes.push(type);}
+else{maskSelectedTypes=maskSelectedTypes.filter(function(t){return t!==type;});}
 }
 function logMask(){
-  if(!maskSelectedTypes.length)return;
-  var today=new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
-  var baseWeight=maskSelectedTypes.reduce(function(sum,t){return sum+(MASK_WEIGHTS[t]||5);},0);
-  var cost=Math.round(baseWeight*(maskIntensityVal/5));
-  var entry={types:maskSelectedTypes.slice(),intensity:maskIntensityVal,cost:cost,note:document.getElementById('mask-note').value,date:today,time:new Date().toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'})};
-  maskData.push(entry);
-  localStorage.setItem('fh_mask',JSON.stringify(maskData));
-  maskSelectedTypes=[];maskIntensityVal=5;
-  document.querySelectorAll('#maskTypeChips .a-chip').forEach(function(c){c.classList.remove('on');});
-  document.querySelectorAll('#maskIntensity .a-chip').forEach(function(b,i){b.classList.toggle('on',i===4);});
-  document.getElementById('mask-note').value='';
-  renderMaskDebt();
+if(!maskSelectedTypes.length)return;
+var today=new Date().toLocaleDateString(‘en-US’,{month:‘short’,day:‘numeric’,year:‘numeric’});
+var baseWeight=maskSelectedTypes.reduce(function(sum,t){return sum+(MASK_WEIGHTS[t]||5);},0);
+var cost=Math.round(baseWeight*(maskIntensityVal/5));
+var entry={types:maskSelectedTypes.slice(),intensity:maskIntensityVal,cost:cost,note:document.getElementById(‘mask-note’).value,date:today,time:new Date().toLocaleTimeString(‘en-US’,{hour:‘numeric’,minute:‘2-digit’})};
+maskData.push(entry);
+localStorage.setItem(‘fh_mask’,JSON.stringify(maskData));
+maskSelectedTypes=[];maskIntensityVal=5;
+document.querySelectorAll(’#maskTypeChips .a-chip’).forEach(function(c){c.classList.remove(‘on’);});
+document.querySelectorAll(’#maskIntensity .a-chip’).forEach(function(b,i){b.classList.toggle(‘on’,i===4);});
+document.getElementById(‘mask-note’).value=’’;
+renderMaskDebt();
 }
 function renderMaskDebt(){
-  var today=new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
-  var todayE=maskData.filter(function(e){return e.date===today;});
-  var totalDebt=todayE.reduce(function(sum,e){return sum+e.cost;},0);
-  var recMin=Math.round(totalDebt*2.5);
-  var ds=document.getElementById('mask-debt-score');
-  var rm=document.getElementById('mask-recovery-min');
-  if(ds)ds.textContent=totalDebt;
-  if(rm)rm.textContent=recMin;
-  var detail=document.getElementById('mask-debt-detail');
-  var recMsg=document.getElementById('mask-recovery-msg');
-  if(detail){
-    if(!todayE.length){detail.innerHTML='Nothing logged yet today. Every moment you log gives you clearer data on your energy patterns.';}
-    else{detail.innerHTML='You have logged <strong style="color:var(--rose)">'+todayE.length+' moment'+(todayE.length>1?'s':'')+'</strong> today with a debt of <strong style="color:var(--rose)">'+totalDebt+' points</strong>.';}
-  }
-  if(recMsg){
-    if(todayE.length){
-      recMsg.style.display='block';
-      var msg='';
-      if(recMin<=15)msg='You need about '+recMin+' minutes of genuine decompression tonight. Screen-free, demand-free.';
-      else if(recMin<=45)msg='Your nervous system needs '+recMin+' minutes tonight. Not scrolling — actual rest.';
-      else if(recMin<=90)msg='Today cost you. Plan '+recMin+' minutes of real recovery. Cancel optional obligations tonight.';
-      else msg='Today was heavy. You need at least '+recMin+' minutes of recovery. Say no to extras tonight.';
-      recMsg.textContent=msg;
-    }else{recMsg.style.display='none';}
-  }
-  var logEl=document.getElementById('mask-today-log');
-  if(logEl){
-    if(todayE.length){
-      logEl.innerHTML='<div class="a-card" style="margin-top:0;"><span class="a-lbl">Today Moments</span>'
-        +todayE.slice().reverse().map(function(e){
-          return '<div style="padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.04);">'
-            +'<div style="display:flex;justify-content:space-between;margin-bottom:4px;">'
-            +'<span style="font-size:11px;color:var(--rose);letter-spacing:1px;">'+e.time+'</span>'
-            +'<span style="font-family:DM Mono,monospace;font-size:12px;color:var(--rose);">-'+e.cost+' pts</span></div>'
-            +'<div style="font-size:12px;color:rgba(240,230,255,0.6);line-height:1.6;">'+e.types.join(' · ')+'</div>'
-            +(e.note?'<div style="font-size:11px;color:rgba(240,230,255,0.3);margin-top:3px;font-style:italic;">'+e.note+'</div>':'')
-            +'</div>';
-        }).join('')+'</div>';
-    }else{logEl.innerHTML='';}
-  }
-  var patEl=document.getElementById('mask-pattern');
-  if(patEl){
-    var last7=[];
-    for(var i=6;i>=0;i--){
-      var d=new Date();d.setDate(d.getDate()-i);
-      var key=d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
-      var dayE=maskData.filter(function(e){return e.date===key;});
-      var dayDebt=dayE.reduce(function(sum,e){return sum+e.cost;},0);
-      last7.push({label:d.toLocaleDateString('en-US',{weekday:'short'}),debt:dayDebt});
-    }
-    var maxD=Math.max.apply(null,last7.map(function(d){return d.debt;}).concat([1]));
-    patEl.innerHTML='<div style="display:flex;align-items:flex-end;gap:6px;height:60px;margin-bottom:8px;">'
-      +last7.map(function(d){
-        return '<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">'
-          +'<div style="width:100%;border-radius:4px 4px 0 0;background:'+(d.debt>0?'var(--rose)':'rgba(255,255,255,0.06)')+';height:'+Math.max(4,(d.debt/maxD)*48)+'px;"></div>'
-          +'<div style="font-family:DM Mono,monospace;font-size:11px;color:rgba(240,230,255,0.3);">'+d.label+'</div></div>';
-      }).join('')+'</div>'
-      +'<div style="font-size:12px;color:rgba(240,230,255,0.35);line-height:1.7;">Bring this pattern to your therapist. High-debt days reveal which environments cost you most.</div>';
-  }
+var today=new Date().toLocaleDateString(‘en-US’,{month:‘short’,day:‘numeric’,year:‘numeric’});
+var todayE=maskData.filter(function(e){return e.date===today;});
+var totalDebt=todayE.reduce(function(sum,e){return sum+e.cost;},0);
+var recMin=Math.round(totalDebt*2.5);
+var ds=document.getElementById(‘mask-debt-score’);
+var rm=document.getElementById(‘mask-recovery-min’);
+if(ds)ds.textContent=totalDebt;
+if(rm)rm.textContent=recMin;
+var detail=document.getElementById(‘mask-debt-detail’);
+var recMsg=document.getElementById(‘mask-recovery-msg’);
+if(detail){
+if(!todayE.length){detail.innerHTML=‘Nothing logged yet today. Every moment you log gives you clearer data on your energy patterns.’;}
+else{detail.innerHTML=‘You have logged <strong style="color:var(--rose)">’+todayE.length+’ moment’+(todayE.length>1?‘s’:’’)+’</strong> today with a debt of <strong style="color:var(--rose)">’+totalDebt+’ points</strong>.’;}
 }
-
-
+if(recMsg){
+if(todayE.length){
+recMsg.style.display=‘block’;
+var msg=’’;
+if(recMin<=15)msg=‘You need about ‘+recMin+’ minutes of genuine decompression tonight. Screen-free, demand-free.’;
+else if(recMin<=45)msg=‘Your nervous system needs ‘+recMin+’ minutes tonight. Not scrolling — actual rest.’;
+else if(recMin<=90)msg=‘Today cost you. Plan ‘+recMin+’ minutes of real recovery. Cancel optional obligations tonight.’;
+else msg=‘Today was heavy. You need at least ‘+recMin+’ minutes of recovery. Say no to extras tonight.’;
+recMsg.textContent=msg;
+}else{recMsg.style.display=‘none’;}
+}
+var logEl=document.getElementById(‘mask-today-log’);
+if(logEl){
+if(todayE.length){
+logEl.innerHTML=’<div class="a-card" style="margin-top:0;"><span class="a-lbl">Today Moments</span>’
++todayE.slice().reverse().map(function(e){
+return ‘<div style="padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.04);">’
++’<div style="display:flex;justify-content:space-between;margin-bottom:4px;">’
++’<span style="font-size:11px;color:var(--rose);letter-spacing:1px;">’+e.time+’</span>’
++’<span style="font-family:DM Mono,monospace;font-size:12px;color:var(--rose);">-’+e.cost+’ pts</span></div>’
++’<div style="font-size:12px;color:rgba(240,230,255,0.6);line-height:1.6;">’+e.types.join(’ · ‘)+’</div>’
++(e.note?’<div style="font-size:11px;color:rgba(240,230,255,0.3);margin-top:3px;font-style:italic;">’+e.note+’</div>’:’’)
++’</div>’;
+}).join(’’)+’</div>’;
+}else{logEl.innerHTML=’’;}
+}
+var patEl=document.getElementById(‘mask-pattern’);
+if(patEl){
+var last7=[];
+for(var i=6;i>=0;i–){
+var d=new Date();d.setDate(d.getDate()-i);
+var key=d.toLocaleDateString(‘en-US’,{month:‘short’,day:‘numeric’,year:‘numeric’});
+var dayE=maskData.filter(function(e){return e.date===key;});
+var dayDebt=dayE.reduce(function(sum,e){return sum+e.cost;},0);
+last7.push({label:d.toLocaleDateString(‘en-US’,{weekday:‘short’}),debt:dayDebt});
+}
+var maxD=Math.max.apply(null,last7.map(function(d){return d.debt;}).concat([1]));
+patEl.innerHTML=’<div style="display:flex;align-items:flex-end;gap:6px;height:60px;margin-bottom:8px;">’
++last7.map(function(d){
+return ‘<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">’
++’<div style="width:100%;border-radius:4px 4px 0 0;background:'+(d.debt>0?'var(--rose)':'rgba(255,255,255,0.06)')+';height:'+Math.max(4,(d.debt/maxD)*48)+'px;"></div>’
++’<div style="font-family:DM Mono,monospace;font-size:11px;color:rgba(240,230,255,0.3);">’+d.label+’</div></div>’;
+}).join(’’)+’</div>’
++’<div style="font-size:12px;color:rgba(240,230,255,0.35);line-height:1.7;">Bring this pattern to your therapist. High-debt days reveal which environments cost you most.</div>’;
+}
+}
 
 // ── PRICING TOGGLE ───────────────────────────────────────────
 function setPricingToggle(plan) {
-  var isAnnual = plan === 'annual';
-  var fCta = document.querySelector('.founding-cta');
-  if (fCta) fCta.href = isAnnual ? 'https://buy.stripe.com/00w7sLd666XY22fbTi8Ra00' : 'https://buy.stripe.com/14AaEX5DEaaa22ff5u8Ra01';
-  document.getElementById('ptMonthly').classList.toggle('active', !isAnnual);
-  document.getElementById('ptAnnual').classList.toggle('active', isAnnual);
-  var cp = document.getElementById('corePrice');
-  var cpd = document.getElementById('corePeriod');
-  if (cp) cp.innerHTML = isAnnual ? '<sup>$</sup>299<span style="font-size:20px">/yr</span>' : '<sup>$</sup>24<span style="font-size:26px">.99</span>';
-  if (cpd) cpd.textContent = isAnnual ? 'per year · locked forever' : 'per month · locked forever';
+var isAnnual = plan === ‘annual’;
+var fCta = document.querySelector(’.founding-cta’);
+if (fCta) fCta.href = isAnnual ? ‘https://buy.stripe.com/00w7sLd666XY22fbTi8Ra00’ : ‘https://buy.stripe.com/14AaEX5DEaaa22ff5u8Ra01’;
+document.getElementById(‘ptMonthly’).classList.toggle(‘active’, !isAnnual);
+document.getElementById(‘ptAnnual’).classList.toggle(‘active’, isAnnual);
+var cp = document.getElementById(‘corePrice’);
+var cpd = document.getElementById(‘corePeriod’);
+if (cp) cp.innerHTML = isAnnual ? ‘<sup>$</sup>299<span style="font-size:20px">/yr</span>’ : ‘<sup>$</sup>24<span style="font-size:26px">.99</span>’;
+if (cpd) cpd.textContent = isAnnual ? ‘per year · locked forever’ : ‘per month · locked forever’;
 }
 
 // ── LANDING ──────────────────────────────────────────────────────────────────
 function joinWaitlist(iId,sId,fId){
-  const email=document.getElementById(iId).value;
-  if(!email||!email.includes('@')){document.getElementById(iId).style.borderColor='#E8845C';return;}
-  document.getElementById(fId).style.display='none';
-  document.getElementById(sId).style.display='block';
-  const c=document.getElementById('signupCount');
-  if(c)c.textContent=parseInt(c.textContent)+1;
-  const emails=JSON.parse(localStorage.getItem('fh_emails')||'[]');
-  emails.push({email,date:new Date().toISOString()});
-  localStorage.setItem('fh_emails',JSON.stringify(emails));
+const email=document.getElementById(iId).value;
+if(!email||!email.includes(’@’)){document.getElementById(iId).style.borderColor=’#E8845C’;return;}
+document.getElementById(fId).style.display=‘none’;
+document.getElementById(sId).style.display=‘block’;
+const c=document.getElementById(‘signupCount’);
+if(c)c.textContent=parseInt(c.textContent)+1;
+const emails=JSON.parse(localStorage.getItem(‘fh_emails’)||’[]’);
+emails.push({email,date:new Date().toISOString()});
+localStorage.setItem(‘fh_emails’,JSON.stringify(emails));
 }
-function scrollToTop(){window.scrollTo({top:0,behavior:'smooth'});}
+function scrollToTop(){window.scrollTo({top:0,behavior:‘smooth’});}
 
 // ── Open App — requires auth ──────────────────────────────────────
 function openApp(){
-  if(_currentUser){
-    launchApp();
-    return;
-  }
-  // Show auth screen
-  document.getElementById('landing').style.display='none';
-  document.getElementById('authScreen').classList.add('show');
-  authTab('signup');
-  // Also check for existing Supabase session in background
-  var sb = getSB();
-  if(sb){
-    sb.auth.getSession().then(function(res){
-      if(res && res.data && res.data.session && res.data.session.user){
-        _currentUser = res.data.session.user;
-        fetchUserPlan(_currentUser.id).then(function(){ 
-          document.getElementById('authScreen').classList.remove('show');
-          launchApp(); 
-        });
-      }
-    }).catch(function(e){ console.error('getSession error:',e); });
-  }
+if(_currentUser){
+launchApp();
+return;
+}
+// Show auth screen
+document.getElementById(‘landing’).style.display=‘none’;
+document.getElementById(‘authScreen’).classList.add(‘show’);
+authTab(‘signup’);
+// Also check for existing Supabase session in background
+var sb = getSB();
+if(sb){
+sb.auth.getSession().then(function(res){
+if(res && res.data && res.data.session && res.data.session.user){
+_currentUser = res.data.session.user;
+fetchUserPlan(_currentUser.id).then(function(){
+document.getElementById(‘authScreen’).classList.remove(‘show’);
+launchApp();
+});
+}
+}).catch(function(e){ console.error(‘getSession error:’,e); });
+}
 }
 
-window.addEventListener('load',()=>{
-  // Scroll animation observer for desktop
-  if(window.innerWidth >= 1025){
-    var observer = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if(entry.isIntersecting){
-          entry.target.classList.add('visible');
-        }
-      });
-    },{threshold:0.15});
-    document.querySelectorAll('.who-card,.feature-card,.testimonial-card').forEach(function(el){
-      observer.observe(el);
-    });
-  }
-  // Dynamically load Supabase — so if CDN fails, page still works
-  var sbScript = document.createElement('script');
-  sbScript.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js';
-  sbScript.crossOrigin = 'anonymous';
-  sbScript.onload = function(){ try{ initAuth(); }catch(e){ console.error('initAuth failed:',e); } };
-  sbScript.onerror = function(){ console.error('Supabase CDN failed to load'); };
-  document.head.appendChild(sbScript);
+window.addEventListener(‘load’,()=>{
+// Scroll animation observer for desktop
+if(window.innerWidth >= 1025){
+var observer = new IntersectionObserver(function(entries){
+entries.forEach(function(entry){
+if(entry.isIntersecting){
+entry.target.classList.add(‘visible’);
+}
+});
+},{threshold:0.15});
+document.querySelectorAll(’.who-card,.feature-card,.testimonial-card’).forEach(function(el){
+observer.observe(el);
+});
+}
+// Dynamically load Supabase — so if CDN fails, page still works
+var sbScript = document.createElement(‘script’);
+sbScript.src = ‘https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js’;
+sbScript.crossOrigin = ‘anonymous’;
+sbScript.onload = function(){ try{ initAuth(); }catch(e){ console.error(‘initAuth failed:’,e); } };
+sbScript.onerror = function(){ console.error(‘Supabase CDN failed to load’); };
+document.head.appendChild(sbScript);
 
-  const el=document.getElementById('signupCount');
-  if(!el)return;
-  let c=190;const t=247;
-  const tick=()=>{c+=3;el.textContent=c;if(c<t)requestAnimationFrame(tick);else el.textContent=t;};
-  requestAnimationFrame(tick);
-  const reveals=document.querySelectorAll('.reveal');
-  const obs=new IntersectionObserver(entries=>entries.forEach(e=>{
-    if(e.isIntersecting)e.target.classList.add('visible');
-  }),{threshold:0.01,rootMargin:'0px 0px -20px 0px'});
-  reveals.forEach(function(el){obs.observe(el);});
-  // Fallback: force all reveals visible after 1.5s in case observer fails on mobile
-  setTimeout(function(){
-    document.querySelectorAll('.reveal:not(.visible)').forEach(function(el){
-      el.classList.add('visible');
-    });
-  },1500);
+const el=document.getElementById(‘signupCount’);
+if(!el)return;
+let c=190;const t=247;
+const tick=()=>{c+=3;el.textContent=c;if(c<t)requestAnimationFrame(tick);else el.textContent=t;};
+requestAnimationFrame(tick);
+const reveals=document.querySelectorAll(’.reveal’);
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{
+if(e.isIntersecting)e.target.classList.add(‘visible’);
+}),{threshold:0.01,rootMargin:‘0px 0px -20px 0px’});
+reveals.forEach(function(el){obs.observe(el);});
+// Fallback: force all reveals visible after 1.5s in case observer fails on mobile
+setTimeout(function(){
+document.querySelectorAll(’.reveal:not(.visible)’).forEach(function(el){
+el.classList.add(‘visible’);
+});
+},1500);
 });
 
 // ── LAUNCH / EXIT APP ────────────────────────────────────────────────────────
 function launchApp(){
-  // Show onboarding for brand new users only
-  var alreadyOnboarded = localStorage.getItem('fh_onboarded');
-  if(_isNewUser && !alreadyOnboarded){
-    // Let app load first, then show onboarding after short delay
-    setTimeout(function(){
-      var uname = _currentUser && _currentUser.user_metadata && _currentUser.user_metadata.full_name;
-      showOnboarding(uname ? uname.split(' ')[0] : '');
-    }, 800);
-  }
-  document.getElementById('authScreen').classList.remove('show');
-  document.getElementById('landing').style.display='none';
-  const shell=document.getElementById('appShell');
-  shell.style.display='';
-  shell.classList.add('slide-in');
-  shell.classList.add('active');
-  document.getElementById('aDate').textContent=new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
-  updateStreak();
-  setTimeout(initHomeFeatures, 500);
-  document.getElementById('affirmText').textContent='"'+AFFIRMATIONS[affirmIdx]+'"';
-  buildPriorities();buildADA();buildMeetList();renderWins();updateLatestWin();updTimerUI();
-  document.getElementById('unmaskText').value=localStorage.getItem('fh_unmask')||'';
-  document.getElementById('brainDump').addEventListener('input',updWC);
-  document.getElementById('unmaskText').addEventListener('input',saveUnmask);
-  updatePlanBadge();
-  if(isCore()) unlockCoreUI();
+// Show onboarding for brand new users only
+var alreadyOnboarded = localStorage.getItem(‘fh_onboarded’);
+if(_isNewUser && !alreadyOnboarded){
+// Let app load first, then show onboarding after short delay
+setTimeout(function(){
+var uname = _currentUser && _currentUser.user_metadata && _currentUser.user_metadata.full_name;
+showOnboarding(uname ? uname.split(’ ‘)[0] : ‘’);
+}, 800);
+}
+document.getElementById(‘authScreen’).classList.remove(‘show’);
+document.getElementById(‘landing’).style.display=‘none’;
+const shell=document.getElementById(‘appShell’);
+shell.style.display=’’;
+shell.classList.add(‘slide-in’);
+shell.classList.add(‘active’);
+document.getElementById(‘aDate’).textContent=new Date().toLocaleDateString(‘en-US’,{weekday:‘long’,month:‘long’,day:‘numeric’});
+updateStreak();
+setTimeout(initHomeFeatures, 500);
+document.getElementById(‘affirmText’).textContent=’”’+AFFIRMATIONS[affirmIdx]+’”’;
+buildPriorities();buildADA();buildMeetList();renderWins();updateLatestWin();updTimerUI();
+document.getElementById(‘unmaskText’).value=localStorage.getItem(‘fh_unmask’)||’’;
+document.getElementById(‘brainDump’).addEventListener(‘input’,updWC);
+document.getElementById(‘unmaskText’).addEventListener(‘input’,saveUnmask);
+updatePlanBadge();
+if(isCore()) unlockCoreUI();
 }
 
 // Remove locked-card styling for Core users
 function unlockCoreUI(){
-  document.querySelectorAll('.locked-card').forEach(function(el){
-    el.classList.remove('locked-card');
-    // Remove the card-level showGate onclick so tapping the card doesn't trigger the gate
-    if(el.getAttribute('onclick') && el.getAttribute('onclick').indexOf('showGate') > -1){
-      el.removeAttribute('onclick');
-    }
-    // Re-enable pointer events on ALL children
-    el.querySelectorAll('*').forEach(function(child){
-      child.style.pointerEvents = 'auto';
-    });
-  });
-  // Also fix nav buttons that use gateTab — force them to tab directly
-  var workNav = document.getElementById('nb-work');
-  if(workNav) workNav.setAttribute('onclick', "aTab('work')");
-  var winsNav = document.getElementById('nb-wins');
-  if(winsNav) winsNav.setAttribute('onclick', "aTab('wins')");
-  var unmaskNav = document.getElementById('nb-unmask');
-  if(unmaskNav) unmaskNav.setAttribute('onclick', "aTab('unmask')");
-  var maskNav = document.getElementById('nb-mask');
-  if(maskNav) maskNav.setAttribute('onclick', "aTab('mask')");
+document.querySelectorAll(’.locked-card’).forEach(function(el){
+el.classList.remove(‘locked-card’);
+// Remove the card-level showGate onclick so tapping the card doesn’t trigger the gate
+if(el.getAttribute(‘onclick’) && el.getAttribute(‘onclick’).indexOf(‘showGate’) > -1){
+el.removeAttribute(‘onclick’);
+}
+// Re-enable pointer events on ALL children
+el.querySelectorAll(’*’).forEach(function(child){
+child.style.pointerEvents = ‘auto’;
+});
+});
+// Also fix nav buttons that use gateTab — force them to tab directly
+var workNav = document.getElementById(‘nb-work’);
+if(workNav) workNav.setAttribute(‘onclick’, “aTab(‘work’)”);
+var winsNav = document.getElementById(‘nb-wins’);
+if(winsNav) winsNav.setAttribute(‘onclick’, “aTab(‘wins’)”);
+var unmaskNav = document.getElementById(‘nb-unmask’);
+if(unmaskNav) unmaskNav.setAttribute(‘onclick’, “aTab(‘unmask’)”);
+var maskNav = document.getElementById(‘nb-mask’);
+if(maskNav) maskNav.setAttribute(‘onclick’, “aTab(‘mask’)”);
 }
 function exitApp(){
-  var sh=document.getElementById('appShell');sh.style.display='';sh.classList.remove('active');
-  document.getElementById('landing').style.display='block';
-  document.getElementById('authScreen').classList.remove('show');
-  window.scrollTo(0,0);
+var sh=document.getElementById(‘appShell’);sh.style.display=’’;sh.classList.remove(‘active’);
+document.getElementById(‘landing’).style.display=‘block’;
+document.getElementById(‘authScreen’).classList.remove(‘show’);
+window.scrollTo(0,0);
 }
 
 // ── APP STATE ────────────────────────────────────────────────────────────────
-const AFFIRMATIONS=["Your brain isn't broken. It's built different — and that's power.","You walked into that room. That already took courage.","Missing a deadline doesn't erase your intelligence.","You are not your to-do list. You are the woman who keeps showing up.","Hard days don't disqualify you. They're part of your resume.","You belong in every room you walk into. Period.","Your ideas matter. Write them down before they disappear.","Rest is not failure. It's fuel.","You are not behind. You are on your own timeline.","Other people's pace is not your standard.","You have survived every hard day so far. This one too.","Asking for what you need is not weakness. It's leadership.","The fog is temporary. Your capability is not.","One thing at a time. That is always enough.","You brought something to this job no one else could."];
-const MOODS=[{r:"Ride this wave. Lock in your top 3 before it fades. Don't add more — protect the energy."},{r:"Fog is real. Start with just ONE thing. No list, no pressure. One thing moved is a win."},{r:"Valid. Let's not let that frustration make today's decisions. What's in your control right now?"},{r:"Stop. Breathe. You don't have to do everything — just the next thing. What's the smallest possible step?"},{r:"Good. Remember this feeling and protect it today. Use it to do the thing you've been avoiding."},{r:"Low battery mode today. Sustainable over sprint. What's the one thing that actually has to happen?"}];
-const ADA_RIGHTS=[{t:"You are protected",b:"ADHD, autism, anxiety, and many neurodivergent conditions qualify as disabilities under the ADA. Your employer must provide reasonable accommodations."},{t:"You don't have to disclose your diagnosis",b:"You can request accommodations by describing how a condition affects your work without naming it. You are not required to say 'I have ADHD.'"},{t:"What counts as reasonable",b:"Extended deadlines, written instructions, reduced-noise workspace, flexible scheduling, frequent check-ins, or permission to use focus tools during meetings."},{t:"How to request",b:"Make the request in writing to HR: 'I have a medical condition that affects [function]. I'm requesting [accommodation] as a reasonable adjustment.'"},{t:"Retaliation is illegal",b:"Your employer cannot fire, demote, or penalize you for requesting an accommodation. That is illegal retaliation and you have legal recourse."}];
-const MEET_ITEMS=["Know your one goal for this meeting","Write 2–3 talking points in advance","Identify one win to mention if relevant","Know who's in the room and their likely agenda","Have your exit line ready if you get derailed","Bring water — regulate your nervous system"];
+const AFFIRMATIONS=[“Your brain isn’t broken. It’s built different — and that’s power.”,“You walked into that room. That already took courage.”,“Missing a deadline doesn’t erase your intelligence.”,“You are not your to-do list. You are the woman who keeps showing up.”,“Hard days don’t disqualify you. They’re part of your resume.”,“You belong in every room you walk into. Period.”,“Your ideas matter. Write them down before they disappear.”,“Rest is not failure. It’s fuel.”,“You are not behind. You are on your own timeline.”,“Other people’s pace is not your standard.”,“You have survived every hard day so far. This one too.”,“Asking for what you need is not weakness. It’s leadership.”,“The fog is temporary. Your capability is not.”,“One thing at a time. That is always enough.”,“You brought something to this job no one else could.”];
+const MOODS=[{r:“Ride this wave. Lock in your top 3 before it fades. Don’t add more — protect the energy.”},{r:“Fog is real. Start with just ONE thing. No list, no pressure. One thing moved is a win.”},{r:“Valid. Let’s not let that frustration make today’s decisions. What’s in your control right now?”},{r:“Stop. Breathe. You don’t have to do everything — just the next thing. What’s the smallest possible step?”},{r:“Good. Remember this feeling and protect it today. Use it to do the thing you’ve been avoiding.”},{r:“Low battery mode today. Sustainable over sprint. What’s the one thing that actually has to happen?”}];
+const ADA_RIGHTS=[{t:“You are protected”,b:“ADHD, autism, anxiety, and many neurodivergent conditions qualify as disabilities under the ADA. Your employer must provide reasonable accommodations.”},{t:“You don’t have to disclose your diagnosis”,b:“You can request accommodations by describing how a condition affects your work without naming it. You are not required to say ‘I have ADHD.’”},{t:“What counts as reasonable”,b:“Extended deadlines, written instructions, reduced-noise workspace, flexible scheduling, frequent check-ins, or permission to use focus tools during meetings.”},{t:“How to request”,b:“Make the request in writing to HR: ‘I have a medical condition that affects [function]. I’m requesting [accommodation] as a reasonable adjustment.’”},{t:“Retaliation is illegal”,b:“Your employer cannot fire, demote, or penalize you for requesting an accommodation. That is illegal retaliation and you have legal recourse.”}];
+const MEET_ITEMS=[“Know your one goal for this meeting”,“Write 2–3 talking points in advance”,“Identify one win to mention if relevant”,“Know who’s in the room and their likely agenda”,“Have your exit line ready if you get derailed”,“Bring water — regulate your nervous system”];
 let affirmIdx=Math.floor(Math.random()*15);
-let wins=JSON.parse(localStorage.getItem('fh_wins')||'[]');
+let wins=JSON.parse(localStorage.getItem(‘fh_wins’)||’[]’);
 let timerI,timerS=25*60,timerOn=false;
 let bdI,bdS=25*60,bdOn=false;
 let hfI,hfS=0;
-let emailTP='',scriptTP='',winCat='Professional';
+let emailTP=’’,scriptTP=’’,winCat=‘Professional’;
 let adaOpen=0,meetCk={};
 
 // ── FORMAT SECONDS TO MM:SS ───────────────────────────────────────────────────
-function fmt(s){const m=Math.floor(s/60);const sec=s%60;return String(m).padStart(2,'0')+':'+String(sec).padStart(2,'0');}
+function fmt(s){const m=Math.floor(s/60);const sec=s%60;return String(m).padStart(2,‘0’)+’:’+String(sec).padStart(2,‘0’);}
 
 // ── NAVIGATION ────────────────────────────────────────────────────────────────
 function aTab(t){
-  ['home','focus','work','wins','unmask','mask'].forEach(s=>{
-    const _s=document.getElementById('as-'+s);const _b=document.getElementById('nb-'+s);if(_s)_s.style.display=s===t?'block':'none';if(_b)_b.classList.toggle('on',s===t);
-  });
-  if(t==='wins'){renderWins();updateImposterShield();}
-  if(t==='work')updateImposterShield();
-  // Reset tool pickers when switching tabs
-  if(t==='focus'){
-    var fp=document.getElementById('focus-picker');
-    var fs=document.getElementById('focus-tool-screen');
-    if(fp)fp.style.display='block';
-    if(fs)fs.style.display='none';
-  }
-  if(t==='work'){
-    var wp=document.getElementById('work-picker');
-    var ws=document.getElementById('work-tool-screen');
-    if(wp)wp.style.display='block';
-    if(ws)ws.style.display='none';
-  }
+[‘home’,‘focus’,‘work’,‘wins’,‘unmask’,‘mask’].forEach(s=>{
+const _s=document.getElementById(‘as-’+s);const _b=document.getElementById(‘nb-’+s);if(_s)_s.style.display=s===t?‘block’:‘none’;if(_b)_b.classList.toggle(‘on’,s===t);
+});
+if(t===‘wins’){renderWins();updateImposterShield();}
+if(t===‘work’)updateImposterShield();
+// Reset tool pickers when switching tabs
+if(t===‘focus’){
+var fp=document.getElementById(‘focus-picker’);
+var fs=document.getElementById(‘focus-tool-screen’);
+if(fp)fp.style.display=‘block’;
+if(fs)fs.style.display=‘none’;
+}
+if(t===‘work’){
+var wp=document.getElementById(‘work-picker’);
+var ws=document.getElementById(‘work-tool-screen’);
+if(wp)wp.style.display=‘block’;
+if(ws)ws.style.display=‘none’;
+}
 }
 
 // ── AFFIRMATIONS ──────────────────────────────────────────────────────────────
-function nextAffirm(){const el=document.getElementById('affirmText');el.style.opacity=0;setTimeout(()=>{affirmIdx=(affirmIdx+1)%AFFIRMATIONS.length;el.textContent='"'+AFFIRMATIONS[affirmIdx]+'"';el.style.opacity=1;},250);}
+function nextAffirm(){const el=document.getElementById(‘affirmText’);el.style.opacity=0;setTimeout(()=>{affirmIdx=(affirmIdx+1)%AFFIRMATIONS.length;el.textContent=’”’+AFFIRMATIONS[affirmIdx]+’”’;el.style.opacity=1;},250);}
 
 // ── MOOD ──────────────────────────────────────────────────────────────────────
-function selMood(i){document.querySelectorAll('.mood-item').forEach((el,idx)=>el.classList.toggle('on',idx===i));const r=document.getElementById('moodResp');r.textContent=MOODS[i].r;r.style.display='block';localStorage.setItem('fh_last_mood',String(i));}
+function selMood(i){document.querySelectorAll(’.mood-item’).forEach((el,idx)=>el.classList.toggle(‘on’,idx===i));const r=document.getElementById(‘moodResp’);r.textContent=MOODS[i].r;r.style.display=‘block’;localStorage.setItem(‘fh_last_mood’,String(i));}
 
 // ── TIMER ─────────────────────────────────────────────────────────────────────
-function toggleTimer(){timerOn=!timerOn;if(timerOn)timerI=setInterval(tickT,1000);else clearInterval(timerI);document.getElementById('timerBtn').textContent=timerOn?'⏸ Pause':'▶ Start';document.getElementById('timerMsg').textContent=timerOn?'You\'re in it. Stay with it.':'One focused block. You\'ve got this.';}
-function tickT(){if(timerS>0)timerS--;else{clearInterval(timerI);timerOn=false;document.getElementById('timerBtn').textContent='▶ Start';}updTimerUI();}
-function resetTimer(){clearInterval(timerI);timerOn=false;timerS=25*60;updTimerUI();document.getElementById('timerBtn').textContent='▶ Start';}
-function updTimerUI(){const pct=timerS/(25*60);document.getElementById('timerArc').style.strokeDashoffset=238.76*(1-pct);document.getElementById('timerArc').style.stroke=timerS<60?'var(--rose)':'var(--teal)';document.getElementById('timerDisp').textContent=fmt(timerS);document.getElementById('timerDisp').style.color=timerS<60?'var(--rose)':'#f0e6ff';}
+function toggleTimer(){timerOn=!timerOn;if(timerOn)timerI=setInterval(tickT,1000);else clearInterval(timerI);document.getElementById(‘timerBtn’).textContent=timerOn?‘⏸ Pause’:‘▶ Start’;document.getElementById(‘timerMsg’).textContent=timerOn?‘You're in it. Stay with it.’:‘One focused block. You've got this.’;}
+function tickT(){if(timerS>0)timerS–;else{clearInterval(timerI);timerOn=false;document.getElementById(‘timerBtn’).textContent=‘▶ Start’;}updTimerUI();}
+function resetTimer(){clearInterval(timerI);timerOn=false;timerS=25*60;updTimerUI();document.getElementById(‘timerBtn’).textContent=‘▶ Start’;}
+function updTimerUI(){const pct=timerS/(25*60);document.getElementById(‘timerArc’).style.strokeDashoffset=238.76*(1-pct);document.getElementById(‘timerArc’).style.stroke=timerS<60?‘var(–rose)’:‘var(–teal)’;document.getElementById(‘timerDisp’).textContent=fmt(timerS);document.getElementById(‘timerDisp’).style.color=timerS<60?‘var(–rose)’:’#f0e6ff’;}
 
 // ── BODY DOUBLE ───────────────────────────────────────────────────────────────
-function startBD(){const t=document.getElementById('bdTask').value.trim();if(!t)return;document.getElementById('bdShow').textContent=t;document.getElementById('bdInput').style.display='none';document.getElementById('bdActive').style.display='block';bdS=25*60;bdOn=true;bdI=setInterval(()=>{if(bdS>0)bdS--;document.getElementById('bdClock').textContent=fmt(bdS);},1000);}
-function toggleBD(){bdOn=!bdOn;if(bdOn)bdI=setInterval(()=>{if(bdS>0)bdS--;document.getElementById('bdClock').textContent=fmt(bdS);},1000);else clearInterval(bdI);document.getElementById('bdToggle').textContent=bdOn?'⏸ Pause':'▶ Resume';}
-function stopBD(){clearInterval(bdI);document.getElementById('bdInput').style.display='block';document.getElementById('bdActive').style.display='none';document.getElementById('bdTask').value='';bdS=25*60;}
+function startBD(){const t=document.getElementById(‘bdTask’).value.trim();if(!t)return;document.getElementById(‘bdShow’).textContent=t;document.getElementById(‘bdInput’).style.display=‘none’;document.getElementById(‘bdActive’).style.display=‘block’;bdS=25*60;bdOn=true;bdI=setInterval(()=>{if(bdS>0)bdS–;document.getElementById(‘bdClock’).textContent=fmt(bdS);},1000);}
+function toggleBD(){bdOn=!bdOn;if(bdOn)bdI=setInterval(()=>{if(bdS>0)bdS–;document.getElementById(‘bdClock’).textContent=fmt(bdS);},1000);else clearInterval(bdI);document.getElementById(‘bdToggle’).textContent=bdOn?‘⏸ Pause’:‘▶ Resume’;}
+function stopBD(){clearInterval(bdI);document.getElementById(‘bdInput’).style.display=‘block’;document.getElementById(‘bdActive’).style.display=‘none’;document.getElementById(‘bdTask’).value=’’;bdS=25*60;}
 
 // ── HYPERFOCUS ────────────────────────────────────────────────────────────────
-function startHF(){const t=document.getElementById('hfTask').value.trim();if(!t)return;document.getElementById('hfShow').textContent=t;document.getElementById('hfInput').style.display='none';document.getElementById('hfActive').style.display='block';hfS=0;hfI=setInterval(()=>{hfS++;document.getElementById('hfClock').textContent=fmt(hfS);},1000);}
-function stopHF(){clearInterval(hfI);const mins=Math.floor(hfS/60);pushWin({text:`Hyperfocus session: ${document.getElementById('hfShow').textContent} — ${mins} minutes of deep work`,category:'Professional',date:new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})});document.getElementById('hfInput').style.display='block';document.getElementById('hfActive').style.display='none';document.getElementById('hfTask').value='';hfS=0;alert('🔥 '+mins+' min session logged as a win.');}
+function startHF(){const t=document.getElementById(‘hfTask’).value.trim();if(!t)return;document.getElementById(‘hfShow’).textContent=t;document.getElementById(‘hfInput’).style.display=‘none’;document.getElementById(‘hfActive’).style.display=‘block’;hfS=0;hfI=setInterval(()=>{hfS++;document.getElementById(‘hfClock’).textContent=fmt(hfS);},1000);}
+function stopHF(){clearInterval(hfI);const mins=Math.floor(hfS/60);pushWin({text:`Hyperfocus session: ${document.getElementById('hfShow').textContent} — ${mins} minutes of deep work`,category:‘Professional’,date:new Date().toLocaleDateString(‘en-US’,{month:‘short’,day:‘numeric’,year:‘numeric’})});document.getElementById(‘hfInput’).style.display=‘block’;document.getElementById(‘hfActive’).style.display=‘none’;document.getElementById(‘hfTask’).value=’’;hfS=0;alert(‘🔥 ‘+mins+’ min session logged as a win.’);}
 
 // ── BRAIN DUMP ────────────────────────────────────────────────────────────────
 // Free users get 5 brain dumps per month; Core users unlimited
 function checkDumpCap(){
-  if(isCore())return true;
-  var key='fh_dump_'+new Date().toISOString().slice(0,7); // YYYY-MM
-  var count=parseInt(localStorage.getItem(key)||'0');
-  if(count>=5){showGate('Brain Dump (5/month on free plan — upgrade for unlimited)');return false;}
-  localStorage.setItem(key,count+1);
-  return true;
+if(isCore())return true;
+var key=‘fh_dump_’+new Date().toISOString().slice(0,7); // YYYY-MM
+var count=parseInt(localStorage.getItem(key)||‘0’);
+if(count>=5){showGate(‘Brain Dump (5/month on free plan — upgrade for unlimited)’);return false;}
+localStorage.setItem(key,count+1);
+return true;
 }
-function updWC(){const w=document.getElementById('brainDump').value.trim().split(/\s+/).filter(Boolean).length;document.getElementById('wordCount').textContent=w+' words out of your head';}
-function clearDump(){document.getElementById('brainDump').value='';document.getElementById('wordCount').textContent='0 words out of your head';}
+function updWC(){const w=document.getElementById(‘brainDump’).value.trim().split(/\s+/).filter(Boolean).length;document.getElementById(‘wordCount’).textContent=w+’ words out of your head’;}
+function clearDump(){document.getElementById(‘brainDump’).value=’’;document.getElementById(‘wordCount’).textContent=‘0 words out of your head’;}
 
 // ── PRIORITIES ────────────────────────────────────────────────────────────────
-function buildPriorities(){const c=document.getElementById('priorities');c.innerHTML='';[1,2,3].forEach(i=>{c.innerHTML+=`<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;"><div style="width:22px;height:22px;border-radius:50%;background:rgba(196,91,170,${0.4-i*0.1});display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--mag);flex-shrink:0;">${i}</div><input class="a-inp" style="font-size:13px;" placeholder="${['The most critical thing','The second priority','Third — only if 1&2 are done'][i-1]}" oninput="document.getElementById('triagedMsg').style.display=this.value?'block':'none'"></div>`;});}
+function buildPriorities(){const c=document.getElementById(‘priorities’);c.innerHTML=’’;[1,2,3].forEach(i=>{c.innerHTML+=`<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;"><div style="width:22px;height:22px;border-radius:50%;background:rgba(196,91,170,${0.4-i*0.1});display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--mag);flex-shrink:0;">${i}</div><input class="a-inp" style="font-size:13px;" placeholder="${['The most critical thing','The second priority','Third — only if 1&2 are done'][i-1]}" oninput="document.getElementById('triagedMsg').style.display=this.value?'block':'none'"></div>`;});}
 
 // ── AI CALLS ──────────────────────────────────────────────────────────────────
 async function callClaude(prompt,maxT=700){
-  try {
-    const r=await fetch('/.netlify/functions/ai',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({prompt,max_tokens:maxT})
-    });
-    if(!r.ok){const e=await r.text();console.error('AI error:',e);return 'Something went sideways — try again in a moment.';}
-    const d=await r.json();
-    return d.content?.[0]?.text||d.result||'Try again.';
-  } catch(e){
-    console.error('callClaude failed:',e);
-    return 'Unable to connect. Check your internet and try again.';
-  }
+try {
+const r=await fetch(’/.netlify/functions/ai’,{
+method:‘POST’,
+headers:{‘Content-Type’:‘application/json’},
+body:JSON.stringify({prompt,max_tokens:maxT})
+});
+if(!r.ok){const e=await r.text();console.error(‘AI error:’,e);return ‘Something went sideways — try again in a moment.’;}
+const d=await r.json();
+return d.content?.[0]?.text||d.result||‘Try again.’;
+} catch(e){
+console.error(‘callClaude failed:’,e);
+return ‘Unable to connect. Check your internet and try again.’;
+}
 }
 
-async function smallestStep(){const task=document.getElementById('bigTask').value.trim();if(!task)return;const btn=document.getElementById('stepBtn');btn.textContent='Breaking it down...';btn.disabled=true;const res=document.getElementById('stepResult');res.style.display='block';res.textContent='Thinking...';try{res.textContent=await callClaude(`You are an ADHD coach for professional women. A woman with ADHD is paralyzed by this task: "${task}". Give the one absolute tiniest first action — under 5 minutes, minimum activation energy. Then 3 more tiny sequential steps. Format: FIRST STEP: [action]\n\nTHEN:\n1.\n2.\n3.\n\nEnd with one sentence of encouragement. No preamble.`);}catch{res.textContent='Unable to connect. Try again.';}btn.textContent='Break It Down →';btn.disabled=false;}
+async function smallestStep(){const task=document.getElementById(‘bigTask’).value.trim();if(!task)return;const btn=document.getElementById(‘stepBtn’);btn.textContent=‘Breaking it down…’;btn.disabled=true;const res=document.getElementById(‘stepResult’);res.style.display=‘block’;res.textContent=‘Thinking…’;try{res.textContent=await callClaude(`You are an ADHD coach for professional women. A woman with ADHD is paralyzed by this task: "${task}". Give the one absolute tiniest first action — under 5 minutes, minimum activation energy. Then 3 more tiny sequential steps. Format: FIRST STEP: [action]\n\nTHEN:\n1.\n2.\n3.\n\nEnd with one sentence of encouragement. No preamble.`);}catch{res.textContent=‘Unable to connect. Try again.’;}btn.textContent=‘Break It Down →’;btn.disabled=false;}
 
-function setET(el,p){document.querySelectorAll('#eChips .a-chip').forEach(c=>c.classList.remove('on'));el.classList.add('on');emailTP=p;}
-async function genEmail(){const ctx=document.getElementById('emailCtx').value.trim();if(!ctx||!emailTP)return;const btn=document.getElementById('emailBtn');btn.textContent='Writing...';btn.disabled=true;const res=document.getElementById('emailRes');res.style.display='block';res.textContent='Drafting...';try{res.textContent=await callClaude(`Professional writing assistant for women in corporate. Task: ${emailTP}. Context: "${ctx}". Write a confident, professional email. Do NOT over-apologize. Warm but firm. Include Subject: on first line. Concise.`,800);}catch{res.textContent='Unable to connect.';}btn.textContent='Draft My Email →';btn.disabled=false;}
+function setET(el,p){document.querySelectorAll(’#eChips .a-chip’).forEach(c=>c.classList.remove(‘on’));el.classList.add(‘on’);emailTP=p;}
+async function genEmail(){const ctx=document.getElementById(‘emailCtx’).value.trim();if(!ctx||!emailTP)return;const btn=document.getElementById(‘emailBtn’);btn.textContent=‘Writing…’;btn.disabled=true;const res=document.getElementById(‘emailRes’);res.style.display=‘block’;res.textContent=‘Drafting…’;try{res.textContent=await callClaude(`Professional writing assistant for women in corporate. Task: ${emailTP}. Context: "${ctx}". Write a confident, professional email. Do NOT over-apologize. Warm but firm. Include Subject: on first line. Concise.`,800);}catch{res.textContent=‘Unable to connect.’;}btn.textContent=‘Draft My Email →’;btn.disabled=false;}
 
-function setST(el,p){document.querySelectorAll('#sChips .a-chip').forEach(c=>c.classList.remove('on'));el.classList.add('on');scriptTP=p;}
-async function genScript(){const ctx=document.getElementById('scriptCtx').value.trim();if(!ctx||!scriptTP)return;const btn=document.getElementById('scriptBtn');btn.textContent='Writing...';btn.disabled=true;const res=document.getElementById('scriptRes');res.style.display='block';res.textContent='Building your script...';try{res.textContent=await callClaude(`Workplace advocate for neurodivergent women. Script for: "${scriptTP}". Context: "${ctx}". Write 2 versions: assertive and diplomatic. Natural-sounding. No over-apologizing. Label each clearly.`);}catch{res.textContent='Unable to connect.';}btn.textContent='Write My Script →';btn.disabled=false;}
+function setST(el,p){document.querySelectorAll(’#sChips .a-chip’).forEach(c=>c.classList.remove(‘on’));el.classList.add(‘on’);scriptTP=p;}
+async function genScript(){const ctx=document.getElementById(‘scriptCtx’).value.trim();if(!ctx||!scriptTP)return;const btn=document.getElementById(‘scriptBtn’);btn.textContent=‘Writing…’;btn.disabled=true;const res=document.getElementById(‘scriptRes’);res.style.display=‘block’;res.textContent=‘Building your script…’;try{res.textContent=await callClaude(`Workplace advocate for neurodivergent women. Script for: "${scriptTP}". Context: "${ctx}". Write 2 versions: assertive and diplomatic. Natural-sounding. No over-apologizing. Label each clearly.`);}catch{res.textContent=‘Unable to connect.’;}btn.textContent=‘Write My Script →’;btn.disabled=false;}
 
-async function rsdCheck(){const input=document.getElementById('rsdInput').value.trim();if(!input)return;const res=document.getElementById('rsdRes');res.style.display='block';res.textContent='Thinking...';try{res.textContent=await callClaude(`Compassionate therapist and ADHD coach. A woman experiencing RSD wrote: "${input}". Gently separate facts from RSD interpretation. Validate the pain without reinforcing catastrophic thinking. Offer 1-2 realistic alternative explanations. End with a grounding thought. Warm, brief, human — under 150 words.`,500);}catch{res.textContent='Unable to connect.';};}
+async function rsdCheck(){const input=document.getElementById(‘rsdInput’).value.trim();if(!input)return;const res=document.getElementById(‘rsdRes’);res.style.display=‘block’;res.textContent=‘Thinking…’;try{res.textContent=await callClaude(`Compassionate therapist and ADHD coach. A woman experiencing RSD wrote: "${input}". Gently separate facts from RSD interpretation. Validate the pain without reinforcing catastrophic thinking. Offer 1-2 realistic alternative explanations. End with a grounding thought. Warm, brief, human — under 150 words.`,500);}catch{res.textContent=‘Unable to connect.’;};}
 
 // ── ADA / MEETING ─────────────────────────────────────────────────────────────
-function buildADA(){const c=document.getElementById('adaList');if(!c)return;c.innerHTML='';ADA_RIGHTS.forEach((r,i)=>{c.innerHTML+=`<div class="a-accord${i===0?' open':''}" id="ada${i}" onclick="tADA(${i})"><div style="font-size:13px;font-weight:500;color:#f0e6ff;display:flex;justify-content:space-between;align-items:center;">${r.t}<span>${i===0?'−':'+'}</span></div>${i===0?`<div style="font-size:13px;color:rgba(240,230,255,0.62);line-height:1.7;margin-top:10px;font-weight:300;">${r.b}</div>`:''}</div>`;});}
-function tADA(i){const el=document.getElementById('ada'+i);if(adaOpen===i){el.classList.remove('open');el.innerHTML=`<div style="font-size:13px;font-weight:500;color:#f0e6ff;display:flex;justify-content:space-between;">${ADA_RIGHTS[i].t}<span>+</span></div>`;adaOpen=-1;}else{if(adaOpen>=0){const p=document.getElementById('ada'+adaOpen);p.classList.remove('open');p.innerHTML=`<div style="font-size:13px;font-weight:500;color:#f0e6ff;display:flex;justify-content:space-between;">${ADA_RIGHTS[adaOpen].t}<span>+</span></div>`;}el.classList.add('open');el.innerHTML=`<div style="font-size:13px;font-weight:500;color:var(--rose);display:flex;justify-content:space-between;">${ADA_RIGHTS[i].t}<span>−</span></div><div style="font-size:13px;color:rgba(240,230,255,0.62);line-height:1.7;margin-top:10px;font-weight:300;">${ADA_RIGHTS[i].b}</div>`;adaOpen=i;}}
-function buildMeetList(){const c=document.getElementById('meetList');if(!c)return;c.innerHTML='';MEET_ITEMS.forEach((item,i)=>{c.innerHTML+=`<div class="a-check-item" onclick="tMeet(${i})"><div class="a-check-box" id="cb${i}"></div><div style="font-size:13px;color:rgba(240,230,255,0.75);line-height:1.5;" id="ct${i}">${item}</div></div>`;});}
-function tMeet(i){meetCk[i]=!meetCk[i];const cb=document.getElementById('cb'+i);const ct=document.getElementById('ct'+i);cb.classList.toggle('ck',meetCk[i]);cb.innerHTML=meetCk[i]?'<span style="font-size:10px;color:var(--teal);">✓</span>':'';ct.style.textDecoration=meetCk[i]?'line-through':'none';ct.style.color=meetCk[i]?'rgba(240,230,255,0.3)':'rgba(240,230,255,0.75)';}
+function buildADA(){const c=document.getElementById(‘adaList’);if(!c)return;c.innerHTML=’’;ADA_RIGHTS.forEach((r,i)=>{c.innerHTML+=`<div class="a-accord${i===0?' open':''}" id="ada${i}" onclick="tADA(${i})"><div style="font-size:13px;font-weight:500;color:#f0e6ff;display:flex;justify-content:space-between;align-items:center;">${r.t}<span>${i===0?'−':'+'}</span></div>${i===0?`<div style="font-size:13px;color:rgba(240,230,255,0.62);line-height:1.7;margin-top:10px;font-weight:300;">${r.b}</div>`:''}</div>`;});}
+function tADA(i){const el=document.getElementById(‘ada’+i);if(adaOpen===i){el.classList.remove(‘open’);el.innerHTML=`<div style="font-size:13px;font-weight:500;color:#f0e6ff;display:flex;justify-content:space-between;">${ADA_RIGHTS[i].t}<span>+</span></div>`;adaOpen=-1;}else{if(adaOpen>=0){const p=document.getElementById(‘ada’+adaOpen);p.classList.remove(‘open’);p.innerHTML=`<div style="font-size:13px;font-weight:500;color:#f0e6ff;display:flex;justify-content:space-between;">${ADA_RIGHTS[adaOpen].t}<span>+</span></div>`;}el.classList.add(‘open’);el.innerHTML=`<div style="font-size:13px;font-weight:500;color:var(--rose);display:flex;justify-content:space-between;">${ADA_RIGHTS[i].t}<span>−</span></div><div style="font-size:13px;color:rgba(240,230,255,0.62);line-height:1.7;margin-top:10px;font-weight:300;">${ADA_RIGHTS[i].b}</div>`;adaOpen=i;}}
+function buildMeetList(){const c=document.getElementById(‘meetList’);if(!c)return;c.innerHTML=’’;MEET_ITEMS.forEach((item,i)=>{c.innerHTML+=`<div class="a-check-item" onclick="tMeet(${i})"><div class="a-check-box" id="cb${i}"></div><div style="font-size:13px;color:rgba(240,230,255,0.75);line-height:1.5;" id="ct${i}">${item}</div></div>`;});}
+function tMeet(i){meetCk[i]=!meetCk[i];const cb=document.getElementById(‘cb’+i);const ct=document.getElementById(‘ct’+i);cb.classList.toggle(‘ck’,meetCk[i]);cb.innerHTML=meetCk[i]?’<span style="font-size:10px;color:var(--teal);">✓</span>’:’’;ct.style.textDecoration=meetCk[i]?‘line-through’:‘none’;ct.style.color=meetCk[i]?‘rgba(240,230,255,0.3)’:‘rgba(240,230,255,0.75)’;}
 
 // ── WORK TABS ────────────────────────────────────────────────────────────────
-function wTab(t){['email','script','rsd','ada','meet'].forEach(s=>{document.getElementById('wp-'+s).style.display=s===t?'block':'none';document.getElementById('wt-'+s).classList.toggle('on',s===t);});}
+function wTab(t){[‘email’,‘script’,‘rsd’,‘ada’,‘meet’].forEach(s=>{document.getElementById(‘wp-’+s).style.display=s===t?‘block’:‘none’;document.getElementById(‘wt-’+s).classList.toggle(‘on’,s===t);});}
 
 // ── WINS ──────────────────────────────────────────────────────────────────────
-function setWC(el,cat){document.querySelectorAll('#wCatChips .a-chip').forEach(c=>c.classList.remove('on'));el.classList.add('on');winCat=cat;}
-function addWin(){const t=document.getElementById('winText').value.trim();if(!t)return;pushWin({text:t,category:winCat,date:new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})});document.getElementById('winText').value='';celebrate();}
-function pushWin(w){wins.unshift(w);localStorage.setItem('fh_wins',JSON.stringify(wins));renderWins();updateLatestWin();updateImposterShield();}
-function deleteWin(i){wins.splice(i,1);localStorage.setItem('fh_wins',JSON.stringify(wins));renderWins();updateLatestWin();updateImposterShield();}
-function renderWins(){const c=document.getElementById('winsList');if(!c)return;c.innerHTML='';const tw=document.getElementById('totalWins');const mw=document.getElementById('monthWins');if(tw)tw.textContent=wins.length;const mon=new Date().toLocaleDateString('en-US',{month:'short'});if(mw)mw.textContent=wins.filter(w=>w.date&&w.date.includes(mon)).length;if(!wins.length){c.innerHTML='<div style="text-align:center;padding:40px 22px;color:rgba(240,230,255,0.25);font-style:italic;font-size:14px;">No wins logged yet — but you showed up today. That counts. Log it.</div>';return;}wins.forEach((w,i)=>{c.innerHTML+=`<div class="a-win-card"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><span style="font-size:10px;letter-spacing:2px;color:var(--mag);text-transform:uppercase;">★ ${w.category}</span><div style="display:flex;align-items:center;gap:8px;"><span style="font-size:10px;color:rgba(240,230,255,0.2);">${w.date}</span><button onclick="deleteWin(${i})" style="background:transparent;border:none;color:rgba(240,230,255,0.18);cursor:pointer;font-size:16px;">×</button></div></div><div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:rgba(240,230,255,0.85);line-height:1.65;">${w.text}</div></div>`;});}
-function updateLatestWin(){const card=document.getElementById('latestWinCard');if(!card)return;if(wins.length>0){card.style.display='block';document.getElementById('latestWinText').textContent='"'+wins[0].text+'"';document.getElementById('latestWinDate').textContent=wins[0].date;}else card.style.display='none';}
-function updateImposterShield(){const el=document.getElementById('imposterWins');if(!el)return;el.innerHTML=wins.length===0?'Log wins in your Win Journal — they\'ll appear here as evidence when imposter syndrome hits.':wins.slice(0,3).map(w=>`✦ ${w.text}`).join('<br><br>');}
+function setWC(el,cat){document.querySelectorAll(’#wCatChips .a-chip’).forEach(c=>c.classList.remove(‘on’));el.classList.add(‘on’);winCat=cat;}
+function addWin(){const t=document.getElementById(‘winText’).value.trim();if(!t)return;pushWin({text:t,category:winCat,date:new Date().toLocaleDateString(‘en-US’,{month:‘short’,day:‘numeric’,year:‘numeric’})});document.getElementById(‘winText’).value=’’;celebrate();}
+function pushWin(w){wins.unshift(w);localStorage.setItem(‘fh_wins’,JSON.stringify(wins));renderWins();updateLatestWin();updateImposterShield();}
+function deleteWin(i){wins.splice(i,1);localStorage.setItem(‘fh_wins’,JSON.stringify(wins));renderWins();updateLatestWin();updateImposterShield();}
+function renderWins(){const c=document.getElementById(‘winsList’);if(!c)return;c.innerHTML=’’;const tw=document.getElementById(‘totalWins’);const mw=document.getElementById(‘monthWins’);if(tw)tw.textContent=wins.length;const mon=new Date().toLocaleDateString(‘en-US’,{month:‘short’});if(mw)mw.textContent=wins.filter(w=>w.date&&w.date.includes(mon)).length;if(!wins.length){c.innerHTML=’<div style="text-align:center;padding:40px 22px;color:rgba(240,230,255,0.25);font-style:italic;font-size:14px;">No wins logged yet — but you showed up today. That counts. Log it.</div>’;return;}wins.forEach((w,i)=>{c.innerHTML+=`<div class="a-win-card"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><span style="font-size:10px;letter-spacing:2px;color:var(--mag);text-transform:uppercase;">★ ${w.category}</span><div style="display:flex;align-items:center;gap:8px;"><span style="font-size:10px;color:rgba(240,230,255,0.2);">${w.date}</span><button onclick="deleteWin(${i})" style="background:transparent;border:none;color:rgba(240,230,255,0.18);cursor:pointer;font-size:16px;">×</button></div></div><div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:rgba(240,230,255,0.85);line-height:1.65;">${w.text}</div></div>`;});}
+function updateLatestWin(){const card=document.getElementById(‘latestWinCard’);if(!card)return;if(wins.length>0){card.style.display=‘block’;document.getElementById(‘latestWinText’).textContent=’”’+wins[0].text+’”’;document.getElementById(‘latestWinDate’).textContent=wins[0].date;}else card.style.display=‘none’;}
+function updateImposterShield(){const el=document.getElementById(‘imposterWins’);if(!el)return;el.innerHTML=wins.length===0?‘Log wins in your Win Journal — they'll appear here as evidence when imposter syndrome hits.’:wins.slice(0,3).map(w=>`✦ ${w.text}`).join(’<br><br>’);}
 
 // ── UNMASK ────────────────────────────────────────────────────────────────────
-function saveUnmask(){localStorage.setItem('fh_unmask',document.getElementById('unmaskText').value);}
-function clearUnmask(){if(confirm('Clear your unmask notes?')){localStorage.removeItem('fh_unmask');document.getElementById('unmaskText').value='';}}
+function saveUnmask(){localStorage.setItem(‘fh_unmask’,document.getElementById(‘unmaskText’).value);}
+function clearUnmask(){if(confirm(‘Clear your unmask notes?’)){localStorage.removeItem(‘fh_unmask’);document.getElementById(‘unmaskText’).value=’’;}}
 
 // ── NSR ───────────────────────────────────────────────────────────────────────
-const NSR=['Close your eyes if you can. Feel your feet on the floor.','Roll your shoulders back. Unclench your jaw. Breathe out slowly.','Take one slow breath in for 4 counts... hold 2... out for 6.','Notice your hands. Relax them. You don\'t have to grip anything right now.','You are in your body. You are safe. The work will still be there. You come first.','Open your eyes slowly. You just did something kind for yourself.'];
+const NSR=[‘Close your eyes if you can. Feel your feet on the floor.’,‘Roll your shoulders back. Unclench your jaw. Breathe out slowly.’,‘Take one slow breath in for 4 counts… hold 2… out for 6.’,‘Notice your hands. Relax them. You don't have to grip anything right now.’,‘You are in your body. You are safe. The work will still be there. You come first.’,‘Open your eyes slowly. You just did something kind for yourself.’];
 let nsrStep=0;
 function startNSR(){nsrStep=0;showNSR();}
-function showNSR(){const c=document.getElementById('nsrArea');c.innerHTML=`<div style="padding:14px;background:rgba(61,158,140,0.08);border-radius:12px;text-align:center;"><div style="font-size:12px;color:var(--teal);letter-spacing:2px;margin-bottom:10px;">STEP ${nsrStep+1} OF ${NSR.length}</div><div class="a-prog-bar"><div class="a-prog-fill" style="width:${((nsrStep)/NSR.length*100)}%"></div></div><div style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:#f0e6ff;line-height:1.7;margin:14px 0;">${NSR[nsrStep]}</div>${nsrStep<NSR.length-1?`<button class="a-btn a-btn-sm a-btn-teal" onclick="nextNSR()">Next →</button>`:`<div style='font-size:22px;margin-bottom:10px;'>🌿</div><div style='font-size:14px;color:rgba(240,230,255,0.7);font-style:italic;'>You reset. That took 3 minutes and it was worth it.</div><br><button class='a-btn a-btn-sm a-btn-teal' onclick='startNSR()'>Go again</button>`}</div>`;}
+function showNSR(){const c=document.getElementById(‘nsrArea’);c.innerHTML=`<div style="padding:14px;background:rgba(61,158,140,0.08);border-radius:12px;text-align:center;"><div style="font-size:12px;color:var(--teal);letter-spacing:2px;margin-bottom:10px;">STEP ${nsrStep+1} OF ${NSR.length}</div><div class="a-prog-bar"><div class="a-prog-fill" style="width:${((nsrStep)/NSR.length*100)}%"></div></div><div style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:#f0e6ff;line-height:1.7;margin:14px 0;">${NSR[nsrStep]}</div>${nsrStep<NSR.length-1?`<button class="a-btn a-btn-sm a-btn-teal" onclick="nextNSR()">Next →</button>`:`<div style='font-size:22px;margin-bottom:10px;'>🌿</div><div style='font-size:14px;color:rgba(240,230,255,0.7);font-style:italic;'>You reset. That took 3 minutes and it was worth it.</div><br><button class='a-btn a-btn-sm a-btn-teal' onclick='startNSR()'>Go again</button>`}</div>`;}
 function nextNSR(){nsrStep++;showNSR();}
 
 // ── DOPAMINE ──────────────────────────────────────────────────────────────────
 const dopMsgs={
-  '✅':'You crossed something off. That counts. Keep going.',
-  '💧':'Hydrated. Your brain works better now. Literally.',
-  '🚶':'Two minutes of movement just changed your brain chemistry.',
-  '🎵':'Good. Music does something science can\'t fully explain yet.',
-  '☀️':'Light. Air. Presence. You needed that.',
-  '📝':'Logged as a win. Because it is one.'
+‘✅’:‘You crossed something off. That counts. Keep going.’,
+‘💧’:‘Hydrated. Your brain works better now. Literally.’,
+‘🚶’:‘Two minutes of movement just changed your brain chemistry.’,
+‘🎵’:‘Good. Music does something science can't fully explain yet.’,
+‘☀️’:‘Light. Air. Presence. You needed that.’,
+‘📝’:‘Logged as a win. Because it is one.’
 };
-let dopStreak=parseInt(localStorage.getItem('fh_dop_streak')||'0');
-let dopLastDate=localStorage.getItem('fh_dop_last')||'';
+let dopStreak=parseInt(localStorage.getItem(‘fh_dop_streak’)||‘0’);
+let dopLastDate=localStorage.getItem(‘fh_dop_last’)||’’;
 function dopHit(emoji,label,msg){
-  // Update streak
-  var today=new Date().toDateString();
-  if(dopLastDate!==today){dopStreak++;dopLastDate=today;localStorage.setItem('fh_dop_streak',dopStreak);localStorage.setItem('fh_dop_last',today);}
-  // Show message — use passed msg or fall back to dopMsgs lookup
-  var displayMsg = msg || (dopMsgs[emoji] || label);
-  var m=document.getElementById('dopMsg');
-  m.style.display='block';
-  m.style.background='rgba(196,91,170,0.08)';
-  m.style.border='1px solid rgba(196,91,170,0.2)';
-  m.style.borderRadius='12px';
-  m.style.padding='14px 16px';
-  m.innerHTML='<div style="display:flex;align-items:flex-start;gap:10px;">'
-    +'<span style="font-size:24px;flex-shrink:0;">'+emoji+'</span>'
-    +'<div><div style="font-size:13px;font-weight:600;color:#FAF7FF;margin-bottom:4px;">'+label+'</div>'
-    +'<div style="font-size:12px;color:rgba(220,200,255,0.75);line-height:1.6;">'+displayMsg+'</div>'
-    +(dopStreak>1?'<div style="font-size:10px;color:#2D7D6E;margin-top:8px;letter-spacing:2px;font-weight:600;">'+dopStreak+'-DAY STREAK 🔥</div>':'')
-    +'</div></div>';
-  // Auto-hide after 5s
-  clearTimeout(window._dopT);
-  window._dopT=setTimeout(function(){m.style.display='none';},5000);
-  // If log a tiny win — open wins tab
-  if(emoji==='📝'){setTimeout(function(){if(isCore())aTab('wins');else showGate('Win Journal');},800);}
+// Update streak
+var today=new Date().toDateString();
+if(dopLastDate!==today){dopStreak++;dopLastDate=today;localStorage.setItem(‘fh_dop_streak’,dopStreak);localStorage.setItem(‘fh_dop_last’,today);}
+// Show message — use passed msg or fall back to dopMsgs lookup
+var displayMsg = msg || (dopMsgs[emoji] || label);
+var m=document.getElementById(‘dopMsg’);
+m.style.display=‘block’;
+m.style.background=‘rgba(196,91,170,0.08)’;
+m.style.border=‘1px solid rgba(196,91,170,0.2)’;
+m.style.borderRadius=‘12px’;
+m.style.padding=‘14px 16px’;
+m.innerHTML=’<div style="display:flex;align-items:flex-start;gap:10px;">’
++’<span style="font-size:24px;flex-shrink:0;">’+emoji+’</span>’
++’<div><div style="font-size:13px;font-weight:600;color:#FAF7FF;margin-bottom:4px;">’+label+’</div>’
++’<div style="font-size:12px;color:rgba(220,200,255,0.75);line-height:1.6;">’+displayMsg+’</div>’
++(dopStreak>1?’<div style="font-size:10px;color:#2D7D6E;margin-top:8px;letter-spacing:2px;font-weight:600;">’+dopStreak+’-DAY STREAK 🔥</div>’:’’)
++’</div></div>’;
+// Auto-hide after 5s
+clearTimeout(window._dopT);
+window._dopT=setTimeout(function(){m.style.display=‘none’;},5000);
+// If log a tiny win — open wins tab
+if(emoji===‘📝’){setTimeout(function(){if(isCore())aTab(‘wins’);else showGate(‘Win Journal’);},800);}
 }
 
 // ── SOS ───────────────────────────────────────────────────────────────────────
-let breatheI;const bPhrases=['Breathe in','Hold...','Breathe out','Pause...'];let bIdx=0;
-function openSOS(){document.getElementById('sosOverlay').classList.add('show');bIdx=0;document.getElementById('breatheText').textContent=bPhrases[0];breatheI=setInterval(()=>{bIdx=(bIdx+1)%4;document.getElementById('breatheText').textContent=bPhrases[bIdx];},2000);}
-function closeSOS(){document.getElementById('sosOverlay').classList.remove('show');clearInterval(breatheI);}
+let breatheI;const bPhrases=[‘Breathe in’,‘Hold…’,‘Breathe out’,‘Pause…’];let bIdx=0;
+function openSOS(){document.getElementById(‘sosOverlay’).classList.add(‘show’);bIdx=0;document.getElementById(‘breatheText’).textContent=bPhrases[0];breatheI=setInterval(()=>{bIdx=(bIdx+1)%4;document.getElementById(‘breatheText’).textContent=bPhrases[bIdx];},2000);}
+function closeSOS(){document.getElementById(‘sosOverlay’).classList.remove(‘show’);clearInterval(breatheI);}
 
 // ════════════════════════════════════════════════════════════════
 // SUPABASE AUTH + PLAN SYSTEM
 // ════════════════════════════════════════════════════════════════
 
-var SUPABASE_URL  = 'https://xlrwxysdwdrdsndomzpi.supabase.co';
-var SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhscnd4eXNkd2RyZHNuZG9tenBpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMxMTQ5MTEsImV4cCI6MjA4ODY5MDkxMX0.DuLiOUciD3iAM2fKIyRLUGwhG4HrF3qMLdskqExABzM';
+var SUPABASE_URL  = ‘https://xlrwxysdwdrdsndomzpi.supabase.co’;
+var SUPABASE_ANON = ‘eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhscnd4eXNkd2RyZHNuZG9tenBpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMxMTQ5MTEsImV4cCI6MjA4ODY5MDkxMX0.DuLiOUciD3iAM2fKIyRLUGwhG4HrF3qMLdskqExABzM’;
 var _sb = null;
 var _currentUser = null;
-var _currentPlan = 'free';
+var _currentPlan = ‘free’;
 
 function getSB(){
-  if(!_sb && window.supabase){
-    _sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
-  }
-  return _sb;
+if(!_sb && window.supabase){
+_sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+}
+return _sb;
 }
 
 // ── Plan check ───────────────────────────────────────────────────
 function isCore(){
-  // Owner email always gets Core
-  if(_currentUser && _currentUser.email && 
-     _currentUser.email.toLowerCase() === 's.strain04@gmail.com'){
-    return true;
-  }
-  return _currentPlan === 'core' || localStorage.getItem('fh_plan') === 'core';
+// Owner email always gets Core
+if(_currentUser && _currentUser.email &&
+_currentUser.email.toLowerCase() === ‘s.strain04@gmail.com’){
+return true;
+}
+return _currentPlan === ‘core’ || localStorage.getItem(‘fh_plan’) === ‘core’;
 }
 
 // ── Fetch user plan from Supabase profiles table ─────────────────
 async function fetchUserPlan(userId){
-  try {
-    var sb = getSB();
-    if(!sb) return 'free';
-    
-    // Owner bypass — always Core
-    var OWNER_EMAIL = _currentUser ? _currentUser.email : '';
-    var OWNER_EMAILS = ['s.strain04@gmail.com'];
-    if(OWNER_EMAILS.indexOf(OWNER_EMAIL) > -1){
-      _currentPlan = 'core';
-      localStorage.setItem('fh_plan', 'core');
-      return 'core';
-    }
+try {
+var sb = getSB();
+if(!sb) return ‘free’;
 
-    var res = await sb.from('profiles').select('plan,full_name').eq('id', userId).single();
-    
-    // Log for debugging
-    console.log('fetchUserPlan response:', JSON.stringify(res));
-    
-    if(res.error){
-      console.error('fetchUserPlan DB error:', res.error.message);
-      // If RLS blocks the read, fall back to localStorage
-      return localStorage.getItem('fh_plan') || 'free';
-    }
-    
-    if(res.data){
-      _currentPlan = res.data.plan || 'free';
-      localStorage.setItem('fh_plan', _currentPlan);
-      if(res.data.full_name){
-        localStorage.setItem('fh_name', res.data.full_name);
-      }
-    }
-    return _currentPlan;
-  } catch(e){
-    console.error('fetchUserPlan error:', e);
-    return localStorage.getItem('fh_plan') || 'free';
+```
+// Owner bypass — always Core
+var OWNER_EMAIL = _currentUser ? _currentUser.email : '';
+var OWNER_EMAILS = ['s.strain04@gmail.com'];
+if(OWNER_EMAILS.indexOf(OWNER_EMAIL) > -1){
+  _currentPlan = 'core';
+  localStorage.setItem('fh_plan', 'core');
+  return 'core';
+}
+
+var res = await sb.from('profiles').select('plan,full_name').eq('id', userId).single();
+
+// Log for debugging
+console.log('fetchUserPlan response:', JSON.stringify(res));
+
+if(res.error){
+  console.error('fetchUserPlan DB error:', res.error.message);
+  // If RLS blocks the read, fall back to localStorage
+  return localStorage.getItem('fh_plan') || 'free';
+}
+
+if(res.data){
+  _currentPlan = res.data.plan || 'free';
+  localStorage.setItem('fh_plan', _currentPlan);
+  if(res.data.full_name){
+    localStorage.setItem('fh_name', res.data.full_name);
   }
+}
+return _currentPlan;
+```
+
+} catch(e){
+console.error(‘fetchUserPlan error:’, e);
+return localStorage.getItem(‘fh_plan’) || ‘free’;
+}
 }
 
 // ── Update plan badge in app header ──────────────────────────────
 function updatePlanBadge(){
-  var badge = document.getElementById('planBadge');
-  if(!badge) return;
-  var name = localStorage.getItem('fh_name') || '';
-  if(isCore()){
-    badge.textContent = name ? name.split(' ')[0] + ' · CORE' : 'CORE';
-    badge.className = 'plan-badge core';
-  } else {
-    badge.textContent = name ? name.split(' ')[0] + ' · FREE' : 'FREE';
-    badge.className = 'plan-badge free';
-  }
+var badge = document.getElementById(‘planBadge’);
+if(!badge) return;
+var name = localStorage.getItem(‘fh_name’) || ‘’;
+if(isCore()){
+badge.textContent = name ? name.split(’ ‘)[0] + ’ · CORE’ : ‘CORE’;
+badge.className = ‘plan-badge core’;
+} else {
+badge.textContent = name ? name.split(’ ‘)[0] + ’ · FREE’ : ‘FREE’;
+badge.className = ‘plan-badge free’;
+}
 }
 
 // ── Auth tab switcher ─────────────────────────────────────────────
 function authTab(tab){
-  ['signin','signup','reset'].forEach(function(t){
-    var form = document.getElementById('form-'+t);
-    var tabEl = document.getElementById('tab-'+t);
-    if(form) form.style.display = t===tab ? 'block' : 'none';
-    if(tabEl) tabEl.classList.toggle('on', t===tab);
-  });
-  // Hide main tabs row when on reset screen
-  var tabsRow = document.querySelector('.auth-tabs');
-  if(tabsRow) tabsRow.style.display = tab==='reset' ? 'none' : 'flex';
-  var err = document.getElementById('authErr');
-  var ok = document.getElementById('authOk');
-  if(err) err.textContent = '';
-  if(ok) ok.textContent = '';
+[‘signin’,‘signup’,‘reset’].forEach(function(t){
+var form = document.getElementById(‘form-’+t);
+var tabEl = document.getElementById(‘tab-’+t);
+if(form) form.style.display = t===tab ? ‘block’ : ‘none’;
+if(tabEl) tabEl.classList.toggle(‘on’, t===tab);
+});
+// Hide main tabs row when on reset screen
+var tabsRow = document.querySelector(’.auth-tabs’);
+if(tabsRow) tabsRow.style.display = tab===‘reset’ ? ‘none’ : ‘flex’;
+var err = document.getElementById(‘authErr’);
+var ok = document.getElementById(‘authOk’);
+if(err) err.textContent = ‘’;
+if(ok) ok.textContent = ‘’;
 }
 
 // ── Sign In ───────────────────────────────────────────────────────
 async function doSignIn(){
-  var email = document.getElementById('si-email').value.trim();
-  var pass  = document.getElementById('si-pass').value;
-  var btn   = document.getElementById('si-btn');
-  var errEl = document.getElementById('authErr');
-  errEl.textContent = '';
-  if(!email || !pass){ errEl.textContent = 'We need your email and password to sign in.'; return; }
-  btn.textContent = 'Signing in...'; btn.disabled = true;
-  try {
-    var sb = getSB();
-    var res = await sb.auth.signInWithPassword({ email, password: pass });
-    if(res.error){ errEl.textContent = res.error.message; btn.textContent = 'Sign In →'; btn.disabled=false; return; }
-    _currentUser = res.data.user;
-    await fetchUserPlan(_currentUser.id);
-    onAuthSuccess();
-  } catch(e){
-    errEl.textContent = 'Something went sideways — try again in a moment.';
-    btn.textContent = 'Sign In →'; btn.disabled=false;
-  }
+var email = document.getElementById(‘si-email’).value.trim();
+var pass  = document.getElementById(‘si-pass’).value;
+var btn   = document.getElementById(‘si-btn’);
+var errEl = document.getElementById(‘authErr’);
+errEl.textContent = ‘’;
+if(!email || !pass){ errEl.textContent = ‘We need your email and password to sign in.’; return; }
+btn.textContent = ‘Signing in…’; btn.disabled = true;
+try {
+var sb = getSB();
+var res = await sb.auth.signInWithPassword({ email, password: pass });
+if(res.error){ errEl.textContent = res.error.message; btn.textContent = ‘Sign In →’; btn.disabled=false; return; }
+_currentUser = res.data.user;
+await fetchUserPlan(_currentUser.id);
+onAuthSuccess();
+} catch(e){
+errEl.textContent = ‘Something went sideways — try again in a moment.’;
+btn.textContent = ‘Sign In →’; btn.disabled=false;
+}
 }
 
 // ── Sign Up ───────────────────────────────────────────────────────
 async function doSignUp(){
-  var name  = document.getElementById('su-name').value.trim();
-  var email = document.getElementById('su-email').value.trim();
-  var pass  = document.getElementById('su-pass').value;
-  var promo = document.getElementById('su-promo') ? document.getElementById('su-promo').value.trim().toUpperCase() : '';
-  var btn   = document.getElementById('su-btn');
-  var errEl = document.getElementById('authErr');
-  errEl.textContent = '';
-  if(!name){ errEl.textContent = 'Please enter your first name.'; return; }
-  if(!email || !email.includes('@')){ errEl.textContent = 'Please enter a valid email.'; return; }
-  if(!pass || pass.length < 8){ errEl.textContent = 'Password must be at least 8 characters.'; return; }
-  btn.disabled = true;
-  btn.textContent = 'Creating account...';
-  var sb = getSB();
-  if(!sb){ errEl.textContent = 'Connection issue — check your signal and try again.'; btn.disabled=false; btn.textContent='Create My Account →'; return; }
-  sb.auth.signUp({ email, password: pass, options: { data: { full_name: name } } })
-    .then(function(res){
-      if(res.error){ errEl.textContent = res.error.message; btn.disabled=false; btn.textContent='Create My Account →'; return; }
-      _currentUser = res.data.user;
-      // If promo code entered, validate and apply it
-      if(promo && _currentUser){
-        validatePromoCode(promo, _currentUser.id).then(function(valid){
-          if(valid){
-            _currentPlan = 'core';
-            localStorage.setItem('fh_plan','core');
-            errEl.style.color = '#3D9E8C';
-            errEl.textContent = '✓ Beta access activated!';
-          }
-          setTimeout(function(){ _isNewUser=true; onAuthSuccess(_currentUser); }, valid ? 1200 : 0);
-        });
-      } else {
-        _isNewUser=true; onAuthSuccess(_currentUser);
-      }
-    })
-    .catch(function(e){ errEl.textContent = e.message; btn.disabled=false; btn.textContent='Create My Account →'; });
+var name  = document.getElementById(‘su-name’).value.trim();
+var email = document.getElementById(‘su-email’).value.trim();
+var pass  = document.getElementById(‘su-pass’).value;
+var promo = document.getElementById(‘su-promo’) ? document.getElementById(‘su-promo’).value.trim().toUpperCase() : ‘’;
+var btn   = document.getElementById(‘su-btn’);
+var errEl = document.getElementById(‘authErr’);
+errEl.textContent = ‘’;
+if(!name){ errEl.textContent = ‘Please enter your first name.’; return; }
+if(!email || !email.includes(’@’)){ errEl.textContent = ‘Please enter a valid email.’; return; }
+if(!pass || pass.length < 8){ errEl.textContent = ‘Password must be at least 8 characters.’; return; }
+btn.disabled = true;
+btn.textContent = ‘Creating account…’;
+var sb = getSB();
+if(!sb){ errEl.textContent = ‘Connection issue — check your signal and try again.’; btn.disabled=false; btn.textContent=‘Create My Account →’; return; }
+sb.auth.signUp({ email, password: pass, options: { data: { full_name: name } } })
+.then(function(res){
+if(res.error){ errEl.textContent = res.error.message; btn.disabled=false; btn.textContent=‘Create My Account →’; return; }
+_currentUser = res.data.user;
+// If promo code entered, validate and apply it
+if(promo && _currentUser){
+validatePromoCode(promo, _currentUser.id).then(function(valid){
+if(valid){
+_currentPlan = ‘core’;
+localStorage.setItem(‘fh_plan’,‘core’);
+errEl.style.color = ‘#3D9E8C’;
+errEl.textContent = ‘✓ Beta access activated!’;
+}
+setTimeout(function(){ _isNewUser=true; onAuthSuccess(_currentUser); }, valid ? 1200 : 0);
+});
+} else {
+_isNewUser=true; onAuthSuccess(_currentUser);
+}
+})
+.catch(function(e){ errEl.textContent = e.message; btn.disabled=false; btn.textContent=‘Create My Account →’; });
 }
 
 async function validatePromoCode(code, userId){
-  var sb = getSB();
-  if(!sb) return false;
-  // Valid beta codes
-  var VALID_CODES = ['BETAFLOWHER2026','FLOWHERBETA','BETA2026'];
-  if(!VALID_CODES.includes(code)) return false;
-  // Set plan to core in Supabase
-  var expiry = new Date();
-  expiry.setDate(expiry.getDate() + 90);
-  var res = await sb.from('profiles').update({ 
-    plan: 'core', 
-    beta_expiry: expiry.toISOString(),
-    promo_code: code 
-  }).eq('id', userId);
-  if(res.error){ console.error('Promo update error:', res.error); return false; }
-  return true;
+var sb = getSB();
+if(!sb) return false;
+// Valid beta codes
+var VALID_CODES = [‘BETAFLOWHER2026’,‘FLOWHERBETA’,‘BETA2026’];
+if(!VALID_CODES.includes(code)) return false;
+// Set plan to core in Supabase
+var expiry = new Date();
+expiry.setDate(expiry.getDate() + 90);
+var res = await sb.from(‘profiles’).update({
+plan: ‘core’,
+beta_expiry: expiry.toISOString(),
+promo_code: code
+}).eq(‘id’, userId);
+if(res.error){ console.error(‘Promo update error:’, res.error); return false; }
+return true;
 }
 
 // ── Password Reset ────────────────────────────────────────────────
 async function doReset(){
-  var email = document.getElementById('rs-email').value.trim();
-  var btn   = document.getElementById('rs-btn');
-  var errEl = document.getElementById('authErr');
-  var okEl  = document.getElementById('authOk');
-  errEl.textContent = '';
-  if(!email){ errEl.textContent = 'Please enter your email address.'; return; }
-  btn.textContent = 'Sending...'; btn.disabled = true;
-  try {
-    var sb = getSB();
-    var res = await sb.auth.resetPasswordForEmail(email, {
-      redirectTo: 'https://flowherapp.com/?reset=true'
-    });
-    if(res.error){ errEl.textContent = res.error.message; }
-    else { okEl.textContent = 'Reset link sent! Check your email inbox.'; }
-    btn.textContent = 'Send Reset Link →'; btn.disabled=false;
-  } catch(e){
-    errEl.textContent = 'Something went sideways — try again in a moment.';
-    btn.textContent = 'Send Reset Link →'; btn.disabled=false;
-  }
+var email = document.getElementById(‘rs-email’).value.trim();
+var btn   = document.getElementById(‘rs-btn’);
+var errEl = document.getElementById(‘authErr’);
+var okEl  = document.getElementById(‘authOk’);
+errEl.textContent = ‘’;
+if(!email){ errEl.textContent = ‘Please enter your email address.’; return; }
+btn.textContent = ‘Sending…’; btn.disabled = true;
+try {
+var sb = getSB();
+var res = await sb.auth.resetPasswordForEmail(email, {
+redirectTo: ‘https://flowherapp.com/?reset=true’
+});
+if(res.error){ errEl.textContent = res.error.message; }
+else { okEl.textContent = ‘Reset link sent! Check your email inbox.’; }
+btn.textContent = ‘Send Reset Link →’; btn.disabled=false;
+} catch(e){
+errEl.textContent = ‘Something went sideways — try again in a moment.’;
+btn.textContent = ‘Send Reset Link →’; btn.disabled=false;
+}
 }
 
 // ── Sign Out ──────────────────────────────────────────────────────
 async function doSignOut(){
-  try {
-    var sb = getSB();
-    if(sb) await sb.auth.signOut();
-  } catch(e){ /* ignore */ }
-  _currentUser = null;
-  _currentPlan = 'free';
-  localStorage.removeItem('fh_plan');
-  localStorage.removeItem('fh_name');
-  document.getElementById('appShell').style.display='none';
-  document.getElementById('landing').style.display='none';
-  document.getElementById('authScreen').classList.add('show');
-  authTab('signin');
+try {
+var sb = getSB();
+if(sb) await sb.auth.signOut();
+} catch(e){ /* ignore */ }
+_currentUser = null;
+_currentPlan = ‘free’;
+localStorage.removeItem(‘fh_plan’);
+localStorage.removeItem(‘fh_name’);
+document.getElementById(‘appShell’).style.display=‘none’;
+document.getElementById(‘landing’).style.display=‘none’;
+document.getElementById(‘authScreen’).classList.add(‘show’);
+authTab(‘signin’);
 }
 
 // ── Called after successful auth ──────────────────────────────────
 function onAuthSuccess(){
-  // Check if came back from payment
-  var params = new URLSearchParams(window.location.search);
-  if(params.get('payment') === 'success'){
-    // Re-fetch plan in case webhook already updated it
-    if(_currentUser){
-      fetchUserPlan(_currentUser.id).then(function(){
-        window.history.replaceState({}, '', '/');
-        showPaymentBanner();
-        launchApp();
-      });
-    } else {
-      window.history.replaceState({}, '', '/');
-      launchApp();
-    }
-  } else {
-    launchApp();
-  }
+// Check if came back from payment
+var params = new URLSearchParams(window.location.search);
+if(params.get(‘payment’) === ‘success’){
+// Re-fetch plan in case webhook already updated it
+if(_currentUser){
+fetchUserPlan(_currentUser.id).then(function(){
+window.history.replaceState({}, ‘’, ‘/’);
+showPaymentBanner();
+launchApp();
+});
+} else {
+window.history.replaceState({}, ‘’, ‘/’);
+launchApp();
+}
+} else {
+launchApp();
+}
 }
 
 // ── Show payment success banner ───────────────────────────────────
 function showPaymentBanner(){
-  var banner = document.getElementById('paymentBanner');
-  if(banner){
-    banner.classList.add('show');
-    setTimeout(function(){ banner.classList.remove('show'); }, 6000);
-  }
+var banner = document.getElementById(‘paymentBanner’);
+if(banner){
+banner.classList.add(‘show’);
+setTimeout(function(){ banner.classList.remove(‘show’); }, 6000);
+}
 }
 
 // ── Go to Stripe with user email pre-filled ───────────────────────
 function goToStripe(e){
-  e.preventDefault();
-  var base = 'https://buy.stripe.com/14AaEX5DEaaa22ff5u8Ra01';
-  var email = _currentUser ? _currentUser.email : '';
-  var url = email ? base + '?prefilled_email=' + encodeURIComponent(email) : base;
-  window.open(url, '_blank');
-  closeGate();
+e.preventDefault();
+var base = ‘https://buy.stripe.com/14AaEX5DEaaa22ff5u8Ra01’;
+var email = _currentUser ? _currentUser.email : ‘’;
+var url = email ? base + ‘?prefilled_email=’ + encodeURIComponent(email) : base;
+window.open(url, ‘_blank’);
+closeGate();
 }
 
 // ── Check existing session on page load ──────────────────────────
 async function initAuth(){
-  var sb = getSB();
-  if(!sb){
-    // Supabase not loaded yet — allow guest/demo access
-    document.getElementById('authScreen').classList.remove('show');
-    return;
-  }
-  try {
-    var res = await sb.auth.getSession();
-    if(res.data && res.data.session && res.data.session.user){
-      _currentUser = res.data.session.user;
-      await fetchUserPlan(_currentUser.id);
-      // Check URL params
-      var params = new URLSearchParams(window.location.search);
-      if(params.get('payment') === 'success'){
-        window.history.replaceState({}, '', '/');
-        showPaymentBanner();
-      }
-      // Already logged in — go straight to landing (they tap Open App to enter)
-      document.getElementById('authScreen').classList.remove('show');
-    }
-    // Listen for auth changes (e.g. email confirmation, password reset)
-    sb.auth.onAuthStateChange(async function(event, session){
-      if(event === 'SIGNED_IN' && session){
-        _currentUser = session.user;
-        await fetchUserPlan(_currentUser.id);
-        document.getElementById('authScreen').classList.remove('show');
-      } else if(event === 'PASSWORD_RECOVERY'){
-        // Show password reset UI
-        document.getElementById('authScreen').classList.add('show');
-        authTab('reset');
-      } else if(event === 'SIGNED_OUT'){
-        _currentUser = null;
-        _currentPlan = 'free';
-      }
-    });
-  } catch(e){
-    console.error('initAuth error:', e);
-    document.getElementById('authScreen').classList.remove('show');
-  }
+var sb = getSB();
+if(!sb){
+// Supabase not loaded yet — allow guest/demo access
+document.getElementById(‘authScreen’).classList.remove(‘show’);
+return;
+}
+try {
+var res = await sb.auth.getSession();
+if(res.data && res.data.session && res.data.session.user){
+_currentUser = res.data.session.user;
+await fetchUserPlan(_currentUser.id);
+// Check URL params
+var params = new URLSearchParams(window.location.search);
+if(params.get(‘payment’) === ‘success’){
+window.history.replaceState({}, ‘’, ‘/’);
+showPaymentBanner();
+}
+// Already logged in — go straight to landing (they tap Open App to enter)
+document.getElementById(‘authScreen’).classList.remove(‘show’);
+}
+// Listen for auth changes (e.g. email confirmation, password reset)
+sb.auth.onAuthStateChange(async function(event, session){
+if(event === ‘SIGNED_IN’ && session){
+_currentUser = session.user;
+await fetchUserPlan(_currentUser.id);
+document.getElementById(‘authScreen’).classList.remove(‘show’);
+} else if(event === ‘PASSWORD_RECOVERY’){
+// Show password reset UI
+document.getElementById(‘authScreen’).classList.add(‘show’);
+authTab(‘reset’);
+} else if(event === ‘SIGNED_OUT’){
+_currentUser = null;
+_currentPlan = ‘free’;
+}
+});
+} catch(e){
+console.error(‘initAuth error:’, e);
+document.getElementById(‘authScreen’).classList.remove(‘show’);
+}
 }
 
 // ── Plan gate helpers ────────────────────────────────────────────
 function showGate(featureName){
-  var overlay = document.getElementById('gateOverlay');
-  var desc = document.getElementById('gateFeatureDesc');
-  if(desc) desc.textContent = (featureName||'This feature') + ' is a Core feature — unlock everything FlowHer was built to do for women whose brains are done being underserved.';
-  if(overlay) overlay.classList.add('show');
+var overlay = document.getElementById(‘gateOverlay’);
+var desc = document.getElementById(‘gateFeatureDesc’);
+if(desc) desc.textContent = (featureName||‘This feature’) + ’ is a Core feature — unlock everything FlowHer was built to do for women whose brains are done being underserved.’;
+if(overlay) overlay.classList.add(‘show’);
 }
 function closeGate(){
-  var overlay = document.getElementById('gateOverlay');
-  if(overlay) overlay.classList.remove('show');
+var overlay = document.getElementById(‘gateOverlay’);
+if(overlay) overlay.classList.remove(‘show’);
 }
 function gateTab(tabName, featureName){
-  if(isCore()){ aTab(tabName); } else { showGate(featureName); }
+if(isCore()){ aTab(tabName); } else { showGate(featureName); }
 }
 
 // ── VIEW ROUTER ──────────────────────────────────────────────
 function showView(view) {
-  document.getElementById('landing').style.display = view === 'landing' ? 'block' : 'none';
-  var fp = document.getElementById('foundingPage');
-  if (fp) fp.style.display = view === 'founding' ? 'block' : 'none';
-  var shell = document.getElementById('appShell');
-  if (view !== 'app') shell.style.display = 'none';
-  if (view === 'founding') { document.documentElement.scrollTop = 0; if(fp) fp.scrollTop = 0; window.scrollTo(0,0); }
-  if (view === 'app') launchApp();
+document.getElementById(‘landing’).style.display = view === ‘landing’ ? ‘block’ : ‘none’;
+var fp = document.getElementById(‘foundingPage’);
+if (fp) fp.style.display = view === ‘founding’ ? ‘block’ : ‘none’;
+var shell = document.getElementById(‘appShell’);
+if (view !== ‘app’) shell.style.display = ‘none’;
+if (view === ‘founding’) { document.documentElement.scrollTop = 0; if(fp) fp.scrollTop = 0; window.scrollTo(0,0); }
+if (view === ‘app’) launchApp();
 }
 
 // ── FOUNDING TOGGLE ───────────────────────────────────────────
-var STRIPE_MONTHLY = 'https://buy.stripe.com/14AaEX5DEaaa22ff5u8Ra01';
-var STRIPE_ANNUAL  = 'https://buy.stripe.com/00w7sLd666XY22fbTi8Ra00';
+var STRIPE_MONTHLY = ‘https://buy.stripe.com/14AaEX5DEaaa22ff5u8Ra01’;
+var STRIPE_ANNUAL  = ‘https://buy.stripe.com/00w7sLd666XY22fbTi8Ra00’;
 function setToggle(plan) {
-  var isAnnual = plan === 'annual';
-  var b1 = document.getElementById('btnMonthly');
-  var b2 = document.getElementById('btnAnnual');
-  if (b1) b1.classList.toggle('active', !isAnnual);
-  if (b2) b2.classList.toggle('active', isAnnual);
-  var pn = document.getElementById('priceNum');
-  var pc = document.getElementById('priceCents');
-  var pp = document.getElementById('pricePeriod');
-  var an = document.getElementById('annualNote');
-  var rn = document.getElementById('regularNote');
-  var cb = document.getElementById('ctaBtn');
-  var cs = document.getElementById('ctaSub');
-  if (pn) pn.textContent = isAnnual ? '299' : '24';
-  if (pc) pc.textContent = isAnnual ? '' : '.99';
-  if (pp) pp.textContent = isAnnual ? '/year' : '/month';
-  if (an) an.style.display = isAnnual ? 'block' : 'none';
-  if (rn) rn.innerHTML = isAnnual ? 'After 200 spots: <span>$399/yr</span> · Never increases' : 'After 200 spots: <span>$39.99/mo</span> · Never increases';
-  if (cb) { cb.href = isAnnual ? STRIPE_ANNUAL : STRIPE_MONTHLY; cb.textContent = isAnnual ? 'Claim My Annual Founding Spot →' : 'Claim My Founding Member Spot →'; }
-  if (cs) cs.innerHTML = isAnnual ? 'Billed as $299 today · Renews annually · Rate locked forever' : 'Secure payment via Stripe · Cancel anytime · Rate locked forever';
+var isAnnual = plan === ‘annual’;
+var b1 = document.getElementById(‘btnMonthly’);
+var b2 = document.getElementById(‘btnAnnual’);
+if (b1) b1.classList.toggle(‘active’, !isAnnual);
+if (b2) b2.classList.toggle(‘active’, isAnnual);
+var pn = document.getElementById(‘priceNum’);
+var pc = document.getElementById(‘priceCents’);
+var pp = document.getElementById(‘pricePeriod’);
+var an = document.getElementById(‘annualNote’);
+var rn = document.getElementById(‘regularNote’);
+var cb = document.getElementById(‘ctaBtn’);
+var cs = document.getElementById(‘ctaSub’);
+if (pn) pn.textContent = isAnnual ? ‘299’ : ‘24’;
+if (pc) pc.textContent = isAnnual ? ‘’ : ‘.99’;
+if (pp) pp.textContent = isAnnual ? ‘/year’ : ‘/month’;
+if (an) an.style.display = isAnnual ? ‘block’ : ‘none’;
+if (rn) rn.innerHTML = isAnnual ? ‘After 200 spots: <span>$399/yr</span> · Never increases’ : ‘After 200 spots: <span>$39.99/mo</span> · Never increases’;
+if (cb) { cb.href = isAnnual ? STRIPE_ANNUAL : STRIPE_MONTHLY; cb.textContent = isAnnual ? ‘Claim My Annual Founding Spot →’ : ‘Claim My Founding Member Spot →’; }
+if (cs) cs.innerHTML = isAnnual ? ‘Billed as $299 today · Renews annually · Rate locked forever’ : ‘Secure payment via Stripe · Cancel anytime · Rate locked forever’;
 }
 
 // ── PRICING TOGGLE ────────────────────────────────────────────
 
 function showOnboarding(name) {
-  document.getElementById('ob-name').textContent = name || 'friend';
-  var modal = document.getElementById('onboardingModal');
-  modal.style.display = 'flex';
+document.getElementById(‘ob-name’).textContent = name || ‘friend’;
+var modal = document.getElementById(‘onboardingModal’);
+modal.style.display = ‘flex’;
 }
 
 function obNext(step) {
-  // Hide all steps
-  document.querySelectorAll('.ob-step').forEach(function(s){ s.style.display='none'; });
-  document.querySelectorAll('.ob-dot').forEach(function(d,i){ d.classList.toggle('active', i===step); });
-  document.getElementById('ob-step-'+step).style.display = 'block';
+// Hide all steps
+document.querySelectorAll(’.ob-step’).forEach(function(s){ s.style.display=‘none’; });
+document.querySelectorAll(’.ob-dot’).forEach(function(d,i){ d.classList.toggle(‘active’, i===step); });
+document.getElementById(‘ob-step-’+step).style.display = ‘block’;
 }
 
 function obSelect(el, group) {
-  document.querySelectorAll('[data-val]').forEach(function(b){
-    if(b.closest('#ob-step-1')) b.classList.remove('selected');
-  });
-  el.classList.add('selected');
-  _obBrain = el.dataset.val;
+document.querySelectorAll(’[data-val]’).forEach(function(b){
+if(b.closest(’#ob-step-1’)) b.classList.remove(‘selected’);
+});
+el.classList.add(‘selected’);
+_obBrain = el.dataset.val;
 }
 
 function obToggle(el) {
-  el.classList.toggle('selected');
-  var val = el.dataset.val;
-  var idx = _obGoals.indexOf(val);
-  if(idx > -1) _obGoals.splice(idx,1);
-  else _obGoals.push(val);
+el.classList.toggle(‘selected’);
+var val = el.dataset.val;
+var idx = _obGoals.indexOf(val);
+if(idx > -1) _obGoals.splice(idx,1);
+else _obGoals.push(val);
 }
 
 function obFinish() {
-  // Save preferences to localStorage
-  localStorage.setItem('fh_ob_brain', _obBrain);
-  localStorage.setItem('fh_ob_goals', JSON.stringify(_obGoals));
-  localStorage.setItem('fh_onboarded', 'true');
+// Save preferences to localStorage
+localStorage.setItem(‘fh_ob_brain’, _obBrain);
+localStorage.setItem(‘fh_ob_goals’, JSON.stringify(_obGoals));
+localStorage.setItem(‘fh_onboarded’, ‘true’);
 
-  // Close modal
-  document.getElementById('onboardingModal').style.display = 'none';
+// Close modal
+document.getElementById(‘onboardingModal’).style.display = ‘none’;
 
-  // Navigate to most relevant tab based on goals
-  var firstGoal = _obGoals[0] || 'focus';
-  var tabMap = {
-    focus: 'nb-focus',
-    work: 'nb-work',
-    emotions: 'nb-focus',
-    confidence: 'nb-wins',
-    unmask: 'nb-unmask'
-  };
-  var targetTab = tabMap[firstGoal] || 'nb-home';
-  var tabEl = document.getElementById(targetTab);
-  if(tabEl) tabEl.click();
+// Navigate to most relevant tab based on goals
+var firstGoal = _obGoals[0] || ‘focus’;
+var tabMap = {
+focus: ‘nb-focus’,
+work: ‘nb-work’,
+emotions: ‘nb-focus’,
+confidence: ‘nb-wins’,
+unmask: ‘nb-unmask’
+};
+var targetTab = tabMap[firstGoal] || ‘nb-home’;
+var tabEl = document.getElementById(targetTab);
+if(tabEl) tabEl.click();
 }
 
 // ── WIN EXPORT ────────────────────────────────────────────────────────────────
 function exportWins(){
-  if(!wins || !wins.length){
-    alert('No wins logged yet. Add some wins first!');
-    return;
-  }
+if(!wins || !wins.length){
+alert(‘No wins logged yet. Add some wins first!’);
+return;
+}
 
-  var lines = [];
-  lines.push('MY FLOWHER WIN JOURNAL');
-  lines.push('Exported: ' + new Date().toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'}));
-  lines.push('Total Wins: ' + wins.length);
-  lines.push('');
-  lines.push('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-  lines.push('');
-  lines.push('"Your brain will try to forget these. This file will not."');
-  lines.push('— FlowHer');
-  lines.push('');
-  lines.push('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-  lines.push('');
+var lines = [];
+lines.push(‘MY FLOWHER WIN JOURNAL’);
+lines.push(‘Exported: ’ + new Date().toLocaleDateString(‘en-US’,{weekday:‘long’,year:‘numeric’,month:‘long’,day:‘numeric’}));
+lines.push(‘Total Wins: ’ + wins.length);
+lines.push(’’);
+lines.push(‘━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━’);
+lines.push(’’);
+lines.push(’“Your brain will try to forget these. This file will not.”’);
+lines.push(’— FlowHer’);
+lines.push(’’);
+lines.push(‘━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━’);
+lines.push(’’);
 
-  // Group by month
-  var byMonth = {};
-  wins.forEach(function(w){
-    var month = w.date ? w.date.split(' ').slice(0,2).join(' ') : 'Undated';
-    if(!byMonth[month]) byMonth[month] = [];
-    byMonth[month].push(w);
-  });
+// Group by month
+var byMonth = {};
+wins.forEach(function(w){
+var month = w.date ? w.date.split(’ ‘).slice(0,2).join(’ ’) : ‘Undated’;
+if(!byMonth[month]) byMonth[month] = [];
+byMonth[month].push(w);
+});
 
-  Object.keys(byMonth).forEach(function(month){
-    lines.push('[ ' + month.toUpperCase() + ' ]');
-    lines.push('');
-    byMonth[month].forEach(function(w, i){
-      var cat = w.category ? ' [' + w.category + ']' : '';
-      lines.push('  ★ ' + w.text + cat);
-      lines.push('    ' + (w.date || ''));
-      lines.push('');
-    });
-    lines.push('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
-    lines.push('');
-  });
+Object.keys(byMonth).forEach(function(month){
+lines.push(’[ ’ + month.toUpperCase() + ’ ]’);
+lines.push(’’);
+byMonth[month].forEach(function(w, i){
+var cat = w.category ? ’ [’ + w.category + ‘]’ : ‘’;
+lines.push(’  ★ ’ + w.text + cat);
+lines.push(’    ’ + (w.date || ‘’));
+lines.push(’’);
+});
+lines.push(‘━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━’);
+lines.push(’’);
+});
 
-  lines.push('');
-  lines.push('Generated by FlowHer™ — Built for Your Brain');
-  lines.push('flowherapp.com');
+lines.push(’’);
+lines.push(‘Generated by FlowHer™ — Built for Your Brain’);
+lines.push(‘flowherapp.com’);
 
-  var text = lines.join('\n');
-  var blob = new Blob([text], {type:'text/plain;charset=utf-8'});
-  var url = URL.createObjectURL(blob);
-  var a = document.createElement('a');
-  a.href = url;
-  a.download = 'FlowHer-Win-Journal-' + new Date().toISOString().slice(0,10) + '.txt';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
+var text = lines.join(’\n’);
+var blob = new Blob([text], {type:‘text/plain;charset=utf-8’});
+var url = URL.createObjectURL(blob);
+var a = document.createElement(‘a’);
+a.href = url;
+a.download = ‘FlowHer-Win-Journal-’ + new Date().toISOString().slice(0,10) + ‘.txt’;
+document.body.appendChild(a);
+a.click();
+document.body.removeChild(a);
+URL.revokeObjectURL(url);
 }
 </script>
 
@@ -3051,10 +3054,4 @@ function trackFoundingClick() {
   var email = _currentUser ? _currentUser.email : '';
   var isAnnual = document.getElementById('btnAnnual') && document.getElementById('btnAnnual').classList.contains('active');
   var base = isAnnual ? 'https://buy.stripe.com/00w7sLd666XY22fbTi8Ra00' : 'https://buy.stripe.com/14AaEX5DEaaa22ff5u8Ra01';
-  var btn = document.getElementById('ctaBtn');
-  if (btn) btn.href = email ? base + '?prefilled_email=' + encodeURIComponent(email) : base;
-}
-</script>
-
-</body>
-</html>
+  var btn = docum
