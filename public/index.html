@@ -1311,146 +1311,14 @@ function toggleFaq(el) {
     <div class="a-hdr"><div class="a-logo"><svg width="138" height="32" viewBox="0 0 138 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;pointer-events:none;"><defs><linearGradient id="lg_a2" x1="0" y1="16" x2="25" y2="16" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#C45BAA"/><stop offset="100%" stop-color="#2D7D6E"/></linearGradient></defs><path d="M2 16 Q5.5 7 9 16 Q12.5 25 16 16 Q19.5 7 23 16" stroke="url(#lg_a2)" stroke-width="2.2" fill="none" stroke-linecap="round"/><circle cx="2" cy="16" r="2.2" fill="#C45BAA"/><circle cx="23" cy="16" r="2.2" fill="#2D7D6E"/><text x="31" y="22" font-family="Cormorant Garamond,serif" font-size="21" font-weight="600" fill="#f0e6ff">Flow</text><text x="75" y="22" font-family="Cormorant Garamond,serif" font-size="21" font-weight="300" fill="#C45BAA" font-style="italic">Her</text><text x="110" y="11" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(240,230,255,0.35)">&#8482;</text></svg></div><button class="a-btn a-btn-sm" style="color:#E85C5C;border-color:rgba(232,92,92,0.4);font-size:10px;" onclick="openSOS()">SOS</button></div>
     <div class="a-pg-title">Focus Toolkit</div>
     <div class="a-pg-sub">No shame in needing structure. Built for how your brain actually works.</div>
-    <div class="a-card locked-card" onclick="showGate('Body Double Mode')"><span class="a-lbl a-lbl-rose">Brain Dump</span><div style="font-size:12px;color:rgba(240,230,255,0.35);margin-bottom:10px;">Everything in your head. No order. No judgment.</div><textarea class="a-inp a-ta" id="brainDump" placeholder="Start typing..."></textarea><div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;"><div style="font-size:11px;color:rgba(240,230,255,0.3);" id="wordCount">0 words out of your head</div><button class="a-btn a-btn-sm a-btn-rose" onclick="clearDump()">Clear</button></div></div>
-    <div class="a-card locked-card" onclick="showGate('Email Drafting Assistant')"><span class="a-lbl">Priority Triage — Just 3</span><div style="font-size:12px;color:rgba(240,230,255,0.35);margin-bottom:14px;">What HAS to happen today?</div><div id="priorities"></div><div id="triagedMsg" style="display:none;" class="a-resp">That's your day. Everything else is noise until these are done.</div></div>
-    <div class="a-card a-card-teal locked-card" onclick="showGate('Conversation Script Generator')"><span class="a-lbl a-lbl-teal">Smallest Step Engine</span><div style="font-size:12px;color:rgba(240,230,255,0.35);margin-bottom:12px;">Paralyzed by a task? Tell me what it is.</div><textarea class="a-inp a-ta a-ta-sm" id="bigTask" placeholder="What's the task that's paralyzing you right now?"></textarea><button class="a-btn-fill" onclick="if(!isCore()){showGate('Smallest Step Engine');return;}smallestStep()" id="stepBtn" style="margin-top:12px;width:100%;">Break It Down →</button><div id="stepResult" style="display:none;margin-top:12px;" class="a-result"></div></div>
-    <div class="a-card a-card-gold locked-card" onclick="showGate('RSD Toolkit')"><span class="a-lbl a-lbl-gold">⚡ Hyperfocus Capture</span><div style="font-size:12px;color:rgba(240,230,255,0.35);margin-bottom:12px;">The hyperfocus hit? Lock in and ride the wave.</div><div id="hfInput"><input class="a-inp" id="hfTask" placeholder="What are you hyperfocused on?" style="margin-bottom:10px;"><button class="a-btn a-btn-sm a-btn-gold hf-pulse" onclick="if(!isCore()){showGate('⚡ Hyperfocus Capture');return;}startHF()" style="display:block;width:100%;padding:12px;">Lock In ⚡</button></div><div id="hfActive" style="display:none;text-align:center;padding:10px 0;"><div style="font-size:11px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:6px;">Riding the wave</div><div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:rgba(240,230,255,0.8);margin-bottom:14px;" id="hfShow"></div><div style="font-size:36px;font-weight:300;color:var(--gold);letter-spacing:3px;font-family:'DM Sans',sans-serif;margin-bottom:12px;" id="hfClock">00:00</div><button class="a-btn a-btn-sm a-btn-gold" onclick="stopHF()">Done — Log This Session</button></div></div>
-    <div class="a-card a-card-gold locked-card" onclick="showGate('Your Legal Rights at Work')"><span class="a-lbl a-lbl-gold">⏱ Time Blindness Corrector</span>
-      <div style="font-size:12px;color:rgba(240,230,255,0.35);margin-bottom:14px;line-height:1.6;">Your brain lies about time. This learns YOUR personal multiplier so you can plan for how your brain actually works — not how it thinks it does.</div>
-      <div id="tbc-log">
-        <input class="a-inp" id="tbc-task" placeholder="Task name" style="margin-bottom:8px;">
-        <div style="display:flex;gap:8px;align-items:center;margin-bottom:12px;">
-          <input class="a-inp" id="tbc-estimate" type="number" placeholder="You think: ? min" min="1" style="flex:1;">
-          <div style="font-size:12px;color:rgba(240,230,255,0.3);white-space:nowrap;">minutes</div>
-        </div>
-        <button class="a-btn-fill" onclick="if(!isCore()){showGate('⏱ Time Blindness Corrector');return;}tbcStart()" style="width:100%;background:linear-gradient(135deg,#3a2a00,var(--gold));">Start Timer →</button>
+    <!-- FOCUS TOOL PICKER (shown when no tool selected) -->
+    <div id="focus-picker">
+      <div style="padding:4px 0 20px;">
+        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,91,170,0.6);font-family:'DM Sans',sans-serif;margin-bottom:6px;">What do you need right now?</div>
+        <div style="font-size:12px;color:rgba(240,230,255,0.35);font-family:'DM Sans',sans-serif;">Pick one. Just one.</div>
       </div>
-      <div id="tbc-timing" style="display:none;text-align:center;padding:10px 0;">
-        <div style="font-size:11px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:6px;">Timer Running</div>
-        <div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:rgba(240,230,255,0.7);margin-bottom:12px;" id="tbc-task-show"></div>
-        <div style="font-size:44px;font-weight:300;color:var(--gold);font-family:'DM Mono',monospace;letter-spacing:3px;margin-bottom:16px;" id="tbc-clock">00:00</div>
-        <div style="font-size:12px;color:rgba(240,230,255,0.35);margin-bottom:16px;">You estimated: <span id="tbc-est-show" style="color:var(--gold);font-family:'DM Mono',monospace;"></span> min</div>
-        <button class="a-btn a-btn-sm a-btn-gold" onclick="tbcStop()">Done — Log Actual Time</button>
-      </div>
-      <div id="tbc-results" style="margin-top:14px;"></div>
-    </div>
-    <div class="a-card a-card-teal locked-card" onclick="showGate('Imposter Shield')"><span class="a-lbl a-lbl-teal">Body Double Mode</span><div style="font-size:12px;color:rgba(240,230,255,0.35);margin-bottom:12px;">You're not alone in this. Set your task. I'll sit with you.</div><div id="bdInput"><input class="a-inp" id="bdTask" placeholder="What are you working on?" style="margin-bottom:10px;"><button class="a-btn a-btn-sm a-btn-teal" onclick="if(!isCore()){showGate('Body Double Mode');return;}startBD()" style="display:block;width:100%;padding:12px;">Work Together →</button></div><div id="bdActive" style="display:none;text-align:center;padding:10px 0;"><div style="font-size:11px;color:var(--teal);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px;">Working on</div><div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:rgba(240,230,255,0.8);margin-bottom:14px;" id="bdShow"></div><div style="font-size:40px;font-weight:300;color:var(--teal);letter-spacing:4px;font-family:'DM Sans',sans-serif;margin-bottom:8px;" id="bdClock">25:00</div><div style="font-size:12px;color:rgba(240,230,255,0.35);margin-bottom:16px;font-style:italic;">I'm here. Keep going.</div><div style="display:flex;gap:10px;justify-content:center;"><button class="a-btn a-btn-sm a-btn-teal" onclick="toggleBD()" id="bdToggle">⏸ Pause</button><button class="a-btn a-btn-sm a-btn-rose" onclick="stopBD()">Done ✓</button></div></div></div>
-  </div>
-
-  <!-- WORK -->
-
-  <div class="a-screen" id="as-work" style="display:none">
-    <div class="a-hdr"><div class="a-logo"><svg width="138" height="32" viewBox="0 0 138 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;pointer-events:none;"><defs><linearGradient id="lg_a3" x1="0" y1="16" x2="25" y2="16" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#C45BAA"/><stop offset="100%" stop-color="#2D7D6E"/></linearGradient></defs><path d="M2 16 Q5.5 7 9 16 Q12.5 25 16 16 Q19.5 7 23 16" stroke="url(#lg_a3)" stroke-width="2.2" fill="none" stroke-linecap="round"/><circle cx="2" cy="16" r="2.2" fill="#C45BAA"/><circle cx="23" cy="16" r="2.2" fill="#2D7D6E"/><text x="31" y="22" font-family="Cormorant Garamond,serif" font-size="21" font-weight="600" fill="#f0e6ff">Flow</text><text x="75" y="22" font-family="Cormorant Garamond,serif" font-size="21" font-weight="300" fill="#C45BAA" font-style="italic">Her</text><text x="110" y="11" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(240,230,255,0.35)">&#8482;</text></svg></div><button class="a-btn a-btn-sm" style="color:#E85C5C;border-color:rgba(232,92,92,0.4);font-size:10px;" onclick="openSOS()">SOS</button></div>
-    <div class="a-pg-title">Workplace Survival</div>
-    <div class="a-pg-sub">Corporate wasn't designed for your brain. These tools help you work it anyway.</div>
-    <div style="display:flex;gap:8px;padding:0 22px;margin-bottom:16px;overflow-x:auto;position:relative;z-index:1;">
-      <button class="a-chip on" id="wt-email" onclick="wTab('email')">✉️ Email</button>
-      <button class="a-chip" id="wt-script" onclick="wTab('script')">🎤 Script</button>
-      <button class="a-chip" id="wt-rsd" onclick="wTab('rsd')">🛡️ RSD</button>
-      <button class="a-chip" id="wt-ada" onclick="wTab('ada')">⚖️ Rights</button>
-      <button class="a-chip" id="wt-meet" onclick="wTab('meet')">📋 Meetings</button>
-    </div>
-    <div id="wp-email">
-      <div class="a-card locked-card" onclick="showGate('Log a Win')"><span class="a-lbl">Email Drafting Assistant</span><div class="a-chips" id="eChips"><div class="a-chip" onclick="setET(this,'Following up on a request or meeting that hasn\'t been responded to')">Following Up</div><div class="a-chip" onclick="setET(this,'Setting a professional boundary around my workload or timeline without over-apologizing')">Set Boundary</div><div class="a-chip" onclick="setET(this,'Requesting a reasonable workplace accommodation without disclosing specifics')">Accommodation</div><div class="a-chip" onclick="setET(this,'Professionally pushing back on a decision I disagree with while staying respectful')">Push Back</div><div class="a-chip" onclick="setET(this,'Declining additional work due to capacity without guilt')">Decline Work</div><div class="a-chip" onclick="setET(this,'Requesting that my contributions be acknowledged or credited')">Request Credit</div></div><textarea class="a-inp a-ta a-ta-sm" id="emailCtx" placeholder="Describe your situation." style="margin-bottom:12px;"></textarea><button class="a-btn-fill" onclick="if(!isCore()){showGate('Email Drafting Assistant');return;}genEmail()" id="emailBtn" style="width:100%;">Draft My Email →</button><div id="emailRes" style="display:none;margin-top:14px;" class="a-result"></div></div>
-    </div>
-    <div id="wp-script" style="display:none">
-      <div class="a-card locked-card" onclick="showGate('Nervous System Reset')"><span class="a-lbl a-lbl-teal">Conversation Script Generator</span><div class="a-chips" id="sChips"><div class="a-chip a-chip-teal" onclick="setST(this,'Ask for a workplace accommodation')">Ask for accommodation</div><div class="a-chip a-chip-teal" onclick="setST(this,'Push back on extra work being assigned')">Push back on workload</div><div class="a-chip a-chip-teal" onclick="setST(this,'Address a conflict with a difficult colleague')">Address conflict</div><div class="a-chip a-chip-teal" onclick="setST(this,'Request that my work gets properly credited')">Request credit</div><div class="a-chip a-chip-teal" onclick="setST(this,'Set a boundary about my time or capacity')">Set a boundary</div><div class="a-chip a-chip-teal" onclick="setST(this,'Talk to my manager about feeling burned out')">Discuss burnout</div></div><textarea class="a-inp a-ta a-ta-sm" id="scriptCtx" placeholder="Who are you talking to? What happened?" style="margin-bottom:12px;"></textarea><button class="a-btn-fill" onclick="if(!isCore()){showGate('Conversation Script Generator');return;}genScript()" id="scriptBtn" style="width:100%;background:linear-gradient(135deg,#1a4a44,var(--teal));">Write My Script →</button><div id="scriptRes" style="display:none;margin-top:14px;" class="a-result"></div></div>
-    </div>
-    <div id="wp-rsd" style="display:none">
-      <div class="a-card a-card-rose locked-card" onclick="showGate('After You Write')"><span class="a-lbl a-lbl-rose">RSD Toolkit</span><div style="font-size:13px;color:rgba(240,230,255,0.6);margin-bottom:16px;line-height:1.7;">Rejection Sensitive Dysphoria is real. The pain of perceived rejection hits neurodivergent women disproportionately hard. Here's how to move through it.</div><div style="background:rgba(232,132,92,0.08);border-radius:12px;padding:14px;margin-bottom:12px;"><div style="font-size:12px;color:var(--rose);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;">Reality Check Tool</div><textarea class="a-inp a-ta a-ta-sm" id="rsdInput" placeholder="What happened? Write the facts only — no interpretations." style="margin-bottom:10px;"></textarea><button class="a-btn-fill" onclick="if(!isCore()){showGate('RSD Toolkit');return;}rsdCheck()" style="width:100%;background:linear-gradient(135deg,#5a1a0e,var(--rose));">Get a Reality Check →</button><div id="rsdRes" style="display:none;margin-top:12px;" class="a-result"></div></div><div style="background:rgba(232,132,92,0.08);border-radius:12px;padding:14px;"><div style="font-size:12px;color:var(--rose);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;">Grounding Reminders</div><div style="font-size:13px;color:rgba(240,230,255,0.65);line-height:1.9;">✦ Your worth is not decided in this moment<br>✦ One person's reaction is not your performance review<br>✦ RSD amplifies the signal — the situation is likely smaller than it feels<br>✦ Wait 20 minutes before responding to anything</div></div></div>
-    </div>
-    <div id="wp-ada" style="display:none">
-      <div class="a-card locked-card" onclick="showGate('Log a Masking Moment')"><span class="a-lbl a-lbl-rose">Your Legal Rights at Work</span><div style="font-size:13px;color:rgba(240,230,255,0.55);margin-bottom:14px;line-height:1.65;">Plain language. What you actually need to know.</div><div id="adaList"></div></div>
-    </div>
-    <div id="wp-meet" style="display:none">
-      <div class="a-card locked-card" onclick="showGate('Todaytheirs Masking Debt')"><span class="a-lbl" style="color:var(--blue);">Meeting Prep Checklist</span><div id="meetList"></div></div>
-      <div class="a-card a-card-teal" style="margin-top:0;"><span class="a-lbl a-lbl-teal">Imposter Shield</span><div style="font-size:13px;color:rgba(240,230,255,0.55);margin-bottom:12px;line-height:1.65;">Before you walk in that room — read this. These are facts about you.</div><div id="imposterWins" style="font-size:13px;color:rgba(240,230,255,0.7);line-height:1.8;font-style:italic;font-family:'Cormorant Garamond',serif;"></div><div style="margin-top:12px;padding:12px 14px;background:rgba(61,158,140,0.08);border-radius:10px;font-size:13px;color:rgba(240,230,255,0.65);line-height:1.65;">You have done hard things. You are doing one right now. You belong in every room you walk into.</div></div>
-      <div id="work-tool-meeting" class="work-tool-content" style="display:none;">
-        <div style="font-size:13px;color:rgba(240,230,255,0.45);margin-bottom:20px;line-height:1.6;">Tell FlowHer about your meeting. Walk in ready.</div>
 
 ```
-    <!-- Step 1: Meeting details -->
-    <div id="meetStep1">
-      <div style="margin-bottom:14px;">
-        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,91,170,0.7);font-family:'DM Sans',sans-serif;margin-bottom:8px;">What is this meeting about?</div>
-        <textarea class="a-inp a-ta a-ta-sm" id="meetTopic" placeholder="Weekly check-in, performance review, difficult conversation..." style="margin-bottom:0;"></textarea>
-      </div>
-      <div style="margin-bottom:14px;">
-        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,91,170,0.7);font-family:'DM Sans',sans-serif;margin-bottom:8px;">Who will be in the room?</div>
-        <input class="a-inp" id="meetPeople" placeholder="My manager, 3 teammates, a client..." style="margin-bottom:0;">
-      </div>
-      <div style="margin-bottom:20px;">
-        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,91,170,0.7);font-family:'DM Sans',sans-serif;margin-bottom:8px;">What do you need to walk away with?</div>
-        <input class="a-inp" id="meetGoal" placeholder="A decision, approval, clarity on my role..." style="margin-bottom:0;">
-      </div>
-
-      <!-- Anxiety level -->
-      <div style="margin-bottom:20px;">
-        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,91,170,0.7);font-family:'DM Sans',sans-serif;margin-bottom:10px;">How anxious are you about this?</div>
-        <div style="display:flex;gap:8px;" id="meetAnxiety">
-          <button class="meet-anx-btn" data-val="1" onclick="setMeetAnxiety(this)">😌 Calm</button>
-          <button class="meet-anx-btn" data-val="2" onclick="setMeetAnxiety(this)">😬 Nervous</button>
-          <button class="meet-anx-btn" data-val="3" onclick="setMeetAnxiety(this)">😰 Dreading it</button>
-        </div>
-      </div>
-
-      <button class="a-btn-fill" onclick="if(!isCore()){showGate('Meeting Mode');return;}genMeetingPrep()" id="meetBtn" style="width:100%;">Prep Me →</button>
-    </div>
-
-    <!-- Step 2: AI Response -->
-    <div id="meetResult" style="display:none;">
-      <div id="meetRes" class="a-result" style="margin-bottom:20px;"></div>
-      <button onclick="resetMeeting()" style="width:100%;padding:12px;background:transparent;border:1px solid rgba(196,91,170,0.25);border-radius:12px;color:rgba(196,91,170,0.8);font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;">← Prep another meeting</button>
-    </div>
-  </div>
-
-</div>
-```
-
-  </div>
-
-  <!-- WINS -->
-
-  <div class="a-screen" id="as-wins" style="display:none">
-    <div class="a-hdr"><div class="a-logo"><svg width="138" height="32" viewBox="0 0 138 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;pointer-events:none;"><defs><linearGradient id="lg_a4" x1="0" y1="16" x2="25" y2="16" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#C45BAA"/><stop offset="100%" stop-color="#2D7D6E"/></linearGradient></defs><path d="M2 16 Q5.5 7 9 16 Q12.5 25 16 16 Q19.5 7 23 16" stroke="url(#lg_a4)" stroke-width="2.2" fill="none" stroke-linecap="round"/><circle cx="2" cy="16" r="2.2" fill="#C45BAA"/><circle cx="23" cy="16" r="2.2" fill="#2D7D6E"/><text x="31" y="22" font-family="Cormorant Garamond,serif" font-size="21" font-weight="600" fill="#f0e6ff">Flow</text><text x="75" y="22" font-family="Cormorant Garamond,serif" font-size="21" font-weight="300" fill="#C45BAA" font-style="italic">Her</text><text x="110" y="11" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(240,230,255,0.35)">&#8482;</text></svg></div></div>
-    <div class="a-pg-title">Win Journal</div>
-    <div class="a-pg-sub">Your brain forgets wins faster than failures. Every entry is evidence of who you are.</div>
-    <div class="a-stats-row"><div class="a-stat-box"><div class="a-stat-num" style="color:var(--mag);" id="totalWins">0</div><div class="a-stat-lbl">Total Wins</div></div><div class="a-stat-box"><div class="a-stat-num" style="color:var(--teal);" id="monthWins">0</div><div class="a-stat-lbl">This Month</div></div></div>
-    <div class="a-card-glow locked-card" onclick="showGate('Your 7-Day Pattern')"><span class="a-lbl">Log a Win</span><div class="a-chips" id="wCatChips"><div class="a-chip on" onclick="setWC(this,'Professional')">Professional</div><div class="a-chip" onclick="setWC(this,'Brave Moment')">Brave Moment</div><div class="a-chip" onclick="setWC(this,'Showed Up')">Showed Up</div><div class="a-chip" onclick="setWC(this,'Problem Solved')">Problem Solved</div><div class="a-chip" onclick="setWC(this,'Personal')">Personal</div></div><textarea class="a-inp a-ta a-ta-sm" id="winText" placeholder="What did you do? Even if it felt small. Especially if it felt small." style="margin-bottom:12px;"></textarea><button class="a-btn-fill" onclick="if(!isCore()){showGate('Log a Win');return;}addWin()" style="width:100%;">Log This Win ★</button></div>
-    <div id="winsList"></div>
-
-```
-<!-- EXPORT BUTTON -->
-<div style="padding:16px 0 8px;">
-  <button onclick="if(!isCore()){showGate('Win Export');return;}exportWins()" style="width:100%;padding:14px;background:transparent;border:1px solid rgba(196,91,170,0.3);border-radius:14px;color:rgba(196,91,170,0.9);font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;">
-    <span>⬇</span> Download My Win Journal
-  </button>
-  <div style="font-size:11px;color:rgba(240,230,255,0.3);text-align:center;margin-top:8px;line-height:1.5;">Save as text file — use in performance reviews, therapy, or just for you.</div>
-</div>
-```
-
-  </div>
-
-  <!-- UNMASK -->
-
-  <div class="a-screen" id="as-unmask" style="display:none">
-    <div class="a-hdr"><div class="a-logo"><svg width="138" height="32" viewBox="0 0 138 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;pointer-events:none;"><defs><linearGradient id="lg_a5" x1="0" y1="16" x2="25" y2="16" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#C45BAA"/><stop offset="100%" stop-color="#2D7D6E"/></linearGradient></defs><path d="M2 16 Q5.5 7 9 16 Q12.5 25 16 16 Q19.5 7 23 16" stroke="url(#lg_a5)" stroke-width="2.2" fill="none" stroke-linecap="round"/><circle cx="2" cy="16" r="2.2" fill="#C45BAA"/><circle cx="23" cy="16" r="2.2" fill="#2D7D6E"/><text x="31" y="22" font-family="Cormorant Garamond,serif" font-size="21" font-weight="600" fill="#f0e6ff">Flow</text><text x="75" y="22" font-family="Cormorant Garamond,serif" font-size="21" font-weight="300" fill="#C45BAA" font-style="italic">Her</text><text x="110" y="11" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(240,230,255,0.35)">&#8482;</text></svg></div></div>
-    <div style="text-align:center;padding:4px 22px 16px;position:relative;z-index:1;"><div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:#f0e6ff;margin-bottom:6px;">The Unmask Space</div><div style="font-size:13px;color:rgba(240,230,255,0.35);line-height:1.65;">Private. Unfiltered. Just you.</div></div>
-    <div style="padding:0 22px;position:relative;z-index:1;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><div style="font-size:10px;color:rgba(240,230,255,0.2);letter-spacing:3px;text-transform:uppercase;">Only visible to you</div><button class="a-btn a-btn-sm" onclick="clearUnmask()" style="color:rgba(240,230,255,0.25);border-color:rgba(255,255,255,0.08);font-size:10px;">Clear</button></div><div id="unmaskEditor" style="position:relative;min-height:220px;background:rgba(196,91,170,0.04);border:1px solid rgba(196,91,170,0.12);border-radius:14px;padding:16px;cursor:text;" onclick="document.getElementById('unmaskText').focus()">
-  <div id="unmaskFadeWords" style="position:absolute;inset:0;padding:16px;pointer-events:none;overflow:hidden;"></div>
-  <textarea class="a-inp a-ta" id="unmaskText" placeholder="Say what you actually think. Feel what you actually feel. This stays here." style="min-height:188px;border:none;background:transparent;font-size:15px;line-height:1.8;padding:0;resize:none;position:relative;z-index:2;color:rgba(240,230,255,0.9);" oninput="unmaskTypeEffect(this)"></textarea>
-</div>
-<div style="font-size:11px;color:rgba(240,230,255,0.2);text-align:center;margin-top:8px;font-family:'DM Sans',sans-serif;">Words fade as you write. This is just for you.</div><div style="margin-top:10px;font-size:12px;color:rgba(240,230,255,0.18);text-align:center;line-height:1.6;">Stored only on this device. Never sent anywhere.</div></div>
-    <div class="a-card a-card-teal" style="margin-top:16px;"><span class="a-lbl a-lbl-teal">Nervous System Reset</span><div style="font-size:12px;color:rgba(240,230,255,0.35);margin-bottom:14px;">Under 3 minutes. Specifically for workplace dysregulation.</div><div id="nsrArea"><button class="a-btn a-btn-sm a-btn-teal" onclick="startNSR()" style="display:block;width:100%;padding:12px;">Start Reset →</button></div></div>
-
-```
-<!-- FOCUS TOOL PICKER (shown when no tool selected) -->
-<div id="focus-picker">
-  <div style="padding:4px 0 20px;">
-    <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,91,170,0.6);font-family:'DM Sans',sans-serif;margin-bottom:6px;">What do you need right now?</div>
-    <div style="font-size:12px;color:rgba(240,230,255,0.35);font-family:'DM Sans',sans-serif;">Pick one. Just one.</div>
-  </div>
-
   <div class="tool-pick-grid">
     <button class="tool-pick-btn" onclick="openFocusTool('brain-dump')">
       <span class="tool-pick-emoji">🧠</span>
@@ -1527,7 +1395,7 @@ function toggleFaq(el) {
     </div>
   </div>
 
-  <!-- WORK -->
+  </div>
 
   <div class="a-screen" id="as-work" style="display:none">
     <div class="a-hdr"><div class="a-logo"><svg width="138" height="32" viewBox="0 0 138 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;pointer-events:none;"><defs><linearGradient id="lg_a3" x1="0" y1="16" x2="25" y2="16" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#C45BAA"/><stop offset="100%" stop-color="#2D7D6E"/></linearGradient></defs><path d="M2 16 Q5.5 7 9 16 Q12.5 25 16 16 Q19.5 7 23 16" stroke="url(#lg_a3)" stroke-width="2.2" fill="none" stroke-linecap="round"/><circle cx="2" cy="16" r="2.2" fill="#C45BAA"/><circle cx="23" cy="16" r="2.2" fill="#2D7D6E"/><text x="31" y="22" font-family="Cormorant Garamond,serif" font-size="21" font-weight="600" fill="#f0e6ff">Flow</text><text x="75" y="22" font-family="Cormorant Garamond,serif" font-size="21" font-weight="300" fill="#C45BAA" font-style="italic">Her</text><text x="110" y="11" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(240,230,255,0.35)">&#8482;</text></svg></div><button class="a-btn a-btn-sm" style="color:#E85C5C;border-color:rgba(232,92,92,0.4);font-size:10px;" onclick="openSOS()">SOS</button></div>
@@ -2859,199 +2727,55 @@ async function genMeetingPrep() {
   var goal = document.getElementById('meetGoal').value.trim();
   if (!topic) { alert('Tell me what the meeting is about.'); return; }
 
-  var btn = document.getElementById('meetBtn');
-  btn.textContent = 'Preparing you...';
-  btn.disabled = true;
-
-  var anxContext = ['', 'You feel calm about this.', 'You feel nervous about this meeting.', 'You are dreading this meeting and may experience anxiety or RSD during it.'][_meetAnxLevel];
-
-  var prompt = `You are FlowHer, a compassionate AI assistant for neurodivergent professional women with ADHD.
-
-A woman needs help preparing for a meeting. ` + anxContext + `
-
-Meeting topic: ` + topic + `
-People in the room: ` + (people || 'Not specified') + `
-What she needs to walk away with: ` + (goal || 'Not specified') + `
-
-Generate a meeting prep card with exactly these sections — keep each section tight and actionable:
-
-**WALK IN KNOWING:**
-3 bullet points max. Key facts or context she should have top of mind.
-
-**YOUR ONE GOAL:**
-One sentence. The single most important outcome for her.
-
-**IF YOU FREEZE:**
-A 1-2 sentence script she can say out loud if her brain goes blank. Make it natural, not robotic.
-
-**IF YOU GET INTERRUPTED:**
-One sentence she can say to reclaim her space without confrontation.
-
-**AFTER THE MEETING:**
-One action she should take within 24 hours to follow through.
-
-Keep the tone warm, direct, and respectful of how her brain works. No corporate speak.`;
-
-  try {
-    var res = await callClaude(prompt, 600);
-    document.getElementById('meetStep1').style.display = 'none';
-    document.getElementById('meetResult').style.display = 'block';
-    // Format the response with styled sections
-    var formatted = res
-      .replace(/\*\*([^*]+)\*\*/g, function(m, p1) { return '<div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#C45BAA;font-weight:600;margin-top:16px;margin-bottom:6px;">' + p1 + '</div>'; })
-      .replace(/- /g, '<br>• ')
-      .replace(/\n/g, '<br>');
-    document.getElementById('meetRes').innerHTML = '<div style="font-size:13px;color:rgba(240,230,255,0.85);line-height:1.8;">' + formatted + '</div>';
-    } catch(e) {
-    document.getElementById('meetBtn').textContent = 'Prep Me →';
-    document.getElementById('meetBtn').disabled = false;
-  }
-}
-
-function resetMeeting() {
-  document.getElementById('meetTopic').value = '';
-  document.getElementById('meetPeople').value = '';
-  document.getElementById('meetGoal').value = '';
-  document.getElementById('meetStep1').style.display = 'block';
-  document.getElementById('meetResult').style.display = 'none';
-  document.getElementById('meetBtn').textContent = 'Prep Me →';
-  document.getElementById('meetBtn').disabled = false;
-  _meetAnxLevel = 1;
-  document.querySelectorAll('.meet-anx-btn').forEach(function(b){ b.classList.remove('selected'); });
+  var btn = document.getElementById('ctaBtn');
+  // Track click for analytics
+  console.log('Founding click:', isAnnual ? 'annual' : 'monthly', email);
 }
 </script>
 
+<!-- Onboarding Modal -->
+
+<div id="onboardingModal" style="display:none;position:fixed;inset:0;z-index:10000;background:rgba(10,5,22,0.97);backdrop-filter:blur(20px);align-items:center;justify-content:center;font-family:'DM Sans',sans-serif;">
+  <div style="max-width:380px;padding:32px 28px;text-align:center;">
+    <div style="font-size:32px;margin-bottom:16px;">💜</div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:#f0e6ff;margin-bottom:8px;">Welcome, <span id="ob-name">friend</span>.</div>
+    <div style="font-size:14px;color:rgba(240,230,255,0.5);line-height:1.7;margin-bottom:28px;">FlowHer was built for your brain. Let's set you up.</div>
+
+```
+<div class="ob-step" id="ob-step-0">
+  <div style="font-size:13px;color:rgba(240,230,255,0.6);margin-bottom:16px;">What brings you here?</div>
+  <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:24px;">
+    <button onclick="obSelect(this,'adhd')" data-val="adhd" style="padding:12px 16px;background:rgba(196,91,170,0.08);border:1px solid rgba(196,91,170,0.2);border-radius:12px;color:#f0e6ff;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;text-align:left;">⚡ ADHD</button>
+    <button onclick="obSelect(this,'anxiety')" data-val="anxiety" style="padding:12px 16px;background:rgba(61,158,140,0.08);border:1px solid rgba(61,158,140,0.2);border-radius:12px;color:#f0e6ff;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;text-align:left;">🌊 Anxiety</button>
+    <button onclick="obSelect(this,'burnout')" data-val="burnout" style="padding:12px 16px;background:rgba(61,16,82,0.15);border:1px solid rgba(61,16,82,0.3);border-radius:12px;color:#f0e6ff;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;text-align:left;">🕯️ Burnout</button>
+    <button onclick="obSelect(this,'other')" data-val="other" style="padding:12px 16px;background:rgba(138,127,141,0.08);border:1px solid rgba(138,127,141,0.2);border-radius:12px;color:#f0e6ff;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;text-align:left;">✦ Just wired differently</button>
+  </div>
+  <button onclick="obNext(1)" style="padding:14px 28px;background:linear-gradient(135deg,#3D1052,#C45BAA);color:white;border:none;border-radius:12px;font-size:14px;cursor:pointer;font-family:'DM Sans',sans-serif;width:100%;">Next →</button>
+  <div style="display:flex;justify-content:center;gap:8px;margin-top:16px;"><span class="ob-dot active" style="width:8px;height:8px;border-radius:50%;background:#C45BAA;"></span><span class="ob-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(196,91,170,0.25);"></span></div>
+</div>
+
+<div class="ob-step" id="ob-step-1" style="display:none;">
+  <div style="font-size:13px;color:rgba(240,230,255,0.6);margin-bottom:16px;">What do you need most right now?</div>
+  <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:24px;">
+    <button onclick="obToggle(this)" data-val="focus" style="padding:12px 16px;background:rgba(196,91,170,0.08);border:1px solid rgba(196,91,170,0.2);border-radius:12px;color:#f0e6ff;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;text-align:left;">🧠 Focus and task help</button>
+    <button onclick="obToggle(this)" data-val="work" style="padding:12px 16px;background:rgba(196,91,170,0.08);border:1px solid rgba(196,91,170,0.2);border-radius:12px;color:#f0e6ff;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;text-align:left;">💼 Workplace survival</button>
+    <button onclick="obToggle(this)" data-val="confidence" style="padding:12px 16px;background:rgba(196,91,170,0.08);border:1px solid rgba(196,91,170,0.2);border-radius:12px;color:#f0e6ff;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;text-align:left;">⭐ Confidence and wins</button>
+    <button onclick="obToggle(this)" data-val="unmask" style="padding:12px 16px;background:rgba(196,91,170,0.08);border:1px solid rgba(196,91,170,0.2);border-radius:12px;color:#f0e6ff;font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;text-align:left;">🌙 A safe space to be real</button>
+  </div>
+  <button onclick="obFinish()" style="padding:14px 28px;background:linear-gradient(135deg,#3D1052,#C45BAA);color:white;border:none;border-radius:12px;font-size:14px;cursor:pointer;font-family:'DM Sans',sans-serif;width:100%;">Let's go →</button>
+  <div style="display:flex;justify-content:center;gap:8px;margin-top:16px;"><span class="ob-dot" style="width:8px;height:8px;border-radius:50%;background:rgba(196,91,170,0.25);"></span><span class="ob-dot active" style="width:8px;height:8px;border-radius:50%;background:#C45BAA;"></span></div>
+</div>
+```
+
+  </div>
+</div>
+
 <script>
-// ── NOT TODAY ──────────────────────────────────────────────────────
-function activateNotToday() {
-  document.getElementById('notTodayCard').style.display = 'none';
-  document.getElementById('notTodayActive').style.display = 'block';
-  // Protect streak - mark today as a rest day so streak doesn't break
-  var today = new Date().toDateString();
-  _streakData.lastDate = today;
-  localStorage.setItem('fh_streak', JSON.stringify(_streakData));
-  // Track survived days
-  trackSurvived('rest');
-}
+// Missing variable declarations
+var _isNewUser = false;
+var _obBrain = '';
+var _obGoals = [];
+</script>
 
-// ── WIND DOWN ─────────────────────────────────────────────────────
-function checkWindDown() {
-  var hour = new Date().getHours();
-  var windCard = document.getElementById('windDownCard');
-  if (!windCard) return;
-  var today = new Date().toDateString();
-  var lastWindDown = localStorage.getItem('fh_winddown_date');
-  // Show after 5pm and only once per day
-  if (hour >= 17 && lastWindDown !== today) {
-    windCard.style.display = 'block';
-  } else {
-    windCard.style.display = 'none';
-  }
-}
-
-function saveWindDown() {
-  var did = document.getElementById('windDid').value.trim();
-  var letGo = document.getElementById('windLetGo').value.trim();
-  var tomorrow = document.getElementById('windTomorrow').value.trim();
-  var today = new Date().toDateString();
-
-  // Save to localStorage
-  var log = JSON.parse(localStorage.getItem('fh_winddown_log') || '[]');
-  log.unshift({ date: today, did: did, letGo: letGo, tomorrow: tomorrow });
-  if (log.length > 30) log = log.slice(0, 30);
-  localStorage.setItem('fh_winddown_log', JSON.stringify(log));
-  localStorage.setItem('fh_winddown_date', today);
-
-  // If they listed things they did — auto-log as wins
-  if (did) {
-    var winItems = did.split(". ").map(function(s){ return s.trim(); }).filter(function(s){ return s.length > 3; });
-    winItems.slice(0, 3).forEach(function(w){
-      if (w) pushWin({ text: w, category: 'Daily Win', date: new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) });
-    });
-  }
-
-  document.getElementById('windStep1').style.display = 'none';
-  document.getElementById('windDone').style.display = 'block';
-}
-
-// ── UNMASK WORD FADE ──────────────────────────────────────────────
-var _unmaskFadeTimer = null;
-var _unmaskWords = [];
-
-function unmaskTypeEffect(el) {
-  // Save to storage as normal
-  localStorage.setItem('fh_unmask_draft', el.value);
-
-  // Fade effect - get words and animate them fading
-  clearTimeout(_unmaskFadeTimer);
-  _unmaskFadeTimer = setTimeout(function() {
-    var words = el.value.split(/\s+/).filter(function(w){ return w.length > 0; });
-    var fadeContainer = document.getElementById('unmaskFadeWords');
-    if (!fadeContainer) return;
-    // Show last 8 words as fading ghost text
-    var recent = words.slice(-8);
-    fadeContainer.innerHTML = recent.map(function(w, i) {
-      var opacity = 0.05 + (i / recent.length) * 0.12;
-      return '<span style="color:rgba(196,91,170,' + opacity + ');font-size:15px;margin-right:4px;">' + w + '</span>';
-    }).join('');
-  }, 300);
-}
-
-// ── I SURVIVED BADGE ──────────────────────────────────────────────
-var _survivedData = JSON.parse(localStorage.getItem('fh_survived') || '{"count":0,"days":[]}');
-
-function trackSurvived(type) {
-  var today = new Date().toDateString();
-  if (!_survivedData.days.includes(today)) {
-    _survivedData.count++;
-    _survivedData.days.push(today);
-    if (_survivedData.days.length > 365) _survivedData.days.shift();
-    localStorage.setItem('fh_survived', JSON.stringify(_survivedData));
-  }
-  showSurvivedBadge(type);
-}
-
-function showSurvivedBadge(type) {
-  var badge = document.getElementById('survivedBadge');
-  var msg = document.getElementById('survivedMsg');
-  var count = document.getElementById('survivedCount');
-  if (!badge) return;
-
-  var messages = {
-    'rest': "You chose rest today. That takes wisdom.",
-    'hard': "You made it through a hard one. That is not nothing.",
-    'default': "You made it through today. That counts."
-  };
-
-  msg.textContent = messages[type] || messages.default;
-  count.textContent = _survivedData.count > 1 ? _survivedData.count + ' days survived and counted.' : 'First one logged.';
-  badge.style.display = 'block';
-
-  // Scroll to it
-  setTimeout(function(){ badge.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 200);
-}
-
-function checkSurvivedBadge() {
-  // Show survived badge if mood was very low (stressed/overwhelmed) or mask debt was high
-  var lastMood = localStorage.getItem('fh_last_mood');
-  var today = new Date().toDateString();
-  var lastSurvived = localStorage.getItem('fh_survived_shown');
-  if (lastSurvived === today) return; // Only once per day
-  if (lastMood && ['4','5','6'].includes(lastMood)) {
-    localStorage.setItem('fh_survived_shown', today);
-    setTimeout(function(){ trackSurvived('hard'); }, 2000);
-  }
-}
-
-// ── INIT HOME TAB FEATURES ────────────────────────────────────────
-function initHomeFeatures() {
-  checkWindDown();
-  checkSurvivedBadge();
-}
-
-// ── FOUNDING PAGE ──────────────────────────────────────────────
-function trackFoundingClick() {
-  var email = _currentUser ? _currentUser.email : '';
-  var isAnnual = document.getElementById('btnAnnual') && document.getElementById('btnAnnual').classList.contains('active');
-  var base = isAnnual ? 'https://buy.stripe.com/00w7sLd666XY22fbTi8Ra00' : 'https://buy.stripe.com/14AaEX5DEaaa22ff5u8Ra01';
-  var btn = docum
+</body>
+</html>
