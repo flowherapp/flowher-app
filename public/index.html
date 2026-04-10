@@ -42,8 +42,8 @@
 
 /* ── VIEWS ── */
 #landing{display:block;width:100%;min-height:100vh;}
-#appShell{display:none;position:fixed;inset:0;z-index:1000;background:linear-gradient(160deg,#0e0820 0%,#1a0f2e 50%,#0d1520 100%);pointer-events:none;visibility:hidden;opacity:0;}
-#appShell.active{pointer-events:auto;visibility:visible;opacity:1;}
+#appShell{display:none !important;position:fixed;inset:0;z-index:1000;background:linear-gradient(160deg,#0e0820 0%,#1a0f2e 50%,#0d1520 100%);pointer-events:none;visibility:hidden;opacity:0;overflow:hidden;clip:rect(0,0,0,0);}#appShell *{visibility:hidden;}#appShell.active{display:flex !important;visibility:visible !important;clip:auto;}#appShell.active *{visibility:visible !important;}
+#appShell.active{pointer-events:auto;opacity:1;}
 
 /* ── TRANSITION ── */
 .slide-in{animation:slideIn 0.5s cubic-bezier(0.4,0,0.2,1) both;}
@@ -301,7 +301,7 @@ APP STYLES
 .hf-pulse{animation:hfpulse 2s ease-in-out infinite;}
 @keyframes breatheAnim{0%,100%{transform:scale(1);opacity:0.6}50%{transform:scale(1.3);opacity:1}}
 .breathe-ring{width:120px;height:120px;border-radius:50%;border:2px solid var(–teal);margin:0 auto 16px;display:flex;align-items:center;justify-content:center;animation:breatheAnim 4s ease-in-out infinite;}
-.a-nav{position:absolute;bottom:0;left:0;right:0;background:rgba(10,5,22,0.97);backdrop-filter:blur(20px);border-top:1px solid rgba(196,91,170,0.12);display:flex;justify-content:space-around;padding:10px 0 16px;z-index:200;}
+.a-nav{position:absolute;bottom:0;left:0;right:0;background:rgba(10,5,22,0.97);backdrop-filter:blur(20px);border-top:1px solid rgba(196,91,170,0.12);display:flex;justify-content:space-around;padding:10px 0 16px;z-index:200;}#appShell:not(.active) .a-nav{display:none !important;}
 .a-nav-btn{background:transparent;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;padding:4px 10px;}
 .a-nav-icon{font-size:18px;transition:color 0.2s;}
 .a-nav-lbl{font-size:11px;letter-spacing:2px;text-transform:uppercase;font-family:‘DM Sans’,sans-serif;transition:color 0.2s;}
@@ -1881,7 +1881,7 @@ function launchApp(){
   document.getElementById('authScreen').classList.remove('show');
   document.getElementById('landing').style.display='none';
   const shell=document.getElementById('appShell');
-  shell.style.display='flex';
+  shell.style.display='';
   shell.classList.add('slide-in');
   shell.classList.add('active');
   document.getElementById('aDate').textContent=new Date().toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
@@ -1920,7 +1920,7 @@ function unlockCoreUI(){
   if(maskNav) maskNav.setAttribute('onclick', "aTab('mask')");
 }
 function exitApp(){
-  var sh=document.getElementById('appShell');sh.style.display='none';sh.classList.remove('active');
+  var sh=document.getElementById('appShell');sh.style.display='';sh.classList.remove('active');
   document.getElementById('landing').style.display='block';
   document.getElementById('authScreen').classList.remove('show');
   window.scrollTo(0,0);
