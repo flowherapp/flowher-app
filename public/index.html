@@ -3054,11 +3054,10 @@ function trackFoundingClick() {
   var email = _currentUser ? _currentUser.email : '';
   var isAnnual = document.getElementById('btnAnnual') && document.getElementById('btnAnnual').classList.contains('active');
   var base = isAnnual ? 'https://buy.stripe.com/00w7sLd666XY22fbTi8Ra00' : 'https://buy.stripe.com/14AaEX5DEaaa22ff5u8Ra01';
-  var btn = document.getElementById('ctaBtn');
   var url = email ? base + '?prefilled_email=' + encodeURIComponent(email) : base;
-  if(btn) btn.href = url;
+  window.open(url, '_blank');
 }
 </script>
-
 </body>
 </html>
+
