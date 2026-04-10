@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -496,7 +494,7 @@ h1{font-size:32px;}
 
 *{margin:0;padding:0;box-sizing:border-box;}
 
-.fp-page{background:var(–dark);color:white;font-family:‘DM Sans’,sans-serif;min-height:100vh;overflow-x:hidden;}
+.fp-page{background:var(–dark);color:white;font-family:‘DM Sans’,sans-serif;min-height:100vh;overflow-x:hidden;}#foundingPage{position:fixed;inset:0;z-index:500;overflow-y:auto;background:var(–dark);display:none;}
 body::before{content:’’;position:fixed;inset:0;background-image:url(“data:image/svg+xml,%3Csvg viewBox=‘0 0 256 256’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cfilter id=‘n’%3E%3CfeTurbulence type=‘fractalNoise’ baseFrequency=‘0.9’ numOctaves=‘4’ stitchTiles=‘stitch’/%3E%3C/filter%3E%3Crect width=‘100%25’ height=‘100%25’ filter=‘url(%23n)’ opacity=‘0.03’/%3E%3C/svg%3E”);pointer-events:none;z-index:0;}
 .fp-orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;}
 .fp-orb1{width:600px;height:600px;top:-200px;right:-200px;background:radial-gradient(circle,rgba(196,91,170,0.12) 0%,transparent 70%);}
@@ -618,15 +616,38 @@ h1 strong{font-weight:700;}
 /* Payment success banner */
 .payment-banner{position:fixed;top:0;left:0;right:0;z-index:3000;background:linear-gradient(135deg,#3D9E8C,#2D7D6E);color:white;padding:14px 20px;text-align:center;font-size:14px;font-weight:500;display:none;}
 .payment-banner.show{display:block;}
-</style>
 
-</head>
-<body>
-<style>
+.faq-list { display: flex; flex-direction: column; gap: 0; }
+.faq-item { border-bottom: 1px solid rgba(196,91,170,0.15); }
+.faq-q {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 20px 0;
+cursor: pointer;
+font-size: 15px;
+font-weight: 500;
+color: #1a0a2e;
+font-family: ‘DM Sans’, sans-serif;
+gap: 16px;
+}
+.faq-q:hover { color: #C45BAA; }
+.faq-arrow { color: #C45BAA; font-size: 18px; transition: transform 0.3s; flex-shrink: 0; }
+.faq-q.open .faq-arrow { transform: rotate(90deg); }
+.faq-a {
+display: none;
+padding: 0 0 20px;
+font-size: 14px;
+color: #4a3060;
+line-height: 1.8;
+font-family: ‘DM Sans’, sans-serif;
+}
+.faq-a.open { display: block; }
+
 /* Global hover states for desktop */
 @media(min-width:1025px){
-  /* Smooth scroll */
-  html{scroll-behavior:smooth;}
+/* Smooth scroll */
+html{scroll-behavior:smooth;}
 
 /* Nav hover */
 .nav-cta:hover{opacity:0.85;transform:translateY(-1px);}
@@ -650,7 +671,82 @@ h1 strong{font-weight:700;}
 .who-card,.feature-card,.testimonial-card{opacity:0;transform:translateY(20px);transition:opacity 0.5s ease,transform 0.5s ease;}
 .who-card.visible,.feature-card.visible,.testimonial-card.visible{opacity:1;transform:translateY(0);}
 }
+
+.tool-pick-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 12px;
+margin-bottom: 16px;
+}
+.tool-pick-btn {
+background: rgba(196,91,170,0.06);
+border: 1px solid rgba(196,91,170,0.18);
+border-radius: 16px;
+padding: 18px 14px;
+cursor: pointer;
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+gap: 4px;
+text-align: left;
+transition: all 0.2s ease;
+-webkit-tap-highlight-color: transparent;
+}
+.tool-pick-btn:hover, .tool-pick-btn:active {
+background: rgba(196,91,170,0.15);
+border-color: rgba(196,91,170,0.45);
+transform: translateY(-1px);
+}
+.tool-pick-emoji {
+font-size: 24px;
+margin-bottom: 6px;
+display: block;
+}
+.tool-pick-name {
+font-size: 13px;
+font-weight: 600;
+color: #FAF7FF;
+font-family: ‘DM Sans’, sans-serif;
+display: block;
+line-height: 1.3;
+}
+.tool-pick-desc {
+font-size: 11px;
+color: rgba(240,230,255,0.4);
+font-family: ‘DM Sans’, sans-serif;
+display: block;
+line-height: 1.4;
+}
+.focus-tool-content, .work-tool-content {
+animation: toolFadeIn 0.3s ease;
+}
+@keyframes toolFadeIn {
+from { opacity: 0; transform: translateY(8px); }
+to   { opacity: 1; transform: translateY(0); }
+}
+
+.meet-anx-btn {
+flex:1;
+padding:10px 6px;
+background:rgba(196,91,170,0.06);
+border:1px solid rgba(196,91,170,0.18);
+border-radius:10px;
+color:rgba(240,230,255,0.75);
+font-size:11px;
+cursor:pointer;
+font-family:‘DM Sans’,sans-serif;
+transition:all 0.2s;
+text-align:center;
+}
+.meet-anx-btn.selected {
+background:rgba(196,91,170,0.2);
+border-color:#C45BAA;
+color:#FAF7FF;
+}
+
 </style>
+</head>
+<body>
 
 <!-- ════════════════════════════════════════
      PAYMENT SUCCESS BANNER
@@ -779,7 +875,7 @@ h1 strong{font-weight:700;}
   <div class="proof-divider"></div>
   <div class="proof-item"><span class="proof-number">70%</span><div class="proof-label">Go undiagnosed into adulthood</div></div>
   <div class="proof-divider"></div>
-  <div class="proof-item"><span class="proof-number">0</span><div class="proof-label">Apps built for us in corporate</div></div>
+  <div class="proof-item"><span class="proof-number">Now</span><div class="proof-label">FlowHer changes that</div></div>
   <div class="proof-divider"></div>
   <div class="proof-item"><span class="proof-number">Today</span><div class="proof-label">Is when that changes</div></div>
 </div>
@@ -827,9 +923,9 @@ h1 strong{font-weight:700;}
   <div class="section-label">What Women Are Saying</div>
   <h2>Women who needed<br>this <em>yesterday.</em></h2>
   <div class="testimonials-grid">
-    <div class="testimonial-card"><span class="quote-mark">"</span><div class="testimonial-tag">ADHD</div><p class="testimonial-text">I've tried every productivity app. None of them talked to me like a whole person with an actual brain condition. FlowHer is the first one that gets it.</p><div class="testimonial-author">Renée T.</div><div class="testimonial-role">Senior Account Manager, Atlanta</div></div>
-    <div class="testimonial-card"><span class="quote-mark">"</span><div class="testimonial-tag">Late Diagnosed ASD</div><p class="testimonial-text">I was diagnosed at 34. I spent a decade thinking I just wasn't cut out for corporate. Finding out the rules were never written for me changed everything.</p><div class="testimonial-author">Marisol V.</div><div class="testimonial-role">Marketing Director, Chicago</div></div>
-    <div class="testimonial-card"><span class="quote-mark">"</span><div class="testimonial-tag">Anxiety + Burnout</div><p class="testimonial-text">The self-advocacy scripts alone are worth it. I knew what I needed at work. I just had no idea how to say it without sounding like I was making excuses.</p><div class="testimonial-author">Danielle H.</div><div class="testimonial-role">Project Manager, New York</div></div>
+    <div class="testimonial-card"><span class="quote-mark">"</span><div class="testimonial-tag">ADHD</div><p class="testimonial-text">I've tried every productivity app. None of them talked to me like a whole person with an actual brain condition. FlowHer is the first one that gets it.</p><div class="testimonial-author">R.T.</div><div class="testimonial-role">Senior Account Manager, Atlanta</div></div>
+    <div class="testimonial-card"><span class="quote-mark">"</span><div class="testimonial-tag">Late Diagnosed ASD</div><p class="testimonial-text">I was diagnosed at 34. I spent a decade thinking I just wasn't cut out for corporate. Finding out the rules were never written for me changed everything.</p><div class="testimonial-author">M.V.</div><div class="testimonial-role">Marketing Director, Chicago</div></div>
+    <div class="testimonial-card"><span class="quote-mark">"</span><div class="testimonial-tag">Anxiety + Burnout</div><p class="testimonial-text">The self-advocacy scripts alone are worth it. I knew what I needed at work. I just had no idea how to say it without sounding like I was making excuses.</p><div class="testimonial-author">D.H.</div><div class="testimonial-role">Project Manager, New York</div></div>
   </div>
 </section>
 
@@ -837,7 +933,7 @@ h1 strong{font-weight:700;}
   <div style="text-align:center;">
     <div class="section-label" style="justify-content:center;">Pricing</div>
     <h2>Built to be <em>accessible.</em></h2>
-    <p style="font-size:15px;color:var(--gray);margin-top:10px;font-weight:300;max-width:440px;margin-left:auto;margin-right:auto;line-height:1.75;"><strong>200 founding spots available now.</strong> Lock your rate forever at $24.99/month. After they're gone, regular pricing starts at $39.99/month. The waitlist below is for women who want to be notified when founding spots close.</p>
+    <p style="font-size:15px;color:var(--gray);margin-top:10px;font-weight:300;max-width:440px;margin-left:auto;margin-right:auto;line-height:1.75;"><strong>200 founding spots available now.</strong> Lock your rate forever at $24.99/month. After they're gone, regular pricing starts at $39.99/month.</p>
   </div>
 
   <!-- REGULAR PRICING TOGGLE -->
@@ -948,35 +1044,6 @@ h1 strong{font-weight:700;}
   </div>
 </section>
 
-<style>
-.faq-list { display: flex; flex-direction: column; gap: 0; }
-.faq-item { border-bottom: 1px solid rgba(196,91,170,0.15); }
-.faq-q {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 0;
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: 500;
-  color: #1a0a2e;
-  font-family: 'DM Sans', sans-serif;
-  gap: 16px;
-}
-.faq-q:hover { color: #C45BAA; }
-.faq-arrow { color: #C45BAA; font-size: 18px; transition: transform 0.3s; flex-shrink: 0; }
-.faq-q.open .faq-arrow { transform: rotate(90deg); }
-.faq-a {
-  display: none;
-  padding: 0 0 20px;
-  font-size: 14px;
-  color: #4a3060;
-  line-height: 1.8;
-  font-family: 'DM Sans', sans-serif;
-}
-.faq-a.open { display: block; }
-</style>
-
 <script>
 function toggleFaq(el) {
   el.classList.toggle('open');
@@ -1006,11 +1073,84 @@ function toggleFaq(el) {
   <div class="footer-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="/cdn-cgi/l/email-protection#462e232a2a2906202a29312e233468273636">Contact</a></div>
 </footer>
 
+<!-- ── FOUNDING PAGE ──────────────────────────────────────── -->
+
 </div><!-- /landing -->
 
 <!-- ════════════════════════════════════════
      APP SHELL
 ════════════════════════════════════════ -->
+
+<!-- ── FOUNDING PAGE ──────────────────────────────────────── -->
+
+<div id="foundingPage" style="display:none;">
+  <div class="fp-page">
+  <div class="fp-orb fp-orb1"></div>
+  <div class="fp-orb fp-orb2"></div>
+  <div class="fp-wrap">
+    <div style="margin-bottom:32px;">
+      <button onclick="showView('landing')" style="background:transparent;border:none;color:rgba(255,255,255,0.4);font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:6px;padding:0;">← Back to FlowHer</button>
+    </div>
+    <div class="founding-badge" style="margin-bottom:24px;"><div class="badge-dot"></div><span class="badge-text">Founding Member — 200 Spots Only</span></div>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(36px,6vw,58px);font-weight:300;color:white;line-height:1.1;margin-bottom:16px;">Lock your rate.<br><em style="color:#C45BAA;">Forever.</em></h1>
+    <p class="sub">The first 200 women to join FlowHer Core pay $24.99/month — locked as long as you stay subscribed. After 200 spots fill, regular pricing starts at $39.99/month.</p>
+    <div class="spots-bar">
+      <div class="spots-top"><span class="spots-label">Founding Spots</span><span class="spots-count">200 available</span></div>
+      <div class="spots-track"><div class="spots-fill" style="width:12%;"></div></div>
+      <div class="spots-remaining">Moving fast — claim yours now</div>
+    </div>
+    <div class="toggle-wrap">
+      <button class="toggle-btn active" id="btnMonthly" onclick="setToggle('monthly')">Monthly</button>
+      <button class="toggle-btn" id="btnAnnual" onclick="setToggle('annual')">Annual <span class="save-pill">SAVE $100</span></button>
+    </div>
+    <div class="price-card">
+      <div class="price-eyebrow">✦ FlowHer Core — Founding Rate</div>
+      <div class="price-amount">
+        <span class="price-dollar">$</span>
+        <span class="price-num" id="priceNum">24</span>
+        <span class="price-cents" id="priceCents">.99</span>
+        <span class="price-period" id="pricePeriod">/month</span>
+      </div>
+      <div class="price-annual-note" id="annualNote" style="display:none;">Billed as $299 today · save $100 vs monthly</div>
+      <div class="price-regular" id="regularNote">After 200 spots: <span>$39.99/mo</span> · Rate never increases</div>
+      <div class="price-lock">🔒 Rate locked forever · Cancel anytime</div>
+      <div class="price-divider"></div>
+      <ul class="features">
+        <li><span class="feat-icon">🧠</span>Brain Dump + Priority Triage — unlimited</li>
+        <li><span class="feat-icon">⚡</span>Smallest Step Engine — AI task breakdown</li>
+        <li><span class="feat-icon">🔥</span>Hyperfocus Capture + Body Double Mode</li>
+        <li><span class="feat-icon">⏱</span>Time Blindness Corrector</li>
+        <li><span class="feat-icon">🛡️</span>RSD Toolkit — live reality check <span class="feat-new">NEW</span></li>
+        <li><span class="feat-icon">✉️</span>AI Email Drafting + Conversation Scripts</li>
+        <li><span class="feat-icon">⚖️</span>ADA Rights Library</li>
+        <li><span class="feat-icon">⭐</span>Win Journal + Imposter Shield</li>
+        <li><span class="feat-icon">🌙</span>Unmask Space — private, unfiltered</li>
+        <li><span class="feat-icon">🎭</span>Masking Debt Tracker</li>
+        <li><span class="feat-icon">🗓️</span>Meeting Mode — AI prep card <span class="feat-new">NEW</span></li>
+        <li><span class="feat-icon">🌿</span>Not Today Button + Wind Down</li>
+        <li><span class="feat-icon">🔥</span>Check-in Streak Tracker</li>
+        <li><span class="feat-icon">⬇</span>Win Journal Export</li>
+      </ul>
+      <a href="https://buy.stripe.com/14AaEX5DEaaa22ff5u8Ra01" id="ctaBtn" class="founding-cta" onclick="trackFoundingClick()" style="display:block;text-align:center;text-decoration:none;">Claim My Founding Member Spot →</a>
+      <div style="font-size:11px;color:rgba(255,255,255,0.3);text-align:center;margin-top:12px;" id="ctaSub">Secure payment via Stripe · Cancel anytime · Rate locked forever</div>
+    </div>
+    <div class="guarantee" style="margin-top:24px;">
+      <div class="guar-icon">🛡️</div>
+      <div><div class="guar-title">No risk. No pressure.</div><p class="guar-text">Cancel anytime — no questions asked. Your founding rate stays locked as long as you stay subscribed.</p></div>
+    </div>
+    <div class="story">
+      <div class="story-eyebrow">From the Founder</div>
+      <p class="story-text">"I built FlowHer because I needed it and it didn't exist. I taught myself to build a full app — on an iPad — because I believed this tool deserved to be in the world. The founding rate is my way of saying thank you to the women who believe in it before the world does."</p>
+      <div class="story-sig"><strong>Silvella Strain</strong>Founder, FlowHer LLC · MBA · ADHD Inattentive</div>
+    </div>
+    <div class="fp-footer">FlowHer™ © 2026 · Built for brains that work differently.<br>
+      <a href="/privacy.html" style="color:rgba(255,255,255,0.2);text-decoration:none;">Privacy</a> ·
+      <a href="/terms.html" style="color:rgba(255,255,255,0.2);text-decoration:none;">Terms</a> ·
+      <a href="mailto:hello@flowherapp.com" style="color:rgba(255,255,255,0.2);text-decoration:none;">Contact</a>
+    </div>
+  </div>
+  </div>
+</div>
 
 <div id="appShell"><div class="app-inner">
   <div class="a-orb a-orb1"></div>
@@ -1594,10 +1734,10 @@ function toggleFaq(el) {
   <div class="a-nav">
     <button class="a-nav-btn on" id="nb-home" onclick="aTab('home')"><span class="a-nav-icon">🏠</span><span class="a-nav-lbl">Home</span></button>
     <button class="a-nav-btn" id="nb-focus" onclick="aTab('focus')"><span class="a-nav-icon">⚡</span><span class="a-nav-lbl">Focus</span></button>
-    <button class="a-nav-btn" id="nb-work" onclick="gateTab('work','Workplace Survival Tools')"><span class="a-nav-icon">💼</span><span class="a-nav-lbl">Work</span></button>
+    <button class="a-nav-btn" id="nb-work" onclick="isCore()?aTab('work'):gateTab('work','Workplace Survival Tools')"><span class="a-nav-icon">💼</span><span class="a-nav-lbl">Work</span></button>
     <button class="a-nav-btn" id="nb-wins" onclick="gateTab('wins','Win Journal & Imposter Shield')"><span class="a-nav-icon">⭐</span><span class="a-nav-lbl">Wins</span></button>
     <button class="a-nav-btn" id="nb-unmask" onclick="gateTab('unmask','Unmask Space & Nervous System Reset')"><span class="a-nav-icon">🌙</span><span class="a-nav-lbl">Unmask</span></button>
-    <button class="a-nav-btn" id="nb-mask" onclick="gateTab('mask','Masking Debt Tracker')"><span class="a-nav-icon">🎭</span><span class="a-nav-lbl">Mask Debt</span></button>
+    <button class="a-nav-btn" id="nb-mask" onclick="isCore()?aTab('mask'):gateTab('mask','Masking Debt Tracker')"><span class="a-nav-icon">🎭</span><span class="a-nav-lbl">Mask Debt</span></button>
   </div>
 
   <!-- UPGRADE GATE MODAL -->
@@ -2418,7 +2558,7 @@ function showView(view) {
   if (fp) fp.style.display = view === 'founding' ? 'block' : 'none';
   var shell = document.getElementById('appShell');
   if (view !== 'app') shell.style.display = 'none';
-  if (view === 'founding') { document.documentElement.scrollTop = 0; fp.scrollTop = 0; }
+  if (view === 'founding') { document.documentElement.scrollTop = 0; if(fp) fp.scrollTop = 0; window.scrollTo(0,0); }
   if (view === 'app') launchApp();
 }
 
@@ -2651,61 +2791,6 @@ msgEl.textContent = msg;
 }
 </script>
 
-<style>
-.tool-pick-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-bottom: 16px;
-}
-.tool-pick-btn {
-  background: rgba(196,91,170,0.06);
-  border: 1px solid rgba(196,91,170,0.18);
-  border-radius: 16px;
-  padding: 18px 14px;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
-  text-align: left;
-  transition: all 0.2s ease;
-  -webkit-tap-highlight-color: transparent;
-}
-.tool-pick-btn:hover, .tool-pick-btn:active {
-  background: rgba(196,91,170,0.15);
-  border-color: rgba(196,91,170,0.45);
-  transform: translateY(-1px);
-}
-.tool-pick-emoji {
-  font-size: 24px;
-  margin-bottom: 6px;
-  display: block;
-}
-.tool-pick-name {
-  font-size: 13px;
-  font-weight: 600;
-  color: #FAF7FF;
-  font-family: 'DM Sans', sans-serif;
-  display: block;
-  line-height: 1.3;
-}
-.tool-pick-desc {
-  font-size: 11px;
-  color: rgba(240,230,255,0.4);
-  font-family: 'DM Sans', sans-serif;
-  display: block;
-  line-height: 1.4;
-}
-.focus-tool-content, .work-tool-content {
-  animation: toolFadeIn 0.3s ease;
-}
-@keyframes toolFadeIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-</style>
-
 <script>
 // Focus tool navigation
 var _focusToolNames = {
@@ -2755,27 +2840,6 @@ function closeWorkTool() {
   document.getElementById('work-picker').style.display = 'block';
 }
 </script>
-
-<style>
-.meet-anx-btn {
-  flex:1;
-  padding:10px 6px;
-  background:rgba(196,91,170,0.06);
-  border:1px solid rgba(196,91,170,0.18);
-  border-radius:10px;
-  color:rgba(240,230,255,0.75);
-  font-size:11px;
-  cursor:pointer;
-  font-family:'DM Sans',sans-serif;
-  transition:all 0.2s;
-  text-align:center;
-}
-.meet-anx-btn.selected {
-  background:rgba(196,91,170,0.2);
-  border-color:#C45BAA;
-  color:#FAF7FF;
-}
-</style>
 
 <script>
 var _meetAnxLevel = 1;
@@ -2980,6 +3044,15 @@ function checkSurvivedBadge() {
 function initHomeFeatures() {
   checkWindDown();
   checkSurvivedBadge();
+}
+
+// ── FOUNDING PAGE ──────────────────────────────────────────────
+function trackFoundingClick() {
+  var email = _currentUser ? _currentUser.email : '';
+  var isAnnual = document.getElementById('btnAnnual') && document.getElementById('btnAnnual').classList.contains('active');
+  var base = isAnnual ? 'https://buy.stripe.com/00w7sLd666XY22fbTi8Ra00' : 'https://buy.stripe.com/14AaEX5DEaaa22ff5u8Ra01';
+  var btn = document.getElementById('ctaBtn');
+  if (btn) btn.href = email ? base + '?prefilled_email=' + encodeURIComponent(email) : base;
 }
 </script>
 
