@@ -776,18 +776,20 @@ color:#FAF7FF;
       </svg>
     </div>
 
-```
 <!-- Tabs -->
+
 <div class="auth-tabs">
   <div class="auth-tab on" id="tab-signin" onclick="authTab('signin')">Sign In</div>
   <div class="auth-tab" id="tab-signup" onclick="authTab('signup')">Create Account</div>
 </div>
 
 <!-- Error / Success -->
+
 <div class="auth-err" id="authErr"></div>
 <div class="auth-ok" id="authOk"></div>
 
 <!-- SIGN IN FORM -->
+
 <div id="form-signin">
   <input class="auth-inp" id="si-email" type="email" placeholder="Email address" autocomplete="email">
   <input class="auth-inp" id="si-pass" type="password" placeholder="Password" autocomplete="current-password">
@@ -796,6 +798,7 @@ color:#FAF7FF;
 </div>
 
 <!-- SIGN UP FORM -->
+
 <div id="form-signup" style="display:none;">
   <input class="auth-inp" id="su-name" type="text" placeholder="Your first name" autocomplete="given-name">
   <input class="auth-inp" id="su-email" type="email" placeholder="Email address" autocomplete="email">
@@ -807,6 +810,7 @@ color:#FAF7FF;
 </div>
 
 <!-- RESET PASSWORD FORM -->
+
 <div id="form-reset" style="display:none;">
   <div class="auth-title">Reset your <em>password.</em></div>
   <div class="auth-sub">We'll send a reset link to your email.</div>
@@ -814,7 +818,6 @@ color:#FAF7FF;
   <button class="auth-btn" id="rs-btn" onclick="doReset()">Send Reset Link →</button>
   <div class="auth-link" onclick="authTab('signin')">← Back to sign in</div>
 </div>
-```
 
   </div>
 </div>
@@ -988,7 +991,6 @@ color:#FAF7FF;
     <div class="section-label">Common Questions</div>
     <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,42px);font-weight:300;color:#1a0a2e;margin-bottom:48px;line-height:1.2;">Everything you need<br>to know about <em style="color:#C45BAA;">FlowHer</em></h2>
 
-```
 <div class="faq-list">
 
   <div class="faq-item">
@@ -1040,7 +1042,6 @@ color:#FAF7FF;
   </div>
 
 </div>
-```
 
   </div>
 </section>
@@ -1182,8 +1183,8 @@ function toggleFaq(el) {
       </div>
     </div>
 
-```
 <!-- STREAK TRACKER -->
+
 <div class="a-card" id="streakCard" style="background:linear-gradient(135deg,rgba(196,91,170,0.12),rgba(45,125,110,0.08));border:1px solid rgba(196,91,170,0.2);display:flex;align-items:center;justify-content:space-between;padding:16px 20px;">
   <div style="display:flex;align-items:center;gap:12px;">
     <div id="streakFlame" style="font-size:28px;line-height:1;">🔥</div>
@@ -1200,8 +1201,8 @@ function toggleFaq(el) {
   </div>
 </div>
 
-
 <!-- I SURVIVED BADGE -->
+
 <div id="survivedBadge" style="display:none;margin-bottom:12px;">
   <div style="background:linear-gradient(135deg,rgba(196,91,170,0.08),rgba(123,63,160,0.08));border:1px solid rgba(196,91,170,0.25);border-radius:16px;padding:18px;display:flex;align-items:center;gap:14px;">
     <div style="font-size:32px;flex-shrink:0;">🏅</div>
@@ -1214,30 +1215,35 @@ function toggleFaq(el) {
 </div>
 
 <!-- END OF DAY WIND DOWN (shown after 5pm) -->
+
 <div id="windDownCard" style="display:none;margin-bottom:12px;">
   <div style="background:linear-gradient(135deg,rgba(26,10,46,0.8),rgba(13,25,50,0.8));border:1px solid rgba(196,91,170,0.2);border-radius:16px;padding:20px;">
     <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,91,170,0.7);font-family:'DM Sans',sans-serif;margin-bottom:6px;">Wind Down</div>
     <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;color:#FAF7FF;margin-bottom:16px;">Let's close the day.</div>
 
-    <div id="windStep1">
-      <div style="font-size:12px;color:rgba(240,230,255,0.5);margin-bottom:8px;">What did you actually do today? (Even tiny things count)</div>
-      <textarea class="a-inp a-ta a-ta-sm" id="windDid" placeholder="I sent that email. I showed up. I made it through the meeting..." style="margin-bottom:12px;min-height:70px;"></textarea>
-      <div style="font-size:12px;color:rgba(240,230,255,0.5);margin-bottom:8px;">What can you let go of tonight?</div>
-      <input class="a-inp" id="windLetGo" placeholder="The thing I didn't finish. The comment that stung..." style="margin-bottom:12px;">
-      <div style="font-size:12px;color:rgba(240,230,255,0.5);margin-bottom:8px;">What does tomorrow-you need to know?</div>
-      <input class="a-inp" id="windTomorrow" placeholder="Start with the small task. Email Sarah first..." style="margin-bottom:16px;">
-      <button class="a-btn-fill" onclick="saveWindDown()" style="width:100%;">Close the Day 🌙</button>
-    </div>
+```
+<div id="windStep1">
+  <div style="font-size:12px;color:rgba(240,230,255,0.5);margin-bottom:8px;">What did you actually do today? (Even tiny things count)</div>
+  <textarea class="a-inp a-ta a-ta-sm" id="windDid" placeholder="I sent that email. I showed up. I made it through the meeting..." style="margin-bottom:12px;min-height:70px;"></textarea>
+  <div style="font-size:12px;color:rgba(240,230,255,0.5);margin-bottom:8px;">What can you let go of tonight?</div>
+  <input class="a-inp" id="windLetGo" placeholder="The thing I didn't finish. The comment that stung..." style="margin-bottom:12px;">
+  <div style="font-size:12px;color:rgba(240,230,255,0.5);margin-bottom:8px;">What does tomorrow-you need to know?</div>
+  <input class="a-inp" id="windTomorrow" placeholder="Start with the small task. Email Sarah first..." style="margin-bottom:16px;">
+  <button class="a-btn-fill" onclick="saveWindDown()" style="width:100%;">Close the Day 🌙</button>
+</div>
 
-    <div id="windDone" style="display:none;text-align:center;">
-      <div style="font-size:28px;margin-bottom:10px;">🌙</div>
-      <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;color:#FAF7FF;margin-bottom:8px;">Day closed.</div>
-      <div style="font-size:13px;color:rgba(220,200,255,0.6);line-height:1.7;">You did what you could.<br>That was enough.</div>
-    </div>
+<div id="windDone" style="display:none;text-align:center;">
+  <div style="font-size:28px;margin-bottom:10px;">🌙</div>
+  <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;color:#FAF7FF;margin-bottom:8px;">Day closed.</div>
+  <div style="font-size:13px;color:rgba(220,200,255,0.6);line-height:1.7;">You did what you could.<br>That was enough.</div>
+</div>
+```
+
   </div>
 </div>
 
 <!-- NOT TODAY BUTTON -->
+
 <div id="notTodayCard" style="margin-bottom:12px;">
   <button onclick="activateNotToday()" style="width:100%;padding:16px 20px;background:rgba(45,125,110,0.06);border:1px dashed rgba(45,125,110,0.3);border-radius:16px;cursor:pointer;display:flex;align-items:center;gap:12px;text-align:left;font-family:'DM Sans',sans-serif;-webkit-tap-highlight-color:transparent;">
     <span style="font-size:22px;">🌿</span>
@@ -1249,6 +1255,7 @@ function toggleFaq(el) {
 </div>
 
 <!-- NOT TODAY ACTIVATED STATE -->
+
 <div id="notTodayActive" style="display:none;margin-bottom:12px;">
   <div style="background:linear-gradient(135deg,rgba(45,125,110,0.1),rgba(45,125,110,0.05));border:1px solid rgba(45,125,110,0.25);border-radius:16px;padding:20px;text-align:center;">
     <div style="font-size:32px;margin-bottom:12px;">🌿</div>
@@ -1301,7 +1308,6 @@ function toggleFaq(el) {
   </div>
   <div id="dopMsg" style="display:none;margin-top:10px;" class="a-resp"></div>
 </div>
-```
 
   </div>
 
@@ -1369,43 +1375,44 @@ function toggleFaq(el) {
         <div style="font-size:13px;color:rgba(240,230,255,0.45);margin-bottom:20px;line-height:1.6;">Tell FlowHer about your meeting. Walk in ready.</div>
 
 ```
-    <!-- Step 1: Meeting details -->
-    <div id="meetStep1">
-      <div style="margin-bottom:14px;">
-        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,91,170,0.7);font-family:'DM Sans',sans-serif;margin-bottom:8px;">What is this meeting about?</div>
-        <textarea class="a-inp a-ta a-ta-sm" id="meetTopic" placeholder="Weekly check-in, performance review, difficult conversation..." style="margin-bottom:0;"></textarea>
-      </div>
-      <div style="margin-bottom:14px;">
-        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,91,170,0.7);font-family:'DM Sans',sans-serif;margin-bottom:8px;">Who will be in the room?</div>
-        <input class="a-inp" id="meetPeople" placeholder="My manager, 3 teammates, a client..." style="margin-bottom:0;">
-      </div>
-      <div style="margin-bottom:20px;">
-        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,91,170,0.7);font-family:'DM Sans',sans-serif;margin-bottom:8px;">What do you need to walk away with?</div>
-        <input class="a-inp" id="meetGoal" placeholder="A decision, approval, clarity on my role..." style="margin-bottom:0;">
-      </div>
+<!-- Step 1: Meeting details -->
+<div id="meetStep1">
+  <div style="margin-bottom:14px;">
+    <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,91,170,0.7);font-family:'DM Sans',sans-serif;margin-bottom:8px;">What is this meeting about?</div>
+    <textarea class="a-inp a-ta a-ta-sm" id="meetTopic" placeholder="Weekly check-in, performance review, difficult conversation..." style="margin-bottom:0;"></textarea>
+  </div>
+  <div style="margin-bottom:14px;">
+    <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,91,170,0.7);font-family:'DM Sans',sans-serif;margin-bottom:8px;">Who will be in the room?</div>
+    <input class="a-inp" id="meetPeople" placeholder="My manager, 3 teammates, a client..." style="margin-bottom:0;">
+  </div>
+  <div style="margin-bottom:20px;">
+    <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,91,170,0.7);font-family:'DM Sans',sans-serif;margin-bottom:8px;">What do you need to walk away with?</div>
+    <input class="a-inp" id="meetGoal" placeholder="A decision, approval, clarity on my role..." style="margin-bottom:0;">
+  </div>
 
-      <!-- Anxiety level -->
-      <div style="margin-bottom:20px;">
-        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,91,170,0.7);font-family:'DM Sans',sans-serif;margin-bottom:10px;">How anxious are you about this?</div>
-        <div style="display:flex;gap:8px;" id="meetAnxiety">
-          <button class="meet-anx-btn" data-val="1" onclick="setMeetAnxiety(this)">😌 Calm</button>
-          <button class="meet-anx-btn" data-val="2" onclick="setMeetAnxiety(this)">😬 Nervous</button>
-          <button class="meet-anx-btn" data-val="3" onclick="setMeetAnxiety(this)">😰 Dreading it</button>
-        </div>
-      </div>
-
-      <button class="a-btn-fill" onclick="if(!isCore()){showGate('Meeting Mode');return;}genMeetingPrep()" id="meetBtn" style="width:100%;">Prep Me →</button>
-    </div>
-
-    <!-- Step 2: AI Response -->
-    <div id="meetResult" style="display:none;">
-      <div id="meetRes" class="a-result" style="margin-bottom:20px;"></div>
-      <button onclick="resetMeeting()" style="width:100%;padding:12px;background:transparent;border:1px solid rgba(196,91,170,0.25);border-radius:12px;color:rgba(196,91,170,0.8);font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;">← Prep another meeting</button>
+  <!-- Anxiety level -->
+  <div style="margin-bottom:20px;">
+    <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,91,170,0.7);font-family:'DM Sans',sans-serif;margin-bottom:10px;">How anxious are you about this?</div>
+    <div style="display:flex;gap:8px;" id="meetAnxiety">
+      <button class="meet-anx-btn" data-val="1" onclick="setMeetAnxiety(this)">😌 Calm</button>
+      <button class="meet-anx-btn" data-val="2" onclick="setMeetAnxiety(this)">😬 Nervous</button>
+      <button class="meet-anx-btn" data-val="3" onclick="setMeetAnxiety(this)">😰 Dreading it</button>
     </div>
   </div>
 
+  <button class="a-btn-fill" onclick="if(!isCore()){showGate('Meeting Mode');return;}genMeetingPrep()" id="meetBtn" style="width:100%;">Prep Me →</button>
+</div>
+
+<!-- Step 2: AI Response -->
+<div id="meetResult" style="display:none;">
+  <div id="meetRes" class="a-result" style="margin-bottom:20px;"></div>
+  <button onclick="resetMeeting()" style="width:100%;padding:12px;background:transparent;border:1px solid rgba(196,91,170,0.25);border-radius:12px;color:rgba(196,91,170,0.8);font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;">← Prep another meeting</button>
 </div>
 ```
+
+  </div>
+
+</div>
 
   </div>
 
@@ -1419,15 +1426,14 @@ function toggleFaq(el) {
     <div class="a-card-glow locked-card" onclick="showGate('Your 7-Day Pattern')"><span class="a-lbl">Log a Win</span><div class="a-chips" id="wCatChips"><div class="a-chip on" onclick="setWC(this,'Professional')">Professional</div><div class="a-chip" onclick="setWC(this,'Brave Moment')">Brave Moment</div><div class="a-chip" onclick="setWC(this,'Showed Up')">Showed Up</div><div class="a-chip" onclick="setWC(this,'Problem Solved')">Problem Solved</div><div class="a-chip" onclick="setWC(this,'Personal')">Personal</div></div><textarea class="a-inp a-ta a-ta-sm" id="winText" placeholder="What did you do? Even if it felt small. Especially if it felt small." style="margin-bottom:12px;"></textarea><button class="a-btn-fill" onclick="if(!isCore()){showGate('Log a Win');return;}addWin()" style="width:100%;">Log This Win ★</button></div>
     <div id="winsList"></div>
 
-```
 <!-- EXPORT BUTTON -->
+
 <div style="padding:16px 0 8px;">
   <button onclick="if(!isCore()){showGate('Win Export');return;}exportWins()" style="width:100%;padding:14px;background:transparent;border:1px solid rgba(196,91,170,0.3);border-radius:14px;color:rgba(196,91,170,0.9);font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;">
     <span>⬇</span> Download My Win Journal
   </button>
   <div style="font-size:11px;color:rgba(240,230,255,0.3);text-align:center;margin-top:8px;line-height:1.5;">Save as text file — use in performance reviews, therapy, or just for you.</div>
 </div>
-```
 
   </div>
 
@@ -1443,8 +1449,8 @@ function toggleFaq(el) {
 <div style="font-size:11px;color:rgba(240,230,255,0.2);text-align:center;margin-top:8px;font-family:'DM Sans',sans-serif;">Words fade as you write. This is just for you.</div><div style="margin-top:10px;font-size:12px;color:rgba(240,230,255,0.18);text-align:center;line-height:1.6;">Stored only on this device. Never sent anywhere.</div></div>
     <div class="a-card a-card-teal" style="margin-top:16px;"><span class="a-lbl a-lbl-teal">Nervous System Reset</span><div style="font-size:12px;color:rgba(240,230,255,0.35);margin-bottom:14px;">Under 3 minutes. Specifically for workplace dysregulation.</div><div id="nsrArea"><button class="a-btn a-btn-sm a-btn-teal" onclick="startNSR()" style="display:block;width:100%;padding:12px;">Start Reset →</button></div></div>
 
-```
 <!-- FOCUS TOOL PICKER (shown when no tool selected) -->
+
 <div id="focus-picker">
   <div style="padding:4px 0 20px;">
     <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,91,170,0.6);font-family:'DM Sans',sans-serif;margin-bottom:6px;">What do you need right now?</div>
@@ -1486,6 +1492,7 @@ function toggleFaq(el) {
 </div>
 
 <!-- INDIVIDUAL TOOL SCREENS -->
+
 <div id="focus-tool-screen" style="display:none;">
   <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;">
     <button onclick="closeFocusTool()" style="background:rgba(196,91,170,0.1);border:1px solid rgba(196,91,170,0.2);border-radius:10px;padding:8px 14px;color:rgba(196,91,170,0.9);font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;">← Back</button>
@@ -1520,7 +1527,6 @@ function toggleFaq(el) {
   <div id="focus-tool-body-double" class="focus-tool-content" style="display:none;">
     <div style="font-size:13px;color:rgba(240,230,255,0.45);margin-bottom:14px;line-height:1.6;">You're not alone in this. I'll sit with you.</div>
     <div style="font-size:12px;color:rgba(240,230,255,0.35);margin-bottom:12px;">You're not alone in this. Set your task. I'll sit with you.</div><div id="bdInput"><input class="a-inp" id="bdTask" placeholder="What are you working on?" style="margin-bottom:10px;"><button class="a-btn a-btn-sm a-btn-teal" onclick="if(!isCore()){showGate('Body Double Mode');return;}startBD()" style="display:block;width:100%;padding:12px;">Work Together →</button></div><div id="bdActive" style="display:none;text-align:center;padding:10px 0;"><div style="font-size:11px;color:var(--teal);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px;">Working on</div><div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:rgba(240,230,255,0.8);margin-bottom:14px;" id="bdShow"></div><div style="font-size:40px;font-weight:300;color:var(--teal);letter-spacing:4px;font-family:'DM Sans',sans-serif;margin-bottom:8px;" id="bdClock">25:00</div><div style="font-size:12px;color:rgba(240,230,255,0.35);margin-bottom:16px;font-style:italic;">I'm here. Keep going.</div><div style="display:flex;gap:10px;justify-content:center;"><button class="a-btn a-btn-sm a-btn-teal" onclick="toggleBD()" id="bdToggle">⏸ Pause</button><button class="a-btn a-btn-sm a-btn-rose" onclick="stopBD()">Done ✓</button></div></div></div>
-```
 
   </div>
       </div>
@@ -1532,8 +1538,8 @@ function toggleFaq(el) {
   <div class="a-screen" id="as-work" style="display:none">
     <div class="a-hdr"><div class="a-logo"><svg width="138" height="32" viewBox="0 0 138 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;pointer-events:none;"><defs><linearGradient id="lg_a3" x1="0" y1="16" x2="25" y2="16" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#C45BAA"/><stop offset="100%" stop-color="#2D7D6E"/></linearGradient></defs><path d="M2 16 Q5.5 7 9 16 Q12.5 25 16 16 Q19.5 7 23 16" stroke="url(#lg_a3)" stroke-width="2.2" fill="none" stroke-linecap="round"/><circle cx="2" cy="16" r="2.2" fill="#C45BAA"/><circle cx="23" cy="16" r="2.2" fill="#2D7D6E"/><text x="31" y="22" font-family="Cormorant Garamond,serif" font-size="21" font-weight="600" fill="#f0e6ff">Flow</text><text x="75" y="22" font-family="Cormorant Garamond,serif" font-size="21" font-weight="300" fill="#C45BAA" font-style="italic">Her</text><text x="110" y="11" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(240,230,255,0.35)">&#8482;</text></svg></div><button class="a-btn a-btn-sm" style="color:#E85C5C;border-color:rgba(232,92,92,0.4);font-size:10px;" onclick="openSOS()">SOS</button></div>
 
-```
 <!-- WORK TOOL PICKER -->
+
 <div id="work-picker">
   <div style="padding:4px 0 20px;">
     <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,91,170,0.6);font-family:'DM Sans',sans-serif;margin-bottom:6px;">What do you need at work?</div>
@@ -1575,6 +1581,7 @@ function toggleFaq(el) {
 </div>
 
 <!-- INDIVIDUAL WORK TOOL SCREENS -->
+
 <div id="work-tool-screen" style="display:none;">
   <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;">
     <button onclick="closeWorkTool()" style="background:rgba(196,91,170,0.1);border:1px solid rgba(196,91,170,0.2);border-radius:10px;padding:8px 14px;color:rgba(196,91,170,0.9);font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;">← Back</button>
@@ -1609,7 +1616,6 @@ function toggleFaq(el) {
     <div style="font-size:13px;color:rgba(240,230,255,0.45);margin-bottom:14px;line-height:1.6;">Your logged wins. Your real proof.</div>
     <div style="font-size:13px;color:rgba(240,230,255,0.55);margin-bottom:12px;line-height:1.65;">Before you walk in that room — read this. These are facts about you.</div><div id="imposterWins" style="font-size:13px;color:rgba(240,230,255,0.7);line-height:1.8;font-style:italic;font-family:'Cormorant Garamond',serif;"></div><div style="margin-top:12px;padding:12px 14px;background:rgba(61,158,140,0.08);border-radius:10px;font-size:13px;color:rgba(240,230,255,0.65);line-height:1.65;">You have done hard things. You are doing one right now. You belong in every room you walk into.</div></div>
 </div>
-```
 
   </div>
       </div>
@@ -1617,43 +1623,44 @@ function toggleFaq(el) {
         <div style="font-size:13px;color:rgba(240,230,255,0.45);margin-bottom:20px;line-height:1.6;">Tell FlowHer about your meeting. Walk in ready.</div>
 
 ```
-    <!-- Step 1: Meeting details -->
-    <div id="meetStep1">
-      <div style="margin-bottom:14px;">
-        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,91,170,0.7);font-family:'DM Sans',sans-serif;margin-bottom:8px;">What is this meeting about?</div>
-        <textarea class="a-inp a-ta a-ta-sm" id="meetTopic" placeholder="Weekly check-in, performance review, difficult conversation..." style="margin-bottom:0;"></textarea>
-      </div>
-      <div style="margin-bottom:14px;">
-        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,91,170,0.7);font-family:'DM Sans',sans-serif;margin-bottom:8px;">Who will be in the room?</div>
-        <input class="a-inp" id="meetPeople" placeholder="My manager, 3 teammates, a client..." style="margin-bottom:0;">
-      </div>
-      <div style="margin-bottom:20px;">
-        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,91,170,0.7);font-family:'DM Sans',sans-serif;margin-bottom:8px;">What do you need to walk away with?</div>
-        <input class="a-inp" id="meetGoal" placeholder="A decision, approval, clarity on my role..." style="margin-bottom:0;">
-      </div>
+<!-- Step 1: Meeting details -->
+<div id="meetStep1">
+  <div style="margin-bottom:14px;">
+    <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,91,170,0.7);font-family:'DM Sans',sans-serif;margin-bottom:8px;">What is this meeting about?</div>
+    <textarea class="a-inp a-ta a-ta-sm" id="meetTopic" placeholder="Weekly check-in, performance review, difficult conversation..." style="margin-bottom:0;"></textarea>
+  </div>
+  <div style="margin-bottom:14px;">
+    <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,91,170,0.7);font-family:'DM Sans',sans-serif;margin-bottom:8px;">Who will be in the room?</div>
+    <input class="a-inp" id="meetPeople" placeholder="My manager, 3 teammates, a client..." style="margin-bottom:0;">
+  </div>
+  <div style="margin-bottom:20px;">
+    <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,91,170,0.7);font-family:'DM Sans',sans-serif;margin-bottom:8px;">What do you need to walk away with?</div>
+    <input class="a-inp" id="meetGoal" placeholder="A decision, approval, clarity on my role..." style="margin-bottom:0;">
+  </div>
 
-      <!-- Anxiety level -->
-      <div style="margin-bottom:20px;">
-        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,91,170,0.7);font-family:'DM Sans',sans-serif;margin-bottom:10px;">How anxious are you about this?</div>
-        <div style="display:flex;gap:8px;" id="meetAnxiety">
-          <button class="meet-anx-btn" data-val="1" onclick="setMeetAnxiety(this)">😌 Calm</button>
-          <button class="meet-anx-btn" data-val="2" onclick="setMeetAnxiety(this)">😬 Nervous</button>
-          <button class="meet-anx-btn" data-val="3" onclick="setMeetAnxiety(this)">😰 Dreading it</button>
-        </div>
-      </div>
-
-      <button class="a-btn-fill" onclick="if(!isCore()){showGate('Meeting Mode');return;}genMeetingPrep()" id="meetBtn" style="width:100%;">Prep Me →</button>
-    </div>
-
-    <!-- Step 2: AI Response -->
-    <div id="meetResult" style="display:none;">
-      <div id="meetRes" class="a-result" style="margin-bottom:20px;"></div>
-      <button onclick="resetMeeting()" style="width:100%;padding:12px;background:transparent;border:1px solid rgba(196,91,170,0.25);border-radius:12px;color:rgba(196,91,170,0.8);font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;">← Prep another meeting</button>
+  <!-- Anxiety level -->
+  <div style="margin-bottom:20px;">
+    <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(196,91,170,0.7);font-family:'DM Sans',sans-serif;margin-bottom:10px;">How anxious are you about this?</div>
+    <div style="display:flex;gap:8px;" id="meetAnxiety">
+      <button class="meet-anx-btn" data-val="1" onclick="setMeetAnxiety(this)">😌 Calm</button>
+      <button class="meet-anx-btn" data-val="2" onclick="setMeetAnxiety(this)">😬 Nervous</button>
+      <button class="meet-anx-btn" data-val="3" onclick="setMeetAnxiety(this)">😰 Dreading it</button>
     </div>
   </div>
 
+  <button class="a-btn-fill" onclick="if(!isCore()){showGate('Meeting Mode');return;}genMeetingPrep()" id="meetBtn" style="width:100%;">Prep Me →</button>
+</div>
+
+<!-- Step 2: AI Response -->
+<div id="meetResult" style="display:none;">
+  <div id="meetRes" class="a-result" style="margin-bottom:20px;"></div>
+  <button onclick="resetMeeting()" style="width:100%;padding:12px;background:transparent;border:1px solid rgba(196,91,170,0.25);border-radius:12px;color:rgba(196,91,170,0.8);font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;">← Prep another meeting</button>
 </div>
 ```
+
+  </div>
+
+</div>
 
   </div>
 
@@ -1667,15 +1674,14 @@ function toggleFaq(el) {
     <div class="a-card-glow locked-card" onclick="showGate('Your 7-Day Pattern')"><span class="a-lbl">Log a Win</span><div class="a-chips" id="wCatChips"><div class="a-chip on" onclick="setWC(this,'Professional')">Professional</div><div class="a-chip" onclick="setWC(this,'Brave Moment')">Brave Moment</div><div class="a-chip" onclick="setWC(this,'Showed Up')">Showed Up</div><div class="a-chip" onclick="setWC(this,'Problem Solved')">Problem Solved</div><div class="a-chip" onclick="setWC(this,'Personal')">Personal</div></div><textarea class="a-inp a-ta a-ta-sm" id="winText" placeholder="What did you do? Even if it felt small. Especially if it felt small." style="margin-bottom:12px;"></textarea><button class="a-btn-fill" onclick="if(!isCore()){showGate('Log a Win');return;}addWin()" style="width:100%;">Log This Win ★</button></div>
     <div id="winsList"></div>
 
-```
 <!-- EXPORT BUTTON -->
+
 <div style="padding:16px 0 8px;">
   <button onclick="if(!isCore()){showGate('Win Export');return;}exportWins()" style="width:100%;padding:14px;background:transparent;border:1px solid rgba(196,91,170,0.3);border-radius:14px;color:rgba(196,91,170,0.9);font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;">
     <span>⬇</span> Download My Win Journal
   </button>
   <div style="font-size:11px;color:rgba(240,230,255,0.3);text-align:center;margin-top:8px;line-height:1.5;">Save as text file — use in performance reviews, therapy, or just for you.</div>
 </div>
-```
 
   </div>
 
@@ -2111,7 +2117,7 @@ function nextAffirm(){const el=document.getElementById(‘affirmText’);el.styl
 function selMood(i){document.querySelectorAll(’.mood-item’).forEach((el,idx)=>el.classList.toggle(‘on’,idx===i));const r=document.getElementById(‘moodResp’);r.textContent=MOODS[i].r;r.style.display=‘block’;localStorage.setItem(‘fh_last_mood’,String(i));}
 
 // ── TIMER ─────────────────────────────────────────────────────────────────────
-function toggleTimer(){timerOn=!timerOn;if(timerOn)timerI=setInterval(tickT,1000);else clearInterval(timerI);document.getElementById(‘timerBtn’).textContent=timerOn?‘⏸ Pause’:‘▶ Start’;document.getElementById(‘timerMsg’).textContent=timerOn?‘You're in it. Stay with it.’:‘One focused block. You've got this.’;}
+function toggleTimer(){timerOn=!timerOn;if(timerOn)timerI=setInterval(tickT,1000);else clearInterval(timerI);document.getElementById(‘timerBtn’).textContent=timerOn?‘⏸ Pause’:‘▶ Start’;document.getElementById(‘timerMsg’).textContent=timerOn?‘You’re in it. Stay with it.’:‘One focused block. You’ve got this.’;}
 function tickT(){if(timerS>0)timerS–;else{clearInterval(timerI);timerOn=false;document.getElementById(‘timerBtn’).textContent=‘▶ Start’;}updTimerUI();}
 function resetTimer(){clearInterval(timerI);timerOn=false;timerS=25*60;updTimerUI();document.getElementById(‘timerBtn’).textContent=‘▶ Start’;}
 function updTimerUI(){const pct=timerS/(25*60);document.getElementById(‘timerArc’).style.strokeDashoffset=238.76*(1-pct);document.getElementById(‘timerArc’).style.stroke=timerS<60?‘var(–rose)’:‘var(–teal)’;document.getElementById(‘timerDisp’).textContent=fmt(timerS);document.getElementById(‘timerDisp’).style.color=timerS<60?‘var(–rose)’:’#f0e6ff’;}
@@ -2184,14 +2190,14 @@ function pushWin(w){wins.unshift(w);localStorage.setItem(‘fh_wins’,JSON.stri
 function deleteWin(i){wins.splice(i,1);localStorage.setItem(‘fh_wins’,JSON.stringify(wins));renderWins();updateLatestWin();updateImposterShield();}
 function renderWins(){const c=document.getElementById(‘winsList’);if(!c)return;c.innerHTML=’’;const tw=document.getElementById(‘totalWins’);const mw=document.getElementById(‘monthWins’);if(tw)tw.textContent=wins.length;const mon=new Date().toLocaleDateString(‘en-US’,{month:‘short’});if(mw)mw.textContent=wins.filter(w=>w.date&&w.date.includes(mon)).length;if(!wins.length){c.innerHTML=’<div style="text-align:center;padding:40px 22px;color:rgba(240,230,255,0.25);font-style:italic;font-size:14px;">No wins logged yet — but you showed up today. That counts. Log it.</div>’;return;}wins.forEach((w,i)=>{c.innerHTML+=`<div class="a-win-card"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><span style="font-size:10px;letter-spacing:2px;color:var(--mag);text-transform:uppercase;">★ ${w.category}</span><div style="display:flex;align-items:center;gap:8px;"><span style="font-size:10px;color:rgba(240,230,255,0.2);">${w.date}</span><button onclick="deleteWin(${i})" style="background:transparent;border:none;color:rgba(240,230,255,0.18);cursor:pointer;font-size:16px;">×</button></div></div><div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:rgba(240,230,255,0.85);line-height:1.65;">${w.text}</div></div>`;});}
 function updateLatestWin(){const card=document.getElementById(‘latestWinCard’);if(!card)return;if(wins.length>0){card.style.display=‘block’;document.getElementById(‘latestWinText’).textContent=’”’+wins[0].text+’”’;document.getElementById(‘latestWinDate’).textContent=wins[0].date;}else card.style.display=‘none’;}
-function updateImposterShield(){const el=document.getElementById(‘imposterWins’);if(!el)return;el.innerHTML=wins.length===0?‘Log wins in your Win Journal — they'll appear here as evidence when imposter syndrome hits.’:wins.slice(0,3).map(w=>`✦ ${w.text}`).join(’<br><br>’);}
+function updateImposterShield(){const el=document.getElementById(‘imposterWins’);if(!el)return;el.innerHTML=wins.length===0?‘Log wins in your Win Journal — they’ll appear here as evidence when imposter syndrome hits.’:wins.slice(0,3).map(w=>`✦ ${w.text}`).join(’<br><br>’);}
 
 // ── UNMASK ────────────────────────────────────────────────────────────────────
 function saveUnmask(){localStorage.setItem(‘fh_unmask’,document.getElementById(‘unmaskText’).value);}
 function clearUnmask(){if(confirm(‘Clear your unmask notes?’)){localStorage.removeItem(‘fh_unmask’);document.getElementById(‘unmaskText’).value=’’;}}
 
 // ── NSR ───────────────────────────────────────────────────────────────────────
-const NSR=[‘Close your eyes if you can. Feel your feet on the floor.’,‘Roll your shoulders back. Unclench your jaw. Breathe out slowly.’,‘Take one slow breath in for 4 counts… hold 2… out for 6.’,‘Notice your hands. Relax them. You don't have to grip anything right now.’,‘You are in your body. You are safe. The work will still be there. You come first.’,‘Open your eyes slowly. You just did something kind for yourself.’];
+const NSR=[‘Close your eyes if you can. Feel your feet on the floor.’,‘Roll your shoulders back. Unclench your jaw. Breathe out slowly.’,‘Take one slow breath in for 4 counts… hold 2… out for 6.’,‘Notice your hands. Relax them. You don’t have to grip anything right now.’,‘You are in your body. You are safe. The work will still be there. You come first.’,‘Open your eyes slowly. You just did something kind for yourself.’];
 let nsrStep=0;
 function startNSR(){nsrStep=0;showNSR();}
 function showNSR(){const c=document.getElementById(‘nsrArea’);c.innerHTML=`<div style="padding:14px;background:rgba(61,158,140,0.08);border-radius:12px;text-align:center;"><div style="font-size:12px;color:var(--teal);letter-spacing:2px;margin-bottom:10px;">STEP ${nsrStep+1} OF ${NSR.length}</div><div class="a-prog-bar"><div class="a-prog-fill" style="width:${((nsrStep)/NSR.length*100)}%"></div></div><div style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:#f0e6ff;line-height:1.7;margin:14px 0;">${NSR[nsrStep]}</div>${nsrStep<NSR.length-1?`<button class="a-btn a-btn-sm a-btn-teal" onclick="nextNSR()">Next →</button>`:`<div style='font-size:22px;margin-bottom:10px;'>🌿</div><div style='font-size:14px;color:rgba(240,230,255,0.7);font-style:italic;'>You reset. That took 3 minutes and it was worth it.</div><br><button class='a-btn a-btn-sm a-btn-teal' onclick='startNSR()'>Go again</button>`}</div>`;}
@@ -2202,7 +2208,7 @@ const dopMsgs={
 ‘✅’:‘You crossed something off. That counts. Keep going.’,
 ‘💧’:‘Hydrated. Your brain works better now. Literally.’,
 ‘🚶’:‘Two minutes of movement just changed your brain chemistry.’,
-‘🎵’:‘Good. Music does something science can't fully explain yet.’,
+‘🎵’:‘Good. Music does something science can’t fully explain yet.’,
 ‘☀️’:‘Light. Air. Presence. You needed that.’,
 ‘📝’:‘Logged as a win. Because it is one.’
 };
@@ -2247,6 +2253,7 @@ var SUPABASE_ANON = ‘eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFz
 var _sb = null;
 var _currentUser = null;
 var _currentPlan = ‘free’;
+var _isNewUser = false;
 
 function getSB(){
 if(!_sb && window.supabase){
@@ -2271,36 +2278,34 @@ try {
 var sb = getSB();
 if(!sb) return ‘free’;
 
-```
 // Owner bypass — always Core
-var OWNER_EMAIL = _currentUser ? _currentUser.email : '';
-var OWNER_EMAILS = ['s.strain04@gmail.com'];
+var OWNER_EMAIL = _currentUser ? _currentUser.email : ‘’;
+var OWNER_EMAILS = [‘s.strain04@gmail.com’];
 if(OWNER_EMAILS.indexOf(OWNER_EMAIL) > -1){
-  _currentPlan = 'core';
-  localStorage.setItem('fh_plan', 'core');
-  return 'core';
+_currentPlan = ‘core’;
+localStorage.setItem(‘fh_plan’, ‘core’);
+return ‘core’;
 }
 
-var res = await sb.from('profiles').select('plan,full_name').eq('id', userId).single();
+var res = await sb.from(‘profiles’).select(‘plan,full_name’).eq(‘id’, userId).single();
 
 // Log for debugging
-console.log('fetchUserPlan response:', JSON.stringify(res));
+console.log(‘fetchUserPlan response:’, JSON.stringify(res));
 
 if(res.error){
-  console.error('fetchUserPlan DB error:', res.error.message);
-  // If RLS blocks the read, fall back to localStorage
-  return localStorage.getItem('fh_plan') || 'free';
+console.error(‘fetchUserPlan DB error:’, res.error.message);
+// If RLS blocks the read, fall back to localStorage
+return localStorage.getItem(‘fh_plan’) || ‘free’;
 }
 
 if(res.data){
-  _currentPlan = res.data.plan || 'free';
-  localStorage.setItem('fh_plan', _currentPlan);
-  if(res.data.full_name){
-    localStorage.setItem('fh_name', res.data.full_name);
-  }
+_currentPlan = res.data.plan || ‘free’;
+localStorage.setItem(‘fh_plan’, _currentPlan);
+if(res.data.full_name){
+localStorage.setItem(‘fh_name’, res.data.full_name);
+}
 }
 return _currentPlan;
-```
 
 } catch(e){
 console.error(‘fetchUserPlan error:’, e);
@@ -3058,6 +3063,6 @@ function trackFoundingClick() {
   window.open(url, '_blank');
 }
 </script>
+
 </body>
 </html>
-
