@@ -1805,7 +1805,7 @@ setTimeout(function(){
 document.querySelectorAll('.reveal:not(.visible)').forEach(function(el){
 el.classList.add('visible');
 });
-},1500);
+},1500);,
 });
 
 // -- LAUNCH / EXIT APP --------------------------------------------------------
@@ -1835,8 +1835,10 @@ document.getElementById('brainDump').addEventListener('input',updWC);
 document.getElementById('unmaskText').addEventListener('input',saveUnmask);
 updatePlanBadge();
 if(isCore()) unlockCoreUI();
-}
-
+var _nav=document.querySelector('.a-nav');
+var _shell=document.getElementById('appShell');
+if(_nav&&_shell)_shell.appendChild(_nav);
+}m
 // Remove locked-card styling for Core users
 function unlockCoreUI(){
 document.querySelectorAll('.locked-card').forEach(function(el){
@@ -1876,6 +1878,7 @@ window.addEventListener('online',function(){
 });
 
 function exitApp(){
+
 var sh=document.getElementById('appShell');sh.style.display='';sh.classList.remove('active');
 document.getElementById('landing').style.display='block';document.getElementById('landing').style.visibility='visible';document.body.style.overflow='';
 document.getElementById('authScreen').classList.remove('show');
