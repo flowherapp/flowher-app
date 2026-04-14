@@ -45,7 +45,7 @@
 
 /* -- TRANSITION -- */
 .slide-in{animation:slideIn 0.5s cubic-bezier(0.4,0,0.2,1) both;}
-@keyframes slideIn{from{opacity:0}to{opacity:1}}to{transform:translateY(0);opacity:1}}
+@keyframes slideIn{from{opacity:0}to{opacity:1}}
 
 /* ========================================
 LANDING PAGE STYLES
@@ -232,7 +232,7 @@ footer{padding:36px 48px;display:flex;align-items:center;justify-content:space-b
 APP STYLES
 ======================================== */
 #appShell{font-family:'DM Sans',sans-serif;color:#f0e6ff;}
-.a-screen{height:calc(100vh - 70px);overflow-y:auto;padding-bottom:90px;}
+.a-screen{flex:1;min-height:0;height:auto;overflow-y:auto;padding-bottom:90px;}
 .a-screen::-webkit-scrollbar{width:0;}
 *{scrollbar-width:none;}
 .a-orb{position:absolute;border-radius:50%;pointer-events:none;z-index:0;}
@@ -299,7 +299,7 @@ APP STYLES
 .hf-pulse{animation:hfpulse 2s ease-in-out infinite;}
 @keyframes breatheAnim{0%,100%{transform:scale(1);opacity:0.6}50%{transform:scale(1.3);opacity:1}}
 .breathe-ring{width:120px;height:120px;border-radius:50%;border:2px solid var(--teal);margin:0 auto 16px;display:flex;align-items:center;justify-content:center;animation:breatheAnim 4s ease-in-out infinite;}
-.a-nav{display:none !important;position:fixed;bottom:0;left:0;right:0;background:rgba(10,5,22,0.97);backdrop-filter:blur(20px);border-top:1px solid rgba(196,91,170,0.12);justify-content:space-around;padding:10px 0 16px;z-index:9999;}#appShell.active .a-nav{display:flex !important;}#appShell.active .a-nav{display:flex !important;}
+.a-nav{display:none !important;position:relative;width:100%;background:rgba(10,5,22,0.97);backdrop-filter:blur(20px);border-top:1px solid rgba(196,91,170,0.12);justify-content:space-around;padding:10px 0 16px;z-index:9999;flex-shrink:0;}#appShell.active .a-nav{display:flex !important;}#appShell.active .a-nav{display:flex !important;}
 .a-nav-btn{background:transparent;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;padding:4px 10px;}
 .a-nav-icon{font-size:18px;transition:color 0.2s;}
 .a-nav-lbl{font-size:11px;letter-spacing:2px;text-transform:uppercase;font-family:'DM Sans',sans-serif;transition:color 0.2s;}
@@ -323,7 +323,7 @@ nav{padding:16px 32px;}
 .proof-bar{gap:24px;}
 /* App shell — centered card on tablet */
 #appShell{background:rgba(0,0,0,0.6);backdrop-filter:blur(20px);}
-.app-inner{max-width:480px;margin:0 auto;height:100%;background:linear-gradient(160deg,#0e0820 0%,#1a0f2e 50%,#0d1520 100%);position:relative;overflow:hidden;}
+.app-inner{max-width:480px;margin:0 auto;height:100%;background:linear-gradient(160deg,#0e0820 0%,#1a0f2e 50%,#0d1520 100%);position:relative;overflow:hidden;display:flex;flex-direction:column;}
 }
 
 /* DESKTOP (1025px+) */
@@ -1398,7 +1398,7 @@ function toggleFaq(el) {
 
   <div id="work-tool-rsd" class="work-tool-content" style="display:none;">
     <div style="font-size:13px;color:rgba(240,230,255,0.45);margin-bottom:14px;line-height:1.6;">Write what happened. Facts only. FlowHer will help you separate the story from the spiral.</div>
-    <div style="font-size:13px;color:rgba(240,230,255,0.6);margin-bottom:16px;line-height:1.7;">Rejection Sensitive Dysphoria is real. The pain of perceived rejection hits neurodivergent women disproportionately hard. Here's how to move through it.</div><div style="background:rgba(232,132,92,0.08);border-radius:12px;padding:14px;margin-bottom:12px;"><div style="font-size:12px;color:var(--rose);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;">Reality Check Tool</div><textarea class="a-inp a-ta a-ta-sm" id="rsdInput" placeholder="What happened? Write the facts only — no interpretations." style="margin-bottom:10px;"></textarea><button class="a-btn-fill" onclick="if(!isCore()){showGate('RSD Toolkit');return;}rsdCheck()" style="width:100%;background:linear-gradient(135deg,#5a1a0e,var(--rose));">Get a Reality Check →</button><div id="rsdRes" style="display:none;margin-top:12px;" class="a-result"></div></div><div style="background:rgba(232,132,92,0.08);border-radius:12px;padding:14px;"><div style="font-size:12px;color:var(--rose);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;">Grounding Reminders</div><div style="font-size:13px;color:rgba(240,230,255,0.65);line-height:1.9;">✦ Your worth is not decided in this moment<br>✦ One person's reaction is not your performance review<br>✦ RSD amplifies the signal — the situation is likely smaller than it feels<br>✦ Wait 20 minutes before responding to anything</div></div></div>
+    <div style="font-size:13px;color:rgba(240,230,255,0.6);margin-bottom:16px;line-height:1.7;">Rejection Sensitive Dysphoria is real. The pain of perceived rejection hits neurodivergent women disproportionately hard. Here's how to move through it.</div><div style="background:rgba(232,132,92,0.08);border-radius:12px;padding:14px;margin-bottom:12px;"><div style="font-size:12px;color:var(--rose);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;">Reality Check Tool</div><textarea class="a-inp a-ta a-ta-sm" id="rsdInput" placeholder="What happened? Write the facts only — no interpretations." style="margin-bottom:10px;"></textarea><button class="a-btn-fill" id="rsdBtn" onclick="if(!isCore()){showGate('RSD Toolkit');return;}rsdCheck()" style="width:100%;background:linear-gradient(135deg,#5a1a0e,var(--rose));" aria-label="Get an RSD reality check">Get a Reality Check →</button><div id="rsdRes" style="display:none;margin-top:12px;" class="a-result"></div></div><div style="background:rgba(232,132,92,0.08);border-radius:12px;padding:14px;"><div style="font-size:12px;color:var(--rose);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;">Grounding Reminders</div><div style="font-size:13px;color:rgba(240,230,255,0.65);line-height:1.9;">✦ Your worth is not decided in this moment<br>✦ One person's reaction is not your performance review<br>✦ RSD amplifies the signal — the situation is likely smaller than it feels<br>✦ Wait 20 minutes before responding to anything</div></div></div>
 </div>
   </div>
 
@@ -1531,12 +1531,12 @@ function toggleFaq(el) {
   </div>
   <!-- APP NAV -->
   <div class="a-nav">
-    <button class="a-nav-btn on" id="nb-home" onclick="aTab('home')"><span class="a-nav-icon">🏠</span><span class="a-nav-lbl">Home</span></button>
-    <button class="a-nav-btn" id="nb-focus" onclick="aTab('focus')"><span class="a-nav-icon">⚡</span><span class="a-nav-lbl">Focus</span></button>
-    <button class="a-nav-btn" id="nb-work" onclick="isCore()?aTab('work'):gateTab('work','Workplace Survival Tools')"><span class="a-nav-icon">💼</span><span class="a-nav-lbl">Work</span></button>
-    <button class="a-nav-btn" id="nb-wins" onclick="gateTab('wins','Win Journal & Imposter Shield')"><span class="a-nav-icon">⭐</span><span class="a-nav-lbl">Wins</span></button>
-    <button class="a-nav-btn" id="nb-unmask" onclick="gateTab('unmask','Unmask Space & Nervous System Reset')"><span class="a-nav-icon">🌙</span><span class="a-nav-lbl">Unmask</span></button>
-    <button class="a-nav-btn" id="nb-mask" onclick="isCore()?aTab('mask'):gateTab('mask','Masking Debt Tracker')"><span class="a-nav-icon">🎭</span><span class="a-nav-lbl">Mask Debt</span></button>
+    <button class="a-nav-btn on" id="nb-home" onclick="aTab('home')" aria-label="Home" role="tab" aria-selected="true"><span class="a-nav-icon" aria-hidden="true">🏠</span><span class="a-nav-lbl">Home</span></button>
+    <button class="a-nav-btn" id="nb-focus" onclick="aTab('focus')" aria-label="Focus tools" role="tab" aria-selected="false"><span class="a-nav-icon" aria-hidden="true">⚡</span><span class="a-nav-lbl">Focus</span></button>
+    <button class="a-nav-btn" id="nb-work" onclick="isCore()?aTab('work'):gateTab('work','Workplace Survival Tools')" aria-label="Workplace survival tools" role="tab" aria-selected="false"><span class="a-nav-icon" aria-hidden="true">💼</span><span class="a-nav-lbl">Work</span></button>
+    <button class="a-nav-btn" id="nb-wins" onclick="gateTab('wins','Win Journal & Imposter Shield')" aria-label="Win journal" role="tab" aria-selected="false"><span class="a-nav-icon" aria-hidden="true">⭐</span><span class="a-nav-lbl">Wins</span></button>
+    <button class="a-nav-btn" id="nb-unmask" onclick="gateTab('unmask','Unmask Space & Nervous System Reset')" aria-label="Unmask space" role="tab" aria-selected="false"><span class="a-nav-icon" aria-hidden="true">🌙</span><span class="a-nav-lbl">Unmask</span></button>
+    <button class="a-nav-btn" id="nb-mask" onclick="isCore()?aTab('mask'):gateTab('mask','Masking Debt Tracker')" aria-label="Masking debt tracker" role="tab" aria-selected="false"><span class="a-nav-icon" aria-hidden="true">🎭</span><span class="a-nav-lbl">Mask Debt</span></button>
   </div>
 
   <!-- UPGRADE GATE MODAL -->
@@ -1553,6 +1553,9 @@ function toggleFaq(el) {
   </div>
 
 </div></div><!-- /appShell -->
+
+<!-- OFFLINE TOAST — outside appShell so it shows on landing too -->
+<div id="offlineToast" role="alert" aria-live="assertive" style="display:none;position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:rgba(30,10,50,0.97);border:1px solid rgba(232,132,92,0.4);color:#f0e6ff;font-family:'DM Sans',sans-serif;font-size:13px;padding:12px 20px;border-radius:14px;z-index:99999;white-space:nowrap;box-shadow:0 8px 32px rgba(0,0,0,0.4);letter-spacing:0.3px;">📶 You're offline — connect to use AI features</div>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 
@@ -1857,6 +1860,21 @@ if(unmaskNav) unmaskNav.setAttribute('onclick', "aTab('unmask')");
 var maskNav = document.getElementById('nb-mask');
 if(maskNav) maskNav.setAttribute('onclick', "aTab('mask')");
 }
+
+// -- OFFLINE DETECTION -------------------------------------------------------
+function showOfflineToast(){
+  var t=document.getElementById('offlineToast');
+  if(!t)return;
+  t.style.display='block';
+  clearTimeout(window._offlineTimer);
+  window._offlineTimer=setTimeout(function(){t.style.display='none';},4000);
+}
+window.addEventListener('offline',function(){showOfflineToast();});
+window.addEventListener('online',function(){
+  var t=document.getElementById('offlineToast');
+  if(t){t.textContent='✅ You\'re back online';t.style.display='block';clearTimeout(window._offlineTimer);window._offlineTimer=setTimeout(function(){t.style.display='none';},2500);}
+});
+
 function exitApp(){
 var sh=document.getElementById('appShell');sh.style.display='';sh.classList.remove('active');
 document.getElementById('landing').style.display='block';document.getElementById('landing').style.visibility='visible';document.body.style.overflow='';
@@ -1883,7 +1901,7 @@ function fmt(s){const m=Math.floor(s/60);const sec=s%60;return String(m).padStar
 // -- NAVIGATION ----------------------------------------------------------------
 function aTab(t){
 ['home','focus','work','wins','unmask','mask'].forEach(s=>{
-const _s=document.getElementById('as-'+s);const _b=document.getElementById('nb-'+s);if(_s)_s.style.display=s===t?'block':'none';if(_b)_b.classList.toggle('on',s===t);
+const _s=document.getElementById('as-'+s);const _b=document.getElementById('nb-'+s);if(_s)_s.style.display=s===t?'block':'none';if(_b){_b.classList.toggle('on',s===t);_b.setAttribute('aria-selected',s===t?'true':'false');}
 });
 if(t==='wins'){renderWins();updateImposterShield();}
 if(t==='work')updateImposterShield();
@@ -1937,10 +1955,11 @@ function updWC(){const w=document.getElementById('brainDump').value.trim().split
 function clearDump(){document.getElementById('brainDump').value='';document.getElementById('wordCount').textContent='0 words out of your head';}
 
 // -- PRIORITIES ----------------------------------------------------------------
-function buildPriorities(){const c=document.getElementById('priorities');c.innerHTML='';[1,2,3].forEach(i=>{c.innerHTML+=`<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;"><div style="width:22px;height:22px;border-radius:50%;background:rgba(196,91,170,${0.4-i*0.1});display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--mag);flex-shrink:0;">${i}</div><input class="a-inp" style="font-size:13px;" placeholder="${['The most critical thing','The second priority','Third — only if 1&2 are done'][i-1]}" oninput="document.getElementById('triagedMsg').style.display=this.value?'block':'none'"></div>`;});}
+function buildPriorities(){const c=document.getElementById('priorities');c.innerHTML='';[1,2,3].forEach(i=>{c.innerHTML+=`<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;"><div style="width:22px;height:22px;border-radius:50%;background:rgba(196,91,170,${0.4-i*0.1});display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--mag);flex-shrink:0;">${i}</div><input class="a-inp" style="font-size:13px;" placeholder="${['The most critical thing','The second priority','Third — only if 1&2 are done'][i-1]}" oninput="document.getElementById('triagedMsg').style.display=this.value?'block':'none'"></div>`;});const saved=JSON.parse(localStorage.getItem('fh_priorities')||'[]');if(!saved.length){const hint=document.createElement('div');hint.style.cssText='font-size:12px;color:rgba(240,230,255,0.3);text-align:center;padding:8px 0 2px;font-style:italic;';hint.textContent='Start with just one — what actually has to happen today?';c.appendChild(hint);}}
 
 // -- AI CALLS ------------------------------------------------------------------
 async function callClaude(prompt,maxT=700){
+if(!navigator.onLine){showOfflineToast();return 'You\'re offline right now. Connect to the internet and try again.';}
 try {
 const r=await fetch('/.netlify/functions/ai',{
 method:'POST',
@@ -1952,6 +1971,7 @@ const d=await r.json();
 return d.content?.[0]?.text||d.result||'Try again.';
 } catch(e){
 console.error('callClaude failed:',e);
+if(!navigator.onLine){showOfflineToast();return 'You\'re offline. Connect and try again.';}
 return 'Unable to connect. Check your internet and try again.';
 }
 }
@@ -1964,7 +1984,7 @@ async function genEmail(){const ctx=document.getElementById('emailCtx').value.tr
 function setST(el,p){document.querySelectorAll('#sChips .a-chip').forEach(c=>c.classList.remove('on'));el.classList.add('on');scriptTP=p;}
 async function genScript(){const ctx=document.getElementById('scriptCtx').value.trim();if(!ctx||!scriptTP)return;const btn=document.getElementById('scriptBtn');btn.textContent='Writing...';btn.disabled=true;const res=document.getElementById('scriptRes');res.style.display='block';res.textContent='Building your script...';try{res.textContent=await callClaude(`Workplace advocate for neurodivergent women. Script for: "${scriptTP}". Context: "${ctx}". Write 2 versions: assertive and diplomatic. Natural-sounding. No over-apologizing. Label each clearly.`);}catch{res.textContent='Unable to connect.';}btn.textContent='Write My Script →';btn.disabled=false;}
 
-async function rsdCheck(){const input=document.getElementById('rsdInput').value.trim();if(!input)return;const res=document.getElementById('rsdRes');res.style.display='block';res.textContent='Thinking...';try{res.textContent=await callClaude(`Compassionate therapist and ADHD coach. A woman experiencing RSD wrote: "${input}". Gently separate facts from RSD interpretation. Validate the pain without reinforcing catastrophic thinking. Offer 1-2 realistic alternative explanations. End with a grounding thought. Warm, brief, human — under 150 words.`,500);}catch{res.textContent='Unable to connect.';};}
+async function rsdCheck(){const input=document.getElementById('rsdInput').value.trim();if(!input)return;const btn=document.getElementById('rsdBtn');const res=document.getElementById('rsdRes');btn.textContent='Checking in with you...';btn.disabled=true;res.style.display='block';res.textContent='Thinking...';try{res.textContent=await callClaude(`Compassionate therapist and ADHD coach. A woman experiencing RSD wrote: "${input}". Gently separate facts from RSD interpretation. Validate the pain without reinforcing catastrophic thinking. Offer 1-2 realistic alternative explanations. End with a grounding thought. Warm, brief, human — under 150 words.`,500);}catch{res.textContent='Unable to connect.';}finally{btn.textContent='Get a Reality Check →';btn.disabled=false;}}
 
 // -- ADA / MEETING -------------------------------------------------------------
 function buildADA(){const c=document.getElementById('adaList');if(!c)return;c.innerHTML='';ADA_RIGHTS.forEach((r,i)=>{c.innerHTML+=`<div class="a-accord${i===0?' open':''}" id="ada${i}" onclick="tADA(${i})"><div style="font-size:13px;font-weight:500;color:#f0e6ff;display:flex;justify-content:space-between;align-items:center;">${r.t}<span>${i===0?'−':'+'}</span></div>${i===0?`<div style="font-size:13px;color:rgba(240,230,255,0.62);line-height:1.7;margin-top:10px;font-weight:300;">${r.b}</div>`:''}</div>`;});}
