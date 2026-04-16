@@ -368,8 +368,8 @@ nav{padding:16px 32px;}
 /* App shell — phone frame centered on desktop */
 #appShell{background:rgba(5,2,15,0.85);backdrop-filter:blur(30px);display:flex !important;flex-direction:column;align-items:center;justify-content:center;}
 .app-inner{width:390px;height:min(844px,90vh);border-radius:40px;overflow:hidden;background:linear-gradient(160deg,#0e0820 0%,#1a0f2e 50%,#0d1520 100%);position:relative;box-shadow:0 40px 80px rgba(0,0,0,0.6),0 0 0 1px rgba(196,91,170,0.15),inset 0 0 0 1px rgba(255,255,255,0.05);}
-/* Nav — position at bottom of the phone frame on desktop, not viewport */
-#appShell.active .a-nav{position:relative !important;bottom:auto !important;left:auto !important;right:auto !important;width:390px;margin:0 auto;border-bottom-left-radius:40px;border-bottom-right-radius:40px;border-top:1px solid rgba(196,91,170,0.12);}
+/* Nav — attach to bottom of phone frame on desktop */
+#appShell.active .a-nav{position:fixed !important;bottom:calc((100vh - min(844px,90vh)) / 2) !important;left:50% !important;transform:translateX(-50%) !important;width:390px !important;right:auto !important;border-bottom-left-radius:40px;border-bottom-right-radius:40px;}
 
 /* -- LANDING PAGE DESKTOP -- */
 
