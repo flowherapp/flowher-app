@@ -267,7 +267,7 @@ footer{padding:36px 48px;display:flex;align-items:center;justify-content:space-b
 APP STYLES
 ======================================== */
 #appShell{font-family:'DM Sans',sans-serif;color:#f0e6ff;}
-.a-screen{flex:1;min-height:0;height:auto;overflow-y:auto;padding-bottom:90px;}
+.a-screen{height:100%;overflow-y:auto;padding-bottom:90px;}
 .a-screen::-webkit-scrollbar{width:0;}
 *{scrollbar-width:none;}
 .a-orb{position:absolute;border-radius:50%;pointer-events:none;z-index:0;}
@@ -360,14 +360,14 @@ nav{padding:16px 32px;}
 .proof-bar{gap:24px;}
 /* App shell — centered card on tablet */
 #appShell{background:rgba(0,0,0,0.6);backdrop-filter:blur(20px);}
-.app-inner{max-width:480px;margin:0 auto;height:100%;background:linear-gradient(160deg,#0e0820 0%,#1a0f2e 50%,#0d1520 100%);position:relative;overflow:hidden;display:flex;flex-direction:column;}
+.app-inner{max-width:480px;margin:0 auto;height:100%;background:linear-gradient(160deg,#0e0820 0%,#1a0f2e 50%,#0d1520 100%);position:relative;overflow:hidden;}
 }
 
 /* DESKTOP (1025px+) */
 @media(min-width:1025px){
 /* App shell — phone frame centered on desktop */
 #appShell{background:rgba(5,2,15,0.85);backdrop-filter:blur(30px);display:flex !important;flex-direction:column;align-items:center;justify-content:center;}
-.app-inner{width:390px;height:min(844px,90vh);border-radius:40px;overflow:hidden;background:linear-gradient(160deg,#0e0820 0%,#1a0f2e 50%,#0d1520 100%);position:relative;box-shadow:0 40px 80px rgba(0,0,0,0.6),0 0 0 1px rgba(196,91,170,0.15),inset 0 0 0 1px rgba(255,255,255,0.05);display:flex;flex-direction:column;}
+.app-inner{width:390px;height:min(844px,90vh);border-radius:40px;overflow:hidden;background:linear-gradient(160deg,#0e0820 0%,#1a0f2e 50%,#0d1520 100%);position:relative;box-shadow:0 40px 80px rgba(0,0,0,0.6),0 0 0 1px rgba(196,91,170,0.15),inset 0 0 0 1px rgba(255,255,255,0.05);}
 /* Nav — position at bottom of the phone frame on desktop, not viewport */
 #appShell.active .a-nav{position:relative !important;bottom:auto !important;left:auto !important;right:auto !important;width:390px;margin:0 auto;border-bottom-left-radius:40px;border-bottom-right-radius:40px;border-top:1px solid rgba(196,91,170,0.12);}
 
