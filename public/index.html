@@ -336,7 +336,7 @@ APP STYLES
 .breathe-ring{width:120px;height:120px;border-radius:50%;border:2px solid var(--teal);margin:0 auto 16px;display:flex;align-items:center;justify-content:center;animation:breatheAnim 4s ease-in-out infinite;}
 .a-nav{display:none !important;position:fixed;bottom:0;left:0;right:0;background:rgba(10,5,22,0.97);backdrop-filter:blur(20px);border-top:1px solid rgba(196,91,170,0.12);justify-content:space-around;padding:10px 0 16px;z-index:9999;}
 body.app-open .a-nav{display:flex !important;}
-#appShell.active .a-nav{display:flex !important;}#appShell.active .a-nav{display:flex !important;}#appShell.active .a-nav{display:flex !important;}
+#appShell.active .a-nav{display:flex !important;}
 .a-nav-btn{background:transparent;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;padding:4px 10px;}
 .a-nav-icon{font-size:18px;transition:color 0.2s;}
 .a-nav-lbl{font-size:11px;letter-spacing:2px;text-transform:uppercase;font-family:'DM Sans',sans-serif;transition:color 0.2s;}
@@ -365,11 +365,11 @@ nav{padding:16px 32px;}
 
 /* DESKTOP (1025px+) */
 @media(min-width:1025px){
-/* App shell — phone frame centered on desktop */
+/* App shell — phone frame + nav as a unified unit, centered on desktop */
 #appShell{background:rgba(5,2,15,0.85);backdrop-filter:blur(30px);display:flex !important;flex-direction:column;align-items:center;justify-content:center;}
-.app-inner{width:390px;height:min(844px,90vh);border-radius:40px;overflow:hidden;background:linear-gradient(160deg,#0e0820 0%,#1a0f2e 50%,#0d1520 100%);position:relative;box-shadow:0 40px 80px rgba(0,0,0,0.6),0 0 0 1px rgba(196,91,170,0.15),inset 0 0 0 1px rgba(255,255,255,0.05);}
-/* Nav — attach to bottom of phone frame on desktop */
-#appShell.active .a-nav{position:fixed !important;bottom:calc((100vh - min(844px,90vh)) / 2) !important;left:50% !important;transform:translateX(-50%) !important;width:390px !important;right:auto !important;border-bottom-left-radius:40px;border-bottom-right-radius:40px;}
+.app-inner{width:390px;height:min(800px,85vh);border-radius:40px 40px 0 0;overflow:hidden;background:linear-gradient(160deg,#0e0820 0%,#1a0f2e 50%,#0d1520 100%);position:relative;box-shadow:0 -20px 40px rgba(0,0,0,0.3),0 0 0 1px rgba(196,91,170,0.15),inset 0 0 0 1px rgba(255,255,255,0.05);}
+/* Nav attaches directly below phone frame on desktop */
+#appShell.active .a-nav{position:relative !important;bottom:auto !important;left:auto !important;right:auto !important;width:390px !important;transform:none !important;border-radius:0 0 40px 40px;box-shadow:0 20px 40px rgba(0,0,0,0.3),0 0 0 1px rgba(196,91,170,0.15);}
 
 /* -- LANDING PAGE DESKTOP -- */
 
@@ -905,7 +905,7 @@ color:#FAF7FF;
     <button class="enter-app-btn" onclick="openApp()" style="margin-top:24px;">
       Try the App Now <span class="arrow">→</span>
     </button>
-  </div></div><div class="hero-right"><div style="width:340px;height:480px;background:linear-gradient(160deg,#1a0a2e 0%,#0e1a28 100%);border-radius:32px;border:1px solid rgba(196,91,170,0.25);box-shadow:0 24px 60px rgba(26,10,46,0.35),0 0 0 1px rgba(196,91,170,0.1);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:32px;"><div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(196,91,170,0.85);margin-bottom:8px;">Built for your brain</div><div style="font-size:15px;color:rgba(240,230,255,0.85);text-align:center;line-height:1.8;font-style:italic;">"Your ideas matter.<br>Write them down<br>before they disappear."</div><div style="width:48px;height:2px;background:linear-gradient(90deg,#C45BAA,#2D7D6E);border-radius:2px;"></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;"><div style="background:rgba(196,91,170,0.15);border:1px solid rgba(196,91,170,0.3);border-radius:10px;padding:14px;text-align:center;"><div style="font-size:22px;margin-bottom:6px;">⚡</div><div style="font-size:10px;color:rgba(240,230,255,0.75);letter-spacing:1px;font-weight:600;">FOCUS</div></div><div style="background:rgba(196,91,170,0.15);border:1px solid rgba(196,91,170,0.3);border-radius:10px;padding:14px;text-align:center;"><div style="font-size:22px;margin-bottom:6px;">🧠</div><div style="font-size:10px;color:rgba(240,230,255,0.75);letter-spacing:1px;font-weight:600;">CLARITY</div></div><div style="background:rgba(45,125,110,0.15);border:1px solid rgba(45,125,110,0.3);border-radius:10px;padding:14px;text-align:center;"><div style="font-size:22px;margin-bottom:6px;">🛡️</div><div style="font-size:10px;color:rgba(240,230,255,0.75);letter-spacing:1px;font-weight:600;">PROTECT</div></div><div style="background:rgba(45,125,110,0.15);border:1px solid rgba(45,125,110,0.3);border-radius:10px;padding:14px;text-align:center;"><div style="font-size:22px;margin-bottom:6px;">💜</div><div style="font-size:10px;color:rgba(240,230,255,0.75);letter-spacing:1px;font-weight:600;">THRIVE</div></div></div></div></div></div>
+  </div></div><div class="hero-right"><div style="width:340px;height:480px;background:linear-gradient(160deg,#1a0a2e 0%,#0e1a28 100%);border-radius:32px;border:1px solid rgba(196,91,170,0.25);box-shadow:0 24px 60px rgba(26,10,46,0.35),0 0 0 1px rgba(196,91,170,0.1);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:32px;"><div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(196,91,170,0.85);margin-bottom:8px;">Built for your brain</div><div style="font-size:15px;color:rgba(240,230,255,0.85);text-align:center;line-height:1.8;font-style:italic;">"Your ideas matter.<br>Write them down<br>before they disappear."</div><div style="width:48px;height:2px;background:linear-gradient(90deg,#C45BAA,#2D7D6E);border-radius:2px;"></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;"><div style="background:rgba(196,91,170,0.15);border:1px solid rgba(196,91,170,0.3);border-radius:10px;padding:14px;text-align:center;"><div style="font-size:22px;margin-bottom:6px;">⚡</div><div style="font-size:10px;color:rgba(240,230,255,0.75);letter-spacing:1px;font-weight:600;">FOCUS</div></div><div style="background:rgba(196,91,170,0.15);border:1px solid rgba(196,91,170,0.3);border-radius:10px;padding:14px;text-align:center;"><div style="font-size:22px;margin-bottom:6px;">🧠</div><div style="font-size:10px;color:rgba(240,230,255,0.75);letter-spacing:1px;font-weight:600;">CLARITY</div></div><div style="background:rgba(45,125,110,0.15);border:1px solid rgba(45,125,110,0.3);border-radius:10px;padding:14px;text-align:center;"><div style="font-size:22px;margin-bottom:6px;">🛡️</div><div style="font-size:10px;color:rgba(240,230,255,0.75);letter-spacing:1px;font-weight:600;">PROTECT</div></div><div style="background:rgba(45,125,110,0.15);border:1px solid rgba(45,125,110,0.3);border-radius:10px;padding:14px;text-align:center;"><div style="font-size:22px;margin-bottom:6px;">💜</div><div style="font-size:10px;color:rgba(240,230,255,0.75);letter-spacing:1px;font-weight:600;">THRIVE</div></div></div></div></div>
 </section>
 
 <div class="proof-bar">
@@ -1428,34 +1428,25 @@ function toggleFaq(el) {
   <div id="work-tool-email" class="work-tool-content" style="display:none;">
     <div style="font-size:13px;color:rgba(240,230,255,0.45);margin-bottom:14px;line-height:1.6;">Describe the situation. FlowHer writes the email.</div>
     <div class="a-chips" id="eChips"><div class="a-chip" onclick="setET(this,'Following up on a request or meeting that hasn\'t been responded to')">Following Up</div><div class="a-chip" onclick="setET(this,'Setting a professional boundary around my workload or timeline without over-apologizing')">Set Boundary</div><div class="a-chip" onclick="setET(this,'Requesting a reasonable workplace accommodation without disclosing specifics')">Accommodation</div><div class="a-chip" onclick="setET(this,'Professionally pushing back on a decision I disagree with while staying respectful')">Push Back</div><div class="a-chip" onclick="setET(this,'Declining additional work due to capacity without guilt')">Decline Work</div><div class="a-chip" onclick="setET(this,'Requesting that my contributions be acknowledged or credited')">Request Credit</div></div><textarea class="a-inp a-ta a-ta-sm" id="emailCtx" placeholder="Describe your situation." style="margin-bottom:12px;"></textarea><button class="a-btn-fill" onclick="if(!isCore()){showGate('Email Drafting Assistant');return;}genEmail()" id="emailBtn" style="width:100%;">Draft My Email →</button><div id="emailRes" style="display:none;margin-top:14px;" class="a-result"></div></div>
-</div>
   </div>
 
   <div id="work-tool-script" class="work-tool-content" style="display:none;">
     <div style="font-size:13px;color:rgba(240,230,255,0.45);margin-bottom:14px;line-height:1.6;">Who are you talking to? What needs to be said?</div>
     <div class="a-chips" id="sChips"><div class="a-chip a-chip-teal" onclick="setST(this,'Ask for a workplace accommodation')">Ask for accommodation</div><div class="a-chip a-chip-teal" onclick="setST(this,'Push back on extra work being assigned')">Push back on workload</div><div class="a-chip a-chip-teal" onclick="setST(this,'Address a conflict with a difficult colleague')">Address conflict</div><div class="a-chip a-chip-teal" onclick="setST(this,'Request that my work gets properly credited')">Request credit</div><div class="a-chip a-chip-teal" onclick="setST(this,'Set a boundary about my time or capacity')">Set a boundary</div><div class="a-chip a-chip-teal" onclick="setST(this,'Talk to my manager about feeling burned out')">Discuss burnout</div></div><textarea class="a-inp a-ta a-ta-sm" id="scriptCtx" placeholder="Who are you talking to? What happened?" style="margin-bottom:12px;"></textarea><button class="a-btn-fill" onclick="if(!isCore()){showGate('Conversation Script Generator');return;}genScript()" id="scriptBtn" style="width:100%;background:linear-gradient(135deg,#1a4a44,var(--teal));">Write My Script →</button><div id="scriptRes" style="display:none;margin-top:14px;" class="a-result"></div></div>
-</div>
   </div>
 
   <div id="work-tool-rsd" class="work-tool-content" style="display:none;">
     <div style="font-size:13px;color:rgba(240,230,255,0.45);margin-bottom:14px;line-height:1.6;">Write what happened. Facts only. FlowHer will help you separate the story from the spiral.</div>
     <div style="font-size:13px;color:rgba(240,230,255,0.6);margin-bottom:16px;line-height:1.7;">Rejection Sensitive Dysphoria is real. The pain of perceived rejection hits neurodivergent women disproportionately hard. Here's how to move through it.</div><div style="background:rgba(232,132,92,0.08);border-radius:12px;padding:14px;margin-bottom:12px;"><div style="font-size:12px;color:var(--rose);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;">Reality Check Tool</div><textarea class="a-inp a-ta a-ta-sm" id="rsdInput" placeholder="What happened? Write the facts only — no interpretations." style="margin-bottom:10px;"></textarea><button class="a-btn-fill" id="rsdBtn" onclick="if(!isCore()){showGate('RSD Toolkit');return;}rsdCheck()" style="width:100%;background:linear-gradient(135deg,#5a1a0e,var(--rose));" aria-label="Get an RSD reality check">Get a Reality Check →</button><div id="rsdRes" style="display:none;margin-top:12px;" class="a-result"></div></div><div style="background:rgba(232,132,92,0.08);border-radius:12px;padding:14px;"><div style="font-size:12px;color:var(--rose);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;">Grounding Reminders</div><div style="font-size:13px;color:rgba(240,230,255,0.65);line-height:1.9;">✦ Your worth is not decided in this moment<br>✦ One person's reaction is not your performance review<br>✦ RSD amplifies the signal — the situation is likely smaller than it feels<br>✦ Wait 20 minutes before responding to anything</div></div></div>
-</div>
-  </div>
 
   <div id="work-tool-ada" class="work-tool-content" style="display:none;">
     <div style="font-size:13px;color:rgba(240,230,255,0.45);margin-bottom:14px;line-height:1.6;">Your rights at work, in plain language.</div>
     <div style="font-size:13px;color:rgba(240,230,255,0.55);margin-bottom:14px;line-height:1.65;">Plain language. What you actually need to know.</div><div id="adaList"></div></div>
-</div>
-  </div>
 
   <div id="work-tool-imposter" class="work-tool-content" style="display:none;">
     <div style="font-size:13px;color:rgba(240,230,255,0.45);margin-bottom:14px;line-height:1.6;">Your logged wins. Your real proof.</div>
     <div style="font-size:13px;color:rgba(240,230,255,0.55);margin-bottom:12px;line-height:1.65;">Before you walk in that room — read this. These are facts about you.</div><div id="imposterWins" style="font-size:13px;color:rgba(240,230,255,0.7);line-height:1.8;font-style:italic;font-family:'Cormorant Garamond',serif;"></div><div style="margin-top:12px;padding:12px 14px;background:rgba(61,158,140,0.08);border-radius:10px;font-size:13px;color:rgba(240,230,255,0.65);line-height:1.65;">You have done hard things. You are doing one right now. You belong in every room you walk into.</div></div>
-</div>
 
-  </div>
-      </div>
       <div id="work-tool-meeting" class="work-tool-content" style="display:none;">
         <div style="font-size:13px;color:rgba(240,230,255,0.45);margin-bottom:20px;line-height:1.6;">Tell FlowHer about your meeting. Walk in ready.</div>
 
@@ -1492,10 +1483,6 @@ function toggleFaq(el) {
       <div id="meetRes" class="a-result" style="margin-bottom:20px;"></div>
       <button onclick="resetMeeting()" style="width:100%;padding:12px;background:transparent;border:1px solid rgba(196,91,170,0.25);border-radius:12px;color:rgba(196,91,170,0.8);font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;">← Prep another meeting</button>
     </div>
-  </div>
-
-</div>
-
   </div>
 
   <!-- WINS -->
@@ -1570,7 +1557,6 @@ function toggleFaq(el) {
     </div>
     <div id="mask-today-log"></div>
   </div>
-  </div><!-- /app-inner — nav lives outside so overflow:hidden can't clip it -->
   <!-- APP NAV -->
   <div class="a-nav">
     <button class="a-nav-btn on" id="nb-home" onclick="aTab('home')" aria-label="Home" role="tab" aria-selected="true"><span class="a-nav-icon" aria-hidden="true">🏠</span><span class="a-nav-lbl">Home</span></button>
@@ -1594,7 +1580,7 @@ function toggleFaq(el) {
     <button class="gate-dismiss" onclick="closeGate()">Not right now</button>
   </div>
 
-</div><!-- /appShell -->
+</div></div><!-- /appShell -->
 
 <!-- SAVE TOAST — visible across app -->
 <div id="fhSaveToast" class="fh-save-toast" role="status" aria-live="polite">Saved ✓</div>
