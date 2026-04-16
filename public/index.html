@@ -28,6 +28,22 @@
 <meta name="author" content="Silvella Strain, FlowHer LLC">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://flowherapp.com">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "FlowHer",
+  "description": "A productivity and confidence app for professional women who are neurodivergent, burned out, or simply wired differently.",
+  "applicationCategory": "ProductivityApplication",
+  "operatingSystem": "Web",
+  "offers": [
+    {"@type": "Offer","name": "Core Monthly","price": "24.99","priceCurrency": "USD","description": "Founding member rate"},
+    {"@type": "Offer","name": "Core Annual","price": "299","priceCurrency": "USD","description": "Founding member annual rate"}
+  ],
+  "author": {"@type": "Organization","name": "FlowHer LLC","founder": "Silvella Strain"},
+  "audience": {"@type": "Audience","audienceType": "Neurodivergent professional women"}
+}
+</script>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 /* -- GLOBAL -- */
@@ -46,6 +62,25 @@
 /* -- TRANSITION -- */
 .slide-in{animation:slideIn 0.5s cubic-bezier(0.4,0,0.2,1) both;}
 @keyframes slideIn{from{opacity:0}to{opacity:1}}
+@keyframes fhSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes fhPulse{0%,100%{opacity:1}50%{opacity:0.5}}
+.fh-spinner{display:inline-block;width:12px;height:12px;border:2px solid rgba(255,255,255,0.25);border-top-color:#fff;border-radius:50%;animation:fhSpin 0.8s linear infinite;vertical-align:middle;margin-right:6px;}
+.fh-save-toast{position:fixed;bottom:100px;right:20px;background:rgba(45,125,110,0.95);color:#fff;font-size:11px;font-family:'DM Sans',sans-serif;letter-spacing:1px;text-transform:uppercase;padding:8px 14px;border-radius:20px;z-index:99998;opacity:0;pointer-events:none;transition:opacity 0.25s ease;box-shadow:0 4px 16px rgba(45,125,110,0.3);}
+.fh-save-toast.show{opacity:1;}
+.fh-sos-float{position:fixed;bottom:86px;right:16px;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#5a1a0e,#E8845C);border:2px solid rgba(255,255,255,0.15);color:#fff;font-size:20px;cursor:pointer;z-index:9998;box-shadow:0 8px 24px rgba(90,26,14,0.4);display:none;align-items:center;justify-content:center;transition:transform 0.2s;}
+.fh-sos-float:active{transform:scale(0.92);}
+#appShell.active .fh-sos-float{display:flex;}
+.starter-chip{background:rgba(196,91,170,0.08);border:1px solid rgba(196,91,170,0.25);color:rgba(240,230,255,0.75);font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:0.5px;padding:6px 12px;border-radius:14px;cursor:pointer;transition:all 0.2s;}
+.starter-chip:hover,.starter-chip:active{background:rgba(196,91,170,0.18);color:#f0e6ff;transform:translateY(-1px);}
+.fh-time-display{font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:1.5px;color:rgba(196,91,170,0.7);font-weight:400;margin-top:2px;}
+.fh-fog-btn{background:rgba(123,63,160,0.15);border:1px solid rgba(123,63,160,0.35);color:rgba(240,230,255,0.7);font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:6px 10px;border-radius:12px;cursor:pointer;margin-top:8px;transition:all 0.2s;}
+.fh-fog-btn:hover,.fh-fog-btn:active{background:rgba(123,63,160,0.28);color:#f0e6ff;}
+.fh-trust-row{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:12px;font-family:'DM Sans',sans-serif;font-size:11px;color:rgba(240,230,255,0.45);letter-spacing:0.5px;}
+.fh-trust-row span{display:inline-flex;align-items:center;gap:4px;}
+.fh-exit-modal{position:fixed;inset:0;background:rgba(10,5,22,0.85);backdrop-filter:blur(14px);z-index:99999;display:none;align-items:center;justify-content:center;padding:20px;}
+.fh-exit-modal.show{display:flex;animation:fhPulse 0.4s ease;}
+.fh-exit-inner{background:linear-gradient(160deg,#1a0a2e 0%,#0e1a28 100%);border:1px solid rgba(196,91,170,0.3);border-radius:24px;padding:32px 28px;max-width:420px;width:100%;text-align:center;position:relative;box-shadow:0 24px 60px rgba(0,0,0,0.5);}
+.fh-exit-close{position:absolute;top:12px;right:16px;background:transparent;border:none;color:rgba(240,230,255,0.4);font-size:22px;cursor:pointer;}
 
 /* ========================================
 LANDING PAGE STYLES
@@ -299,7 +334,7 @@ APP STYLES
 .hf-pulse{animation:hfpulse 2s ease-in-out infinite;}
 @keyframes breatheAnim{0%,100%{transform:scale(1);opacity:0.6}50%{transform:scale(1.3);opacity:1}}
 .breathe-ring{width:120px;height:120px;border-radius:50%;border:2px solid var(--teal);margin:0 auto 16px;display:flex;align-items:center;justify-content:center;animation:breatheAnim 4s ease-in-out infinite;}
-.a-nav{display:none !important;position:absolute;bottom:0;left:0;right:0;background:rgba(10,5,22,0.97);backdrop-filter:blur(20px);border-top:1px solid rgba(196,91,170,0.12);justify-content:space-around;padding:10px 0 16px;z-index:9999;flex-shrink:0;}
+.a-nav{display:none !important;position:relative;width:100%;background:rgba(10,5,22,0.97);backdrop-filter:blur(20px);border-top:1px solid rgba(196,91,170,0.12);justify-content:space-around;padding:10px 0 16px;z-index:9999;flex-shrink:0;}#appShell.active .a-nav{display:flex !important;}#appShell.active .a-nav{display:flex !important;}
 .a-nav-btn{background:transparent;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;padding:4px 10px;}
 .a-nav-icon{font-size:18px;transition:color 0.2s;}
 .a-nav-lbl{font-size:11px;letter-spacing:2px;text-transform:uppercase;font-family:'DM Sans',sans-serif;transition:color 0.2s;}
@@ -974,6 +1009,7 @@ color:#FAF7FF;
         <li>ADA rights library</li>
       </ul>
       <button class="pricing-cta" onclick="showView('founding')">Claim Founding Rate →</button>
+      <div class="fh-trust-row"><span>🔒 Cancel anytime</span><span>🤍 No lock-in</span><span>✦ Rate locked forever</span></div>
     </div>
 
   </div>
@@ -1170,7 +1206,7 @@ function toggleFaq(el) {
 
   <div class="a-screen" id="as-home">
     <div class="a-hdr">
-      <div><div style="font-size:11px;color:rgba(240,230,255,0.35);font-weight:300;" id="aDate"></div><div class="a-logo"><svg width="138" height="32" viewBox="0 0 138 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;pointer-events:none;"><defs><linearGradient id="lg_a1" x1="0" y1="16" x2="25" y2="16" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#C45BAA"/><stop offset="100%" stop-color="#2D7D6E"/></linearGradient></defs><path d="M2 16 Q5.5 7 9 16 Q12.5 25 16 16 Q19.5 7 23 16" stroke="url(#lg_a1)" stroke-width="2.2" fill="none" stroke-linecap="round"/><circle cx="2" cy="16" r="2.2" fill="#C45BAA"/><circle cx="23" cy="16" r="2.2" fill="#2D7D6E"/><text x="31" y="22" font-family="Cormorant Garamond,serif" font-size="21" font-weight="600" fill="#f0e6ff">Flow</text><text x="75" y="22" font-family="Cormorant Garamond,serif" font-size="21" font-weight="300" fill="#C45BAA" font-style="italic">Her</text><text x="110" y="11" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(240,230,255,0.35)">&#8482;</text></svg></div></div>
+      <div><div style="font-size:11px;color:rgba(240,230,255,0.35);font-weight:300;" id="aDate"></div><div id="aTime" class="fh-time-display"></div><div class="a-logo"><svg width="138" height="32" viewBox="0 0 138 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;pointer-events:none;"><defs><linearGradient id="lg_a1" x1="0" y1="16" x2="25" y2="16" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#C45BAA"/><stop offset="100%" stop-color="#2D7D6E"/></linearGradient></defs><path d="M2 16 Q5.5 7 9 16 Q12.5 25 16 16 Q19.5 7 23 16" stroke="url(#lg_a1)" stroke-width="2.2" fill="none" stroke-linecap="round"/><circle cx="2" cy="16" r="2.2" fill="#C45BAA"/><circle cx="23" cy="16" r="2.2" fill="#2D7D6E"/><text x="31" y="22" font-family="Cormorant Garamond,serif" font-size="21" font-weight="600" fill="#f0e6ff">Flow</text><text x="75" y="22" font-family="Cormorant Garamond,serif" font-size="21" font-weight="300" fill="#C45BAA" font-style="italic">Her</text><text x="110" y="11" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(240,230,255,0.35)">&#8482;</text></svg></div></div>
       <div style="display:flex;gap:8px;align-items:center;">
         <span class="plan-badge free" id="planBadge">FREE</span>
         <button onclick="doSignOut()" style="font-size:11px;color:rgba(240,230,255,0.6);background:rgba(240,230,255,0.08);border:1px solid rgba(240,230,255,0.15);border-radius:8px;cursor:pointer;font-family:'DM Sans',sans-serif;padding:5px 10px;letter-spacing:0.5px;" title="Sign out">Sign Out</button>
@@ -1192,6 +1228,7 @@ function toggleFaq(el) {
   </div>
   <div style="text-align:right;">
     <div id="streakMsg" style="font-size:12px;color:rgba(240,230,255,0.55);font-family:'DM Sans',sans-serif;line-height:1.5;max-width:120px;"></div>
+    <button class="fh-fog-btn" onclick="takeBrainFogDay()" aria-label="Take a brain fog day to preserve your streak">Brain fog day</button>
   </div>
 </div>
 
@@ -1305,7 +1342,7 @@ function toggleFaq(el) {
     <div class="a-hdr"><div class="a-logo"><svg width="138" height="32" viewBox="0 0 138 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;pointer-events:none;"><defs><linearGradient id="lg_a2" x1="0" y1="16" x2="25" y2="16" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#C45BAA"/><stop offset="100%" stop-color="#2D7D6E"/></linearGradient></defs><path d="M2 16 Q5.5 7 9 16 Q12.5 25 16 16 Q19.5 7 23 16" stroke="url(#lg_a2)" stroke-width="2.2" fill="none" stroke-linecap="round"/><circle cx="2" cy="16" r="2.2" fill="#C45BAA"/><circle cx="23" cy="16" r="2.2" fill="#2D7D6E"/><text x="31" y="22" font-family="Cormorant Garamond,serif" font-size="21" font-weight="600" fill="#f0e6ff">Flow</text><text x="75" y="22" font-family="Cormorant Garamond,serif" font-size="21" font-weight="300" fill="#C45BAA" font-style="italic">Her</text><text x="110" y="11" font-family="DM Sans,sans-serif" font-size="9" fill="rgba(240,230,255,0.35)">&#8482;</text></svg></div><button class="a-btn a-btn-sm" style="color:#E85C5C;border-color:rgba(232,92,92,0.4);font-size:10px;" onclick="openSOS()">SOS</button></div>
     <div class="a-pg-title">Focus Toolkit</div>
     <div class="a-pg-sub">No shame in needing structure. Built for how your brain actually works.</div>
-    <div class="a-card locked-card" onclick="showGate('Body Double Mode')"><span class="a-lbl a-lbl-rose">Brain Dump</span><div style="font-size:12px;color:rgba(240,230,255,0.35);margin-bottom:10px;">Everything in your head. No order. No judgment.</div><textarea class="a-inp a-ta" id="brainDump" placeholder="Start typing..."></textarea><div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;"><div style="font-size:11px;color:rgba(240,230,255,0.3);" id="wordCount">0 words out of your head</div><button class="a-btn a-btn-sm a-btn-rose" onclick="clearDump()">Clear</button></div></div>
+    <div class="a-card locked-card" onclick="showGate('Body Double Mode')"><span class="a-lbl a-lbl-rose">Brain Dump</span><div style="font-size:12px;color:rgba(240,230,255,0.35);margin-bottom:10px;">Everything in your head. No order. No judgment.</div><div style="display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap;"><button class="starter-chip" onclick="event.stopPropagation();seedBD('I am worried about ')" type="button">Worried about</button><button class="starter-chip" onclick="event.stopPropagation();seedBD('I keep forgetting ')" type="button">Keep forgetting</button><button class="starter-chip" onclick="event.stopPropagation();seedBD('I need to ')" type="button">I need to</button></div><textarea class="a-inp a-ta" id="brainDump" placeholder="Start typing..."></textarea><div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;"><div style="font-size:11px;color:rgba(240,230,255,0.3);" id="wordCount">0 words out of your head</div><button class="a-btn a-btn-sm a-btn-rose" onclick="clearDump()">Clear</button></div></div>
     <div class="a-card locked-card" onclick="showGate('Email Drafting Assistant')"><span class="a-lbl">Priority Triage — Just 3</span><div style="font-size:12px;color:rgba(240,230,255,0.35);margin-bottom:14px;">What HAS to happen today?</div><div id="priorities"></div><div id="triagedMsg" style="display:none;" class="a-resp">That's your day. Everything else is noise until these are done.</div></div>
     <div class="a-card a-card-teal locked-card" onclick="showGate('Conversation Script Generator')"><span class="a-lbl a-lbl-teal">Smallest Step Engine</span><div style="font-size:12px;color:rgba(240,230,255,0.35);margin-bottom:12px;">Paralyzed by a task? Tell me what it is.</div><textarea class="a-inp a-ta a-ta-sm" id="bigTask" placeholder="What's the task that's paralyzing you right now?"></textarea><button class="a-btn-fill" onclick="if(!isCore()){showGate('Smallest Step Engine');return;}smallestStep()" id="stepBtn" style="margin-top:12px;width:100%;">Break It Down →</button><div id="stepResult" style="display:none;margin-top:12px;" class="a-result"></div></div>
     <div class="a-card a-card-gold locked-card" onclick="showGate('RSD Toolkit')"><span class="a-lbl a-lbl-gold">⚡ Hyperfocus Capture</span><div style="font-size:12px;color:rgba(240,230,255,0.35);margin-bottom:12px;">The hyperfocus hit? Lock in and ride the wave.</div><div id="hfInput"><input class="a-inp" id="hfTask" placeholder="What are you hyperfocused on?" style="margin-bottom:10px;"><button class="a-btn a-btn-sm a-btn-gold hf-pulse" onclick="if(!isCore()){showGate('⚡ Hyperfocus Capture');return;}startHF()" style="display:block;width:100%;padding:12px;">Lock In ⚡</button></div><div id="hfActive" style="display:none;text-align:center;padding:10px 0;"><div style="font-size:11px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:6px;">Riding the wave</div><div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:rgba(240,230,255,0.8);margin-bottom:14px;" id="hfShow"></div><div style="font-size:36px;font-weight:300;color:var(--gold);letter-spacing:3px;font-family:'DM Sans',sans-serif;margin-bottom:12px;" id="hfClock">00:00</div><button class="a-btn a-btn-sm a-btn-gold" onclick="stopHF()">Done — Log This Session</button></div></div>
@@ -1553,6 +1590,24 @@ function toggleFaq(el) {
   </div>
 
 </div></div><!-- /appShell -->
+
+<!-- SAVE TOAST — visible across app -->
+<div id="fhSaveToast" class="fh-save-toast" role="status" aria-live="polite">Saved ✓</div>
+
+<!-- EXIT-INTENT MODAL — one-time capture for abandoners -->
+<div id="fhExitModal" class="fh-exit-modal" role="dialog" aria-labelledby="fhExitTitle" aria-modal="true">
+  <div class="fh-exit-inner">
+    <button class="fh-exit-close" onclick="closeExitModal()" aria-label="Close">&times;</button>
+    <div style="font-size:32px;margin-bottom:12px;">🤍</div>
+    <div id="fhExitTitle" style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;color:#f0e6ff;margin-bottom:10px;line-height:1.3;">Before you go...</div>
+    <div style="font-size:14px;color:rgba(240,230,255,0.7);line-height:1.6;margin-bottom:22px;">Not ready to commit? Join the free waitlist. We'll send one email when founding spots close. No pressure, no spam.</div>
+    <a href="https://forms.gle/UEwBs2Pii3VgcK428" target="_blank" rel="noopener" onclick="closeExitModal()" style="display:inline-block;background:linear-gradient(135deg,#C45BAA,#7B3FA0);color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;padding:13px 26px;border-radius:12px;text-decoration:none;letter-spacing:0.5px;">Join the Free Waitlist →</a>
+    <div style="margin-top:14px;"><button onclick="closeExitModal()" style="background:transparent;border:none;color:rgba(240,230,255,0.4);font-size:12px;cursor:pointer;font-family:'DM Sans',sans-serif;">Maybe later</button></div>
+  </div>
+</div>
+
+<!-- FLOATING SOS BUTTON — always accessible in app -->
+<button class="fh-sos-float" onclick="document.getElementById('sosOverlay').classList.add('show')" aria-label="Emergency nervous system reset" title="Need a pause? Tap for SOS">🫶</button>
 
 <!-- OFFLINE TOAST — outside appShell so it shows on landing too -->
 <div id="offlineToast" role="alert" aria-live="assertive" style="display:none;position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:rgba(30,10,50,0.97);border:1px solid rgba(232,132,92,0.4);color:#f0e6ff;font-family:'DM Sans',sans-serif;font-size:13px;padding:12px 20px;border-radius:14px;z-index:99999;white-space:nowrap;box-shadow:0 8px 32px rgba(0,0,0,0.4);letter-spacing:0.3px;">📶 You're offline — connect to use AI features</div>
@@ -1805,7 +1860,7 @@ setTimeout(function(){
 document.querySelectorAll('.reveal:not(.visible)').forEach(function(el){
 el.classList.add('visible');
 });
-},1500);,
+},1500);
 });
 
 // -- LAUNCH / EXIT APP --------------------------------------------------------
@@ -1835,10 +1890,8 @@ document.getElementById('brainDump').addEventListener('input',updWC);
 document.getElementById('unmaskText').addEventListener('input',saveUnmask);
 updatePlanBadge();
 if(isCore()) unlockCoreUI();
-var _nav=document.querySelector('.a-nav');
-var _shell=document.getElementById('appShell');
-if(_nav&&_shell)_shell.appendChild(_nav);
 }
+
 // Remove locked-card styling for Core users
 function unlockCoreUI(){
 document.querySelectorAll('.locked-card').forEach(function(el){
@@ -1877,8 +1930,94 @@ window.addEventListener('online',function(){
   if(t){t.textContent='✅ You\'re back online';t.style.display='block';clearTimeout(window._offlineTimer);window._offlineTimer=setTimeout(function(){t.style.display='none';},2500);}
 });
 
-function exitApp(){
+// -- SAVE FEEDBACK (reduces "did it save?" anxiety) --------------------------
+function showSaveToast(msg){
+  var t=document.getElementById('fhSaveToast');
+  if(!t)return;
+  t.textContent=msg||'Saved ✓';
+  t.classList.add('show');
+  clearTimeout(window._saveTimer);
+  window._saveTimer=setTimeout(function(){t.classList.remove('show');},1400);
+}
+// Wrap localStorage.setItem to fire a save toast for app data keys
+(function(){
+  var _origSet=localStorage.setItem.bind(localStorage);
+  localStorage.setItem=function(key,val){
+    _origSet(key,val);
+    if(typeof key==='string' && key.indexOf('fh_')===0){
+      // Don't toast on every keystroke — debounce by key
+      clearTimeout(window['_st_'+key]);
+      window['_st_'+key]=setTimeout(function(){showSaveToast();},600);
+    }
+  };
+})();
 
+// -- TIME DISPLAY (time-blindness helper) ------------------------------------
+function fhUpdateTime(){
+  var el=document.getElementById('aTime');
+  if(!el)return;
+  var t=new Date();
+  el.textContent=t.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
+}
+setInterval(fhUpdateTime,30000);
+// Update immediately when app becomes visible
+document.addEventListener('visibilitychange',function(){if(!document.hidden)fhUpdateTime();});
+setTimeout(fhUpdateTime,300);
+
+// -- BRAIN FOG DAY (preserves streak without guilt) --------------------------
+function takeBrainFogDay(){
+  try{
+    var data=JSON.parse(localStorage.getItem('fh_streak')||'{"count":0,"lastDate":"","bestStreak":0,"fogDays":0}');
+    var today=new Date().toDateString();
+    if(data.lastDate===today){showSaveToast('Already checked in today 🤍');return;}
+    data.lastDate=today;
+    data.fogDays=(data.fogDays||0)+1;
+    if(!data.count)data.count=1;
+    localStorage.setItem('fh_streak',JSON.stringify(data));
+    showSaveToast('Rest day honored 🤍');
+    if(typeof updateStreak==='function')updateStreak();
+  }catch(e){console.error('fog day',e);}
+}
+
+// -- BRAIN DUMP STARTER PROMPTS (reduces input paralysis) --------------------
+function seedBD(prefix){
+  var bd=document.getElementById('brainDump');
+  if(!bd)return;
+  var current=bd.value||'';
+  bd.value=current?(current.replace(/\s+$/,'')+'\n'+prefix):prefix;
+  bd.focus();
+  // Move cursor to end
+  bd.setSelectionRange(bd.value.length,bd.value.length);
+  if(typeof updWC==='function')updWC();
+}
+
+// -- EXIT-INTENT MODAL (free waitlist capture) -------------------------------
+function closeExitModal(){
+  var m=document.getElementById('fhExitModal');
+  if(m)m.classList.remove('show');
+}
+document.addEventListener('mouseleave',function(e){
+  if(e.clientY<10 && !sessionStorage.getItem('fh_exit_shown')){
+    // Only show on landing page, not inside the app
+    var shell=document.getElementById('appShell');
+    if(shell && shell.classList.contains('active'))return;
+    sessionStorage.setItem('fh_exit_shown','1');
+    var m=document.getElementById('fhExitModal');
+    if(m)m.classList.add('show');
+  }
+});
+
+// -- MEETING PREP HISTORY (save last 5 preps) --------------------------------
+function fhSaveMeetingPrep(topic,result){
+  try{
+    var hist=JSON.parse(localStorage.getItem('fh_meet_history')||'[]');
+    hist.unshift({topic:topic,result:result,date:new Date().toLocaleDateString('en-US',{month:'short',day:'numeric'})});
+    if(hist.length>5)hist=hist.slice(0,5);
+    localStorage.setItem('fh_meet_history',JSON.stringify(hist));
+  }catch(e){console.error('meet history',e);}
+}
+
+function exitApp(){
 var sh=document.getElementById('appShell');sh.style.display='';sh.classList.remove('active');
 document.getElementById('landing').style.display='block';document.getElementById('landing').style.visibility='visible';document.body.style.overflow='';
 document.getElementById('authScreen').classList.remove('show');
@@ -1958,7 +2097,24 @@ function updWC(){const w=document.getElementById('brainDump').value.trim().split
 function clearDump(){document.getElementById('brainDump').value='';document.getElementById('wordCount').textContent='0 words out of your head';}
 
 // -- PRIORITIES ----------------------------------------------------------------
-function buildPriorities(){const c=document.getElementById('priorities');c.innerHTML='';[1,2,3].forEach(i=>{c.innerHTML+=`<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;"><div style="width:22px;height:22px;border-radius:50%;background:rgba(196,91,170,${0.4-i*0.1});display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--mag);flex-shrink:0;">${i}</div><input class="a-inp" style="font-size:13px;" placeholder="${['The most critical thing','The second priority','Third — only if 1&2 are done'][i-1]}" oninput="document.getElementById('triagedMsg').style.display=this.value?'block':'none'"></div>`;});const saved=JSON.parse(localStorage.getItem('fh_priorities')||'[]');if(!saved.length){const hint=document.createElement('div');hint.style.cssText='font-size:12px;color:rgba(240,230,255,0.3);text-align:center;padding:8px 0 2px;font-style:italic;';hint.textContent='Start with just one — what actually has to happen today?';c.appendChild(hint);}}
+function buildPriorities(){const c=document.getElementById('priorities');c.innerHTML='';[1,2,3].forEach(i=>{c.innerHTML+=`<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;"><div style="width:22px;height:22px;border-radius:50%;background:rgba(196,91,170,${0.4-i*0.1});display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--mag);flex-shrink:0;">${i}</div><input class="a-inp" id="pri-${i}" style="font-size:13px;" placeholder="${['The most critical thing','The second priority','Third — only if 1&2 are done'][i-1]}" oninput="document.getElementById('triagedMsg').style.display=this.value?'block':'none'"><button type="button" onclick="startPriority(${i})" aria-label="Start focus timer on this priority" style="background:rgba(45,125,110,0.18);border:1px solid rgba(45,125,110,0.4);color:var(--teal);font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:6px 10px;border-radius:12px;cursor:pointer;flex-shrink:0;white-space:nowrap;">Start</button></div>`;});const saved=JSON.parse(localStorage.getItem('fh_priorities')||'[]');if(!saved.length){const hint=document.createElement('div');hint.style.cssText='font-size:12px;color:rgba(240,230,255,0.3);text-align:center;padding:8px 0 2px;font-style:italic;';hint.textContent='Start with just one — what actually has to happen today?';c.appendChild(hint);}}
+
+function startPriority(i){
+  var inp=document.getElementById('pri-'+i);
+  var task=inp&&inp.value.trim();
+  if(!task){showSaveToast('Add a priority first');return;}
+  // Switch to focus tab and seed the timer message
+  if(typeof aTab==='function')aTab('focus');
+  var msg=document.getElementById('timerMsg');
+  if(msg)msg.textContent='Working on: '+task;
+  // Auto-start the timer
+  setTimeout(function(){
+    if(typeof toggleTimer==='function' && typeof timerOn!=='undefined' && !timerOn){
+      toggleTimer();
+    }
+  },400);
+  showSaveToast('Focus started 🎯');
+}
 
 // -- AI CALLS ------------------------------------------------------------------
 async function callClaude(prompt,maxT=700){
@@ -1979,15 +2135,15 @@ return 'Unable to connect. Check your internet and try again.';
 }
 }
 
-async function smallestStep(){const task=document.getElementById('bigTask').value.trim();if(!task)return;const btn=document.getElementById('stepBtn');btn.textContent='Breaking it down...';btn.disabled=true;const res=document.getElementById('stepResult');res.style.display='block';res.textContent='Thinking...';try{res.textContent=await callClaude(`You are an ADHD coach for professional women. A woman with ADHD is paralyzed by this task: "${task}". Give the one absolute tiniest first action — under 5 minutes, minimum activation energy. Then 3 more tiny sequential steps. Format: FIRST STEP: [action]\n\nTHEN:\n1.\n2.\n3.\n\nEnd with one sentence of encouragement. No preamble.`);}catch{res.textContent='Unable to connect. Try again.';}btn.textContent='Break It Down →';btn.disabled=false;}
+async function smallestStep(){const task=document.getElementById('bigTask').value.trim();if(!task)return;const btn=document.getElementById('stepBtn');btn.innerHTML='<span class="fh-spinner"></span>Breaking it down...';btn.disabled=true;const res=document.getElementById('stepResult');res.style.display='block';res.textContent='Thinking...';try{res.textContent=await callClaude(`You are an ADHD coach for professional women. A woman with ADHD is paralyzed by this task: "${task}". Give the one absolute tiniest first action — under 5 minutes, minimum activation energy. Then 3 more tiny sequential steps. Format: FIRST STEP: [action]\n\nTHEN:\n1.\n2.\n3.\n\nEnd with one sentence of encouragement. No preamble.`);}catch{res.textContent='Unable to connect. Try again.';}btn.innerHTML='Break It Down →';btn.disabled=false;}
 
 function setET(el,p){document.querySelectorAll('#eChips .a-chip').forEach(c=>c.classList.remove('on'));el.classList.add('on');emailTP=p;}
-async function genEmail(){const ctx=document.getElementById('emailCtx').value.trim();if(!ctx||!emailTP)return;const btn=document.getElementById('emailBtn');btn.textContent='Writing...';btn.disabled=true;const res=document.getElementById('emailRes');res.style.display='block';res.textContent='Drafting...';try{res.textContent=await callClaude(`Professional writing assistant for women in corporate. Task: ${emailTP}. Context: "${ctx}". Write a confident, professional email. Do NOT over-apologize. Warm but firm. Include Subject: on first line. Concise.`,800);}catch{res.textContent='Unable to connect.';}btn.textContent='Draft My Email →';btn.disabled=false;}
+async function genEmail(){const ctx=document.getElementById('emailCtx').value.trim();if(!ctx||!emailTP)return;const btn=document.getElementById('emailBtn');btn.innerHTML='<span class="fh-spinner"></span>Writing...';btn.disabled=true;const res=document.getElementById('emailRes');res.style.display='block';res.textContent='Drafting...';try{res.textContent=await callClaude(`Professional writing assistant for women in corporate. Task: ${emailTP}. Context: "${ctx}". Write a confident, professional email. Do NOT over-apologize. Warm but firm. Include Subject: on first line. Concise.`,800);}catch{res.textContent='Unable to connect.';}btn.innerHTML='Draft My Email →';btn.disabled=false;}
 
 function setST(el,p){document.querySelectorAll('#sChips .a-chip').forEach(c=>c.classList.remove('on'));el.classList.add('on');scriptTP=p;}
-async function genScript(){const ctx=document.getElementById('scriptCtx').value.trim();if(!ctx||!scriptTP)return;const btn=document.getElementById('scriptBtn');btn.textContent='Writing...';btn.disabled=true;const res=document.getElementById('scriptRes');res.style.display='block';res.textContent='Building your script...';try{res.textContent=await callClaude(`Workplace advocate for neurodivergent women. Script for: "${scriptTP}". Context: "${ctx}". Write 2 versions: assertive and diplomatic. Natural-sounding. No over-apologizing. Label each clearly.`);}catch{res.textContent='Unable to connect.';}btn.textContent='Write My Script →';btn.disabled=false;}
+async function genScript(){const ctx=document.getElementById('scriptCtx').value.trim();if(!ctx||!scriptTP)return;const btn=document.getElementById('scriptBtn');btn.innerHTML='<span class="fh-spinner"></span>Writing...';btn.disabled=true;const res=document.getElementById('scriptRes');res.style.display='block';res.textContent='Building your script...';try{res.textContent=await callClaude(`Workplace advocate for neurodivergent women. Script for: "${scriptTP}". Context: "${ctx}". Write 2 versions: assertive and diplomatic. Natural-sounding. No over-apologizing. Label each clearly.`);}catch{res.textContent='Unable to connect.';}btn.innerHTML='Write My Script →';btn.disabled=false;}
 
-async function rsdCheck(){const input=document.getElementById('rsdInput').value.trim();if(!input)return;const btn=document.getElementById('rsdBtn');const res=document.getElementById('rsdRes');btn.textContent='Checking in with you...';btn.disabled=true;res.style.display='block';res.textContent='Thinking...';try{res.textContent=await callClaude(`Compassionate therapist and ADHD coach. A woman experiencing RSD wrote: "${input}". Gently separate facts from RSD interpretation. Validate the pain without reinforcing catastrophic thinking. Offer 1-2 realistic alternative explanations. End with a grounding thought. Warm, brief, human — under 150 words.`,500);}catch{res.textContent='Unable to connect.';}finally{btn.textContent='Get a Reality Check →';btn.disabled=false;}}
+async function rsdCheck(){const input=document.getElementById('rsdInput').value.trim();if(!input)return;const btn=document.getElementById('rsdBtn');const res=document.getElementById('rsdRes');btn.innerHTML='<span class="fh-spinner"></span>Checking in with you...';btn.disabled=true;res.style.display='block';res.textContent='Thinking...';try{res.textContent=await callClaude(`Compassionate therapist and ADHD coach. A woman experiencing RSD wrote: "${input}". Gently separate facts from RSD interpretation. Validate the pain without reinforcing catastrophic thinking. Offer 1-2 realistic alternative explanations. End with a grounding thought. Warm, brief, human — under 150 words.`,500);}catch{res.textContent='Unable to connect.';}finally{btn.innerHTML='Get a Reality Check →';btn.disabled=false;}}
 
 // -- ADA / MEETING -------------------------------------------------------------
 function buildADA(){const c=document.getElementById('adaList');if(!c)return;c.innerHTML='';ADA_RIGHTS.forEach((r,i)=>{c.innerHTML+=`<div class="a-accord${i===0?' open':''}" id="ada${i}" onclick="tADA(${i})"><div style="font-size:13px;font-weight:500;color:#f0e6ff;display:flex;justify-content:space-between;align-items:center;">${r.t}<span>${i===0?'−':'+'}</span></div>${i===0?`<div style="font-size:13px;color:rgba(240,230,255,0.62);line-height:1.7;margin-top:10px;font-weight:300;">${r.b}</div>`:''}</div>`;});}
@@ -2680,7 +2836,7 @@ async function genMeetingPrep() {
   if (!topic) { alert('Tell me what the meeting is about.'); return; }
 
   var btn = document.getElementById('meetBtn');
-  btn.textContent = 'Preparing you...';
+  btn.innerHTML = '<span class="fh-spinner"></span>Preparing you...';
   btn.disabled = true;
 
   var anxContext = ['', 'You feel calm about this.', 'You feel nervous about this meeting.', 'You are dreading this meeting and may experience anxiety or RSD during it.'][_meetAnxLevel];
@@ -2722,6 +2878,7 @@ Keep the tone warm, direct, and respectful of how her brain works. No corporate 
       .replace(/- /g, '<br>• ')
       .replace(/\n/g, '<br>');
     document.getElementById('meetRes').innerHTML = '<div style="font-size:13px;color:rgba(240,230,255,0.85);line-height:1.8;">' + formatted + '</div>';
+    fhSaveMeetingPrep(topic, res);
     } catch(e) {
     document.getElementById('meetBtn').textContent = 'Prep Me →';
     document.getElementById('meetBtn').disabled = false;
